@@ -103,6 +103,9 @@ local LSM = LibStub("LibSharedMedia-3.0")
 
 --sound:
 
+		LSM:Register("sound", "Drums of War", [[Interface\Addons\SharedMedia_MyMedia\sound\drumsofwar.mp3]])
+		LSM:Register("sound", "Sword and Fire", [[Interface\Addons\SharedMedia_MyMedia\sound\swordandfire.mp3]])
+
 --statusbar:
 
 
