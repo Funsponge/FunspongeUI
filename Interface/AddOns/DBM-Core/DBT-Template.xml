@@ -7,7 +7,7 @@
 		<Frames>
 			<StatusBar name="$parentBar">
 				<Size>
-					<AbsDimension x="195" y="20"/>
+					<AbsDimension x="195" y="5"/>
 				</Size>
 				<Anchors>
 					<Anchor point="CENTER" relativePoint="CENTER">
@@ -25,7 +25,7 @@
 					<Layer level="OVERLAY">
 						<Texture name="$parentSpark" file="Interface\AddOns\DBM-Core\textures\Spark.blp" alphaMode="ADD">
 							<Size>
-								<AbsDimension x="32" y="64"/>
+								<AbsDimension x="5" y="5"/>
 							</Size>
 							<Anchors>
 								<Anchor point="CENTER">
@@ -39,7 +39,7 @@
 							<Anchors>
 								<Anchor point="RIGHT" relativePoint="RIGHT">
 									<Offset>
-										<AbsDimension x="-1" y="0.5"/>
+										<AbsDimension x="-1" y="12"/>
 									</Offset>
 								</Anchor>
 							</Anchors>
@@ -48,12 +48,12 @@
 							<Anchors>
      								<Anchor point="LEFT" relativePoint="LEFT">
 									<Offset>
-										<AbsDimension x="7" y="0.5"/>
+										<AbsDimension x="0" y="12"/>
 									</Offset>
 								</Anchor>
 								<Anchor point="RIGHT" relativeTo="$parentTimer" relativePoint="LEFT">
 									<Offset>
-										<AbsDimension x="-7" y="0"/>
+										<AbsDimension x="-1" y="12"/>
 									</Offset>
 								</Anchor>
 							</Anchors>
@@ -65,14 +65,14 @@
 							<Anchors>
 								<Anchor point="RIGHT" relativePoint="LEFT">
 									<Offset>
-										<AbsDimension x="0" y="0"/>
+										<AbsDimension x="-8" y="8"/>
 									</Offset>
 								</Anchor>
 							</Anchors>
 						</Texture>
 						<Texture name="$parentIcon2">
 							<Size>
-								<AbsDimension x="20" y="20"/>
+								<AbsDimension x="25" y="25"/>
 							</Size>
 							<Anchors>
 								<Anchor point="LEFT" relativePoint="RIGHT">
@@ -82,8 +82,22 @@
 								</Anchor>
 							</Anchors>
 						</Texture>
+						 <Texture name="Border" file="Interface\AddOns\DBM-Core\textures\frameborder" level="TOP">
+							<Size>
+								<AbsDimension x="25" y="25"/>
+							</Size>
+							<Color r="0.25" g="0.25" b="0.25" a="1"/>
+							<Anchors>
+								<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="-6" y="-2"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
 					</Layer>
 				</Layers>
+				
 				<BarTexture name="$parentTexture" file="Interface\AddOns\DBM-Core\textures\default.tga"/>
 				<BarColor r="1.0" g="0.7" b="0.0"/>
 			</StatusBar>
