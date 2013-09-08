@@ -8,14 +8,14 @@ Bartender4DB = {
 						{
 							["rows"] = 2,
 							["padding"] = 1,
-							["hidehotkey"] = true,
+							["version"] = 3,
 							["position"] = {
 								["y"] = 76,
 								["x"] = -306,
 								["point"] = "BOTTOM",
 								["scale"] = 0.95,
 							},
-							["version"] = 3,
+							["hidehotkey"] = true,
 							["hidemacrotext"] = true,
 						}, -- [1]
 						{
@@ -30,8 +30,8 @@ Bartender4DB = {
 						{
 							["rows"] = 12,
 							["fadeout"] = true,
-							["fadeoutalpha"] = 0,
 							["version"] = 3,
+							["fadeoutalpha"] = 0,
 							["position"] = {
 								["y"] = -170.6644897460938,
 								["x"] = -86.4996337890625,
@@ -42,8 +42,8 @@ Bartender4DB = {
 						{
 							["rows"] = 12,
 							["fadeout"] = true,
-							["fadeoutalpha"] = 0,
 							["version"] = 3,
+							["fadeoutalpha"] = 0,
 							["position"] = {
 								["y"] = -170.998291015625,
 								["x"] = -43.499755859375,
@@ -55,8 +55,8 @@ Bartender4DB = {
 							["rows"] = 12,
 							["fadeout"] = true,
 							["enabled"] = false,
-							["fadeoutalpha"] = 0,
 							["version"] = 3,
+							["fadeoutalpha"] = 0,
 							["position"] = {
 								["y"] = 163.4764404296875,
 								["x"] = -1.000002861022949,
@@ -79,16 +79,16 @@ Bartender4DB = {
 							["showgrid"] = true,
 							["enabled"] = true,
 							["buttons"] = 3,
-							["padding"] = 1,
-							["hidehotkey"] = true,
+							["hidemacrotext"] = true,
 							["version"] = 3,
+							["hidehotkey"] = true,
 							["position"] = {
 								["y"] = -480,
 								["x"] = -89,
 								["point"] = "CENTER",
 								["scale"] = 1.5,
 							},
-							["hidemacrotext"] = true,
+							["padding"] = 1,
 						}, -- [7]
 						{
 						}, -- [8]
@@ -117,14 +117,14 @@ Bartender4DB = {
 		["MicroMenu"] = {
 			["profiles"] = {
 				["Funsponge - Korgath"] = {
-					["fadeoutalpha"] = 0,
+					["fadeout"] = true,
 					["position"] = {
 						["y"] = -23.57840197139012,
 						["x"] = 254.7766639527181,
 						["point"] = "TOPLEFT",
 						["scale"] = 0.800000011920929,
 					},
-					["fadeout"] = true,
+					["fadeoutalpha"] = 0,
 					["padding"] = 0,
 					["visibility"] = {
 						["combat"] = false,
@@ -171,6 +171,18 @@ Bartender4DB = {
 				},
 			},
 		},
+		["Vehicle"] = {
+			["profiles"] = {
+				["Funsponge - Korgath"] = {
+					["version"] = 3,
+					["position"] = {
+						["y"] = 47.49993896484375,
+						["x"] = 99.50006103515625,
+						["point"] = "CENTER",
+					},
+				},
+			},
+		},
 		["StanceBar"] = {
 			["profiles"] = {
 				["Funsponge - Korgath"] = {
@@ -183,18 +195,6 @@ Bartender4DB = {
 						["scale"] = 1,
 					},
 					["version"] = 3,
-				},
-			},
-		},
-		["Vehicle"] = {
-			["profiles"] = {
-				["Funsponge - Korgath"] = {
-					["version"] = 3,
-					["position"] = {
-						["y"] = 47.49993896484375,
-						["x"] = 99.50006103515625,
-						["point"] = "CENTER",
-					},
 				},
 			},
 		},

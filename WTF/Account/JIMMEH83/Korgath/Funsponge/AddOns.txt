@@ -12,9 +12,9 @@ TexBrowser: enabled
 BagBrother: enabled
 Raven: enabled
 Raven_Options: enabled
-WeakAurasTutorials: disabled
-WeakAurasOptions: disabled
-WeakAurasModelPaths: disabled
+WeakAurasTutorials: enabled
+WeakAurasOptions: enabled
+WeakAurasModelPaths: enabled
 Stuf_Options: enabled
 StufRaid_Options: disabled
 StufRaid: disabled
@@ -27,4 +27,4 @@ Masque_FlatSquares: disabled
 Masque_CleanIcons: disabled
 Masque_Elegance: disabled
 kgPanelsConfig: disabled
-Align: enabled
+Align: disabled

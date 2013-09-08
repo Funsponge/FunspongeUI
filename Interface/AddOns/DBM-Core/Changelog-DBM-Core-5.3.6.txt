@@ -1,0 +1,120 @@
+tag 5.3.6
+d53d23f81118d845a9957b6d959864360afde1c4
+subversion <svn@deadlybossmods.com>
+2013-08-25 23:41:22 +0200
+
+Tagging as 5.3.6
+
+
+--------------------
+
+subversion:
+	- increment version number to
+	- tandanu via svn r10174: fix several bad global accesses
+	- Omega via svn r10173: add an option to the LFG/LFR/BG sound enhancement so it's not forced.
+	- Omega via svn r10172: Small Shadow Pan Monastery update Bugfix to fallen protectors to prevent double warnings
+	- Omega via svn r10171: Math stuff
+	- Omega via svn r10170: Some updates based on newest spell data
+	- Omega via svn r10169: So yeah, events work better when you register them.
+	- Omega via svn r10168: add mod:SetBossHPInfoToHighest() to paragons
+	- Omega via svn r10167: fix a royal fuckup where I never commited blackfuse update after 10 man heroic testing weeks ago and instead edited a local copy i then replaced with an updated dbm version and lost all mod work and never realized it until 25N testing done today. Long story short, i had an updated mof rot his, then accidentally deleted it, i just redid it off memory but it's probably not as good as my original mod i wrote. Hopefully it's enough and i can patch it up more on flex this weekend.
+	- Omega via svn r10166: logic shift on the "checktank" function, that way if target/unitID is nil, it just returns true so we don't squelch warnings if a mob has no target yet.
+	- Omega via svn r10165: restore "combat" method, it should work right now that cid bug is fixed, so long as Unit affecting combat check works right
+	- Omega via svn r10164: Another bugfix
+	- Omega via svn r10163: more changes to world boss pull triggers, have to be tactful with it using yells and still use the target check first so we don't engage bosses just for being on island. so can't use "combat" at all and can only use "pull" if it's our target. Meh best i can come up with.
+	- Omega via svn r10162: change pull code, "combat" is not going to work here because it scans nearby targets to determine who you are in combat with, and well, there are 4 world bosses in one courtyard nearby.
+	- Omega via svn r10161: more world boss tweaks
+	- Omega via svn r10160: fix error
+	- Omega via svn r10159: First world boss pass. Still need ordos and xuen log
+	- Omega via svn r10158: several mod updates from solid flex data
+	- Omega via svn r10157: Add loading conditions for 5 5.4 bosses. I still need to actually update those mods since they are just 5 wowhead drycodes right now.
+	- Omega via svn r10156: Account for fact that imprison and reflections desync from other abilities because those 2 abilities reset on Unleashed SPELL_CAST_START and all others reset on SPELL_CAST_SUCCESS (in other words, reflections go from being cast at 30 energy to 20 energy for example once phase 2 starts).
+	- Omega via svn r10155: even though dark shaman has nothing but next timers, once they start using all of the abilities they can delay eachothers casts sometimes, so use CD timers anyways Fix icon on sha of pride add spawn Reduce spam on interrupt warnings to use GUID instead of name since 3 spawn on 25 man.
+	- Omega via svn r10154: spam reduction on nazgrim Add warning for bonus wave
+	- alcortes via svn r10153: ES localization typo
+	- Omega via svn r10152: Apply fix so DBM doesn't freak out when invisible fogs don't bug out special warning when they spam the emote like 20 times
+	- Omega via svn r10151: update normal stone guard berserk timer since it's 65 seconds longer than heroic.
+	- Omega via svn r10150: oops forgot to disable this timer. seems to get better data for fight i'll need to purposely NOT push specials to analyze timer behavior when they aren't altered by doing fight correctly.
+	- Omega via svn r10149: ##DBM Core Make scenario return reg number of members since the realnum check is very specific and only works if all players aren't just in same zone but same AREA of zone, besides scenarios don't typically have extras parked outside. #Protectors update with todays latest PTR data #Fix lua error on Iron Juggernaut #Fix timer bug on Twin Consorts #Remove unneeded locals from Paragons
+	- Omega via svn r10148: Improve status whisper even further by having it return only number of players in same zone as player
+	- alcortes via svn r10147: ES localization update; typos and shorten long phrases by Nyclya@Tyrande
+	- Omega via svn r10146: add armageddon timer/countdown to spoils
+	- Omega via svn r10145: ##Update translator doc again, to include pvp and proving grounds repo urls
+	- Omega via svn r10144: More thok updates, and some antispam
+	- Omega via svn r10143: Update deafening screech for base regen change (4 energy per second was changed to 4 energy per 0.5 second) Add some run away sounds.
+	- Omega via svn r10142: Spoils: 	Try to filter warnings from quadrants you aren't in. 	Better pull detection 	Victory detection
+	Wil do more tomorrow, got lots of data to work trough still
+	- Omega via svn r10141: fix some obvious bugs, going to do a bigger pass after pizza
+	- Omega via svn r10140: Fixed a bug that caused several timers option defaults to be ignored and be on by default for everyone. Sorry it took so long to catch this bug, too little too liate :\ This bug was reason so many tank only ability timers were enabled for all on so many bosses
+	- Omega via svn r10139: dont make sound if YOU initiated queue role check though.
+	- Omega via svn r10138: Add readycheck master channel to battleground popup, as well as role select popup for raid finder
+	- Omega via svn r10137: lets try this again
+root:
+	- swix via svn r10125: update contact information
+	- Omega via svn r10124: Don't auto respond to Game Masters during raid combat.
+	- Omega via svn r10123: update translator notes. If possible, update contact information
+	- Omega via svn r10122: show the raden message only first time
+	- Omega via svn r10121: fix logic bug
+	- Omega via svn r10120: add execute warning and timer Fix adds icon Add yell for fixate and optional target warning for it.
+	- Omega via svn r10119: Remove busted raden feature, it flat out doesn't work, ever with no fix in site. Replace it with a recommendation for users to switch to bigwigs for Ra-den instead
+	- Omega via svn r10118: more fix
+	- Omega via svn r10117: debug
+	- Omega via svn r10116: maybe that will fix stuff
+	- Omega via svn r10115: Add Galakras engage detection for horde as well. Add missing fire warning for the VERY hard to see fire on ground.
+	- Omega via svn r10114: cache spell name in infoframe ru update
+	- Omega via svn r10113: fix bug in ra-den frame that caused it to ignore players in same group as tank (never noticed this bug because we don't use any soakers from that group
+	- Omega via svn r10112: significant garrosh updates
+	- Omega via svn r10111: combat detection ofr Galakras added (varian) adding some of the missing abilities that weren't in EJ Don't have very good logs so most timers not available and none of tower commanders ever got pulled do to buggy trash.
+	- ebmor via svn r10110: deDE update
+	- Omega via svn r10109: spam spam spam. kill that blasted sha shear spam
+	- Omega via svn r10108: improve pvp mod check more to account for fact out of date ones may not load AT ALL
+	- Omega via svn r10107: prevent a nil error
+	- Omega via svn r10106: Remove the quest flag icon feature. it's an incomplete feature that almost no one uses that will be obsolete when blizz finally adds world boss tracking to UI in 5.4. No point in keeping broken incomplete features around
+	- Omega via svn r10105: fix error in last
+	- Omega via svn r10104: detect outdated pvp mods and warn user that they need to remove or update them. should solve http://elitistjerks.com/f104/t132946-invalid_dpm_bg_timers_not_working/ & http://us.battle.net/wow/en/forum/topic/9165486757
+	- Omega via svn r10103: also apply a raden fix for spirit of redemption player being told to soak
+	- Omega via svn r10102: noroshen infoframe off default, add comment about alternate info frame if unit power never gets fixed on that fight
+	- Omega via svn r10101: because the raden stuff is more accurate but slower people still don't use it on 25 man, so switch to scheduling that is faster but a chance for inaccuracies to see if it's more used this way. 10 man should still probably be accurate as it won't try any scheduling nonsense and use realtime information still (lol 12 second reaction time and all)
+	- nbluewiz via svn r10100: # koKR update.
+	- Omega via svn r10099: also remove useless cid
+	- Omega via svn r10098: lets try this for combat end detection on Immerseus since he doesn't die and has no yell and doesn't cast anything.
+	- Omega via svn r10097: berserk timer change for norushen, was 6 min in flex, i'm going to guess probably same in normal. assume it's still 7 in LFR but don't know for certain adjust berserk timer somewhat because IEEU fires 7 seconds into RP and apparently berserk starts 7 seconds before boss spawns (ie when RP starts)
+	- Omega via svn r10096: more bugfixes
+	- Omega via svn r10095: fix sha of pride bug
+	- Omega via svn r10094: and some live world boss tweaks too
+	- Omega via svn r10093: some minor world boss stuff
+	- Omega via svn r10092: disabled/removed features not worth messing with using such a broken combat log. Coded in what limited functionality that can be had with syncing and what events do show in combat log and disabled the rest
+	- Omega via svn r10091: Some sha of pride updates
+	- Omega via svn r10090: fix bug
+	- Omega via svn r10089: fix logic problem
+	- Omega via svn r10088: add fallback wipe detection to megaera to work around bug that occurs if you feign death or invis or vanish megaera that causes boss to despawn but EncounterInProgress() to stay true which cuases dbm to get stuck in indefinite combat with megaera
+	- ultrashining via svn r10087: zhTW update
+	- Omega via svn r10086: Some Malkorok updates
+	- Omega via svn r10085: fix counting
+	- Omega via svn r10084: Fallen protectors update
+	- Omega via svn r10083: quick gouge fix, more in a bit
+	- Omega via svn r10082: RU update
+	- Omega via svn r10081: fix bug that could occur if someone died on raden before infoframe:show is called
+	- Omega via svn r10080: confirmed fix worked, remove debug
+	- Omega via svn r10079: make pull warning smarter though by having it disable if you're on a char that already killed it. now it'll only do readycheck sound if a world boss you have NOT killed yet is pulled
+	- Omega via svn r10078: fix nalak readypull check
+	- Omega via svn r10077: Some heroic drycodes to prep for next couple days.
+	- Omega via svn r10076: Use the cached table calls not the globals, otherwise the point of caching was self defeating. :)
+	- Omega via svn r10075: only play queue pop through master channel if that option is turned on in dbm
+	- Omega via svn r10074: add smart range radar to thok to show if you're within frenzy triggering threshold
+	- Omega via svn r10073: garrosh drycode
+	- Omega via svn r10072: Remove redundant localisations now that nest locations are hard coded. Fix a bug in Spanish local which seems to have 3 emotes instead of 2 (new trimmed message should work for all 3).
+	- Omega via svn r10071: small code improvement to thok (don't need emote for anything, i found another UNIT_SPELLCAST event i could use instead
+	- Omega via svn r10070: add primal nutriment warning for self
+	- Omega via svn r10069: Small tweak to last
+	- Omega via svn r10068: finish fix to blocking bad version information sent by bigwigs so our users don't get false update notification popups
+	- Omega via svn r10067: start working on fixing versioncheck being broken by bigwigs version faking (bigwigs seems to send the latest ALPHA version as a RELEASE version and force all dbms in raid to flag out of date if there is an alpha in raid newer than latest release).
+	- Omega via svn r10066: Galakras drycode from what limited data that could be pulled from spell tooltips and incomplete EJ
+	- Omega via svn r10065: Fix infoframe bug caused by switch to mapid without making sure map is actually set to correct zone Move zone stuff to :Show so it doesn't get called in every onupdate needlessly
+	- Omega via svn r10064: Try any bit of micro optimizing that can be done in loadmod to try and reduce mid combat loading failures on world bosses. It'd be easier if such slow computers didn't play wow :\
+	- Omega via svn r10063: Fix bug that caused beast of nightmare timer not to cancel when Lulin dies Adjust bouncing bolt LFR timing slightly.
+	- Omega via svn r10062: add more version debug, the problem is in non alphas too
+	- ebmor via svn r10061: adjust mod sort order and deDE SoO name
+	- Omega via svn r10060: Fix lua error on Fallen Protectors Commit spoils of pandaria and thok mods (whew, long day)
+	- nbluewiz via svn r10059: # koKR update. # SoO en locale clean up.
+	- tandanu via svn r10058: increment version number for alphas
