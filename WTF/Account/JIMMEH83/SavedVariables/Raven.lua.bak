@@ -1,0 +1,22 @@
+
+RavenDB = {
+	["profileKeys"] = {
+		["Funsponge - Korgath"] = "Funsponge - Korgath",
+	},
+	["global"] = {
+		["Version"] = "6",
+	},
+	["profiles"] = {
+		["Funsponge - Korgath"] = {
+			["Durations"] = {
+				["Censure"] = 16.235,
+				["Honorless Target"] = 30,
+				["Windsong"] = 12,
+				["Physical Vulnerability"] = 30,
+				["Blessing of Might"] = 3600.012,
+				["Glyph of Templar's Verdict"] = 6,
+				["Poised to Strike"] = 30,
+			},
+		},
+	},
+}

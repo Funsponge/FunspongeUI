@@ -1,0 +1,24 @@
+
+TidyPlatesWidgetData = {
+	["UnitClass"] = {
+		["Diji"] = "SHAMAN",
+		["Mozerus"] = "WARLOCK",
+		["Jinsing"] = "DRUID",
+		["Brustus"] = "WARRIOR",
+	},
+	["CachedAuraDurations"] = {
+		[115804] = 10,
+		[81326] = 30,
+		[115798] = 30,
+		[115767] = 15,
+		[116] = 15,
+		[31803] = 16.235,
+	},
+	["UnitDescriptions"] = {
+	},
+	["UnitGuild"] = {
+		["Jinsing"] = "Keeper of the Bank",
+		["Mozerus"] = "Crits Gone Wild",
+		["Diji"] = "michaeljjffopxxox",
+	},
+}

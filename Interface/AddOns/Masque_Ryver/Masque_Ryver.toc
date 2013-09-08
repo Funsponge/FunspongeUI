@@ -1,0 +1,11 @@
+## Interface: 50300
+## Title: Masque: |c00ABD373Ryver|r
+## Author: Kendian
+## Note: Pixel Skin for Masque
+## Version: 1
+## DefaultState: enabled
+## Dependencies: Masque
+
+Masque_Ryver.lua
+
+

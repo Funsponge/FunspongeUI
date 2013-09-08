@@ -1,0 +1,65 @@
+
+SkadaDB = {
+	["namespaces"] = {
+		["LibDualSpec-1.0"] = {
+		},
+	},
+	["profileKeys"] = {
+		["Funsponge - Korgath"] = "Default",
+	},
+	["profiles"] = {
+		["Default"] = {
+			["modules"] = {
+				["threatflash"] = true,
+				["threatsound"] = false,
+			},
+			["windows"] = {
+				{
+					["classicons"] = false,
+					["barslocked"] = true,
+					["y"] = 25.25498199462891,
+					["barfont"] = "Friz Quadrata TT",
+					["reversegrowth"] = true,
+					["mode"] = "Damage",
+					["point"] = "BOTTOMRIGHT",
+					["buttons"] = {
+						["segment"] = false,
+					},
+					["barwidth"] = 177.8287200927734,
+					["background"] = {
+						["color"] = {
+							["a"] = 0,
+							["b"] = 0.5019607843137255,
+						},
+						["height"] = 124.1143417358398,
+					},
+					["x"] = -11.6568603515625,
+					["barcolor"] = {
+						["b"] = 0,
+						["g"] = 0,
+						["r"] = 0,
+					},
+					["barfontsize"] = 10,
+					["bartexture"] = "Kait",
+					["title"] = {
+						["color"] = {
+							["a"] = 1,
+							["b"] = 0,
+							["g"] = 0,
+							["r"] = 0,
+						},
+						["font"] = "Friz Quadrata TT",
+						["texture"] = "Kait2",
+					},
+				}, -- [1]
+			},
+			["icon"] = {
+				["hide"] = true,
+			},
+			["showranks"] = false,
+			["reset"] = {
+				["instance"] = 3,
+			},
+		},
+	},
+}
