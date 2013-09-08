@@ -57,8 +57,8 @@ W: 360
 H: 634
 Frame: DBM_GUI_OptionsFrame
 FrameLevel: 5
-Anchor: RIGHT
-X: -117
-Y: -23
+Anchor: CENTER
+X: 0
+Y: 0
 W: 800
 H: 510
