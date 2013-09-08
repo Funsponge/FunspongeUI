@@ -16,6 +16,7 @@ ChatterDB = {
 		["AltLinks"] = {
 			["profiles"] = {
 				["Default"] = {
+					["rightBracket"] = "",
 					["guildranks"] = {
 						false, -- [1]
 						false, -- [2]
@@ -23,7 +24,6 @@ ChatterDB = {
 						false, -- [4]
 						[0] = false,
 					},
-					["rightBracket"] = "",
 					["leftBracket"] = "",
 				},
 				["Funsponge"] = {
@@ -61,159 +61,159 @@ ChatterDB = {
 			["profiles"] = {
 				["Default"] = {
 					["colors"] = {
-						["Officer"] = {
-							["r"] = 0.250980406999588,
-							["g"] = 0.7529412508010864,
-							["b"] = 0.250980406999588,
+						["Real ID Conversation"] = {
+							["b"] = 0.9411765336990356,
+							["g"] = 0.6941176652908325,
+							["r"] = 0,
 						},
 						["General"] = {
-							["r"] = 1,
-							["g"] = 0.7529412508010864,
 							["b"] = 0.7529412508010864,
+							["g"] = 0.7529412508010864,
+							["r"] = 1,
 						},
 						["Instance Leader"] = {
-							["r"] = 1,
-							["g"] = 0.2823529541492462,
 							["b"] = 0.03529411926865578,
+							["g"] = 0.2823529541492462,
+							["r"] = 1,
 						},
 						["Instance"] = {
-							["r"] = 1,
-							["g"] = 0.4980392456054688,
 							["b"] = 0,
+							["g"] = 0.4980392456054688,
+							["r"] = 1,
 						},
 						["Raid Leader"] = {
-							["r"] = 1,
-							["g"] = 0.2823529541492462,
 							["b"] = 0.03529411926865578,
-						},
-						["Guild"] = {
-							["r"] = 0.250980406999588,
-							["g"] = 1,
-							["b"] = 0.250980406999588,
-						},
-						["Yell"] = {
-							["r"] = 1,
-							["g"] = 0.250980406999588,
-							["b"] = 0.250980406999588,
-						},
-						["Real ID Whisper"] = {
-							["r"] = 0,
-							["g"] = 1,
-							["b"] = 0.9647059440612793,
-						},
-						["Party"] = {
-							["r"] = 0.6666666865348816,
-							["g"] = 0.6666666865348816,
-							["b"] = 1,
-						},
-						["Whisper"] = {
-							["r"] = 1,
-							["g"] = 0.501960813999176,
-							["b"] = 1,
-						},
-						["Say"] = {
-							["r"] = 1,
-							["g"] = 1,
-							["b"] = 1,
-						},
-						["Raid Warning"] = {
-							["r"] = 1,
 							["g"] = 0.2823529541492462,
-							["b"] = 0,
-						},
-						["Raid"] = {
 							["r"] = 1,
-							["g"] = 0.4980392456054688,
-							["b"] = 0,
 						},
 						["Party Leader"] = {
-							["r"] = 0.4627451300621033,
-							["g"] = 0.7843137979507446,
 							["b"] = 1,
+							["g"] = 0.7843137979507446,
+							["r"] = 0.4627451300621033,
 						},
-						["Real ID Conversation"] = {
+						["Yell"] = {
+							["b"] = 0.250980406999588,
+							["g"] = 0.250980406999588,
+							["r"] = 1,
+						},
+						["Real ID Whisper"] = {
+							["b"] = 0.9647059440612793,
+							["g"] = 1,
 							["r"] = 0,
-							["g"] = 0.6941176652908325,
-							["b"] = 0.9411765336990356,
+						},
+						["Party"] = {
+							["b"] = 1,
+							["g"] = 0.6666666865348816,
+							["r"] = 0.6666666865348816,
+						},
+						["Whisper"] = {
+							["b"] = 1,
+							["g"] = 0.501960813999176,
+							["r"] = 1,
+						},
+						["Say"] = {
+							["b"] = 1,
+							["g"] = 1,
+							["r"] = 1,
+						},
+						["Raid Warning"] = {
+							["b"] = 0,
+							["g"] = 0.2823529541492462,
+							["r"] = 1,
+						},
+						["Raid"] = {
+							["b"] = 0,
+							["g"] = 0.4980392456054688,
+							["r"] = 1,
+						},
+						["Guild"] = {
+							["b"] = 0.250980406999588,
+							["g"] = 1,
+							["r"] = 0.250980406999588,
+						},
+						["Officer"] = {
+							["b"] = 0.250980406999588,
+							["g"] = 0.7529412508010864,
+							["r"] = 0.250980406999588,
 						},
 					},
 				},
 				["Funsponge"] = {
 					["colors"] = {
-						["Real ID Conversation"] = {
-							["b"] = 0.9411765336990356,
-							["g"] = 0.6941176652908325,
-							["r"] = 0,
+						["Officer"] = {
+							["r"] = 0.250980406999588,
+							["g"] = 0.7529412508010864,
+							["b"] = 0.250980406999588,
 						},
 						["Party Leader"] = {
-							["b"] = 1,
-							["g"] = 0.7843137979507446,
 							["r"] = 0.4627451300621033,
+							["g"] = 0.7843137979507446,
+							["b"] = 1,
 						},
 						["Instance Leader"] = {
-							["b"] = 0.03529411926865578,
-							["g"] = 0.2823529541492462,
 							["r"] = 1,
+							["g"] = 0.2823529541492462,
+							["b"] = 0.03529411926865578,
 						},
 						["Instance"] = {
-							["b"] = 0,
-							["g"] = 0.4980392456054688,
 							["r"] = 1,
+							["g"] = 0.4980392456054688,
+							["b"] = 0,
 						},
 						["Raid Leader"] = {
+							["r"] = 1,
+							["g"] = 0.2823529541492462,
 							["b"] = 0.03529411926865578,
-							["g"] = 0.2823529541492462,
-							["r"] = 1,
-						},
-						["General"] = {
-							["b"] = 0.7529412508010864,
-							["g"] = 0.7529412508010864,
-							["r"] = 1,
-						},
-						["Yell"] = {
-							["b"] = 0.250980406999588,
-							["g"] = 0.250980406999588,
-							["r"] = 1,
-						},
-						["Real ID Whisper"] = {
-							["b"] = 0.9647059440612793,
-							["g"] = 1,
-							["r"] = 0,
-						},
-						["Party"] = {
-							["b"] = 1,
-							["g"] = 0.6666666865348816,
-							["r"] = 0.6666666865348816,
-						},
-						["Whisper"] = {
-							["b"] = 1,
-							["g"] = 0.501960813999176,
-							["r"] = 1,
-						},
-						["Say"] = {
-							["b"] = 1,
-							["g"] = 1,
-							["r"] = 1,
-						},
-						["Raid Warning"] = {
-							["b"] = 0,
-							["g"] = 0.2823529541492462,
-							["r"] = 1,
-						},
-						["Raid"] = {
-							["b"] = 0,
-							["g"] = 0.4980392456054688,
-							["r"] = 1,
 						},
 						["Guild"] = {
-							["b"] = 0.250980406999588,
+							["r"] = 0.250980406999588,
 							["g"] = 1,
-							["r"] = 0.250980406999588,
-						},
-						["Officer"] = {
 							["b"] = 0.250980406999588,
+						},
+						["Yell"] = {
+							["r"] = 1,
+							["g"] = 0.250980406999588,
+							["b"] = 0.250980406999588,
+						},
+						["Real ID Whisper"] = {
+							["r"] = 0,
+							["g"] = 1,
+							["b"] = 0.9647059440612793,
+						},
+						["Party"] = {
+							["r"] = 0.6666666865348816,
+							["g"] = 0.6666666865348816,
+							["b"] = 1,
+						},
+						["Whisper"] = {
+							["r"] = 1,
+							["g"] = 0.501960813999176,
+							["b"] = 1,
+						},
+						["Say"] = {
+							["r"] = 1,
+							["g"] = 1,
+							["b"] = 1,
+						},
+						["Raid Warning"] = {
+							["r"] = 1,
+							["g"] = 0.2823529541492462,
+							["b"] = 0,
+						},
+						["Raid"] = {
+							["r"] = 1,
+							["g"] = 0.4980392456054688,
+							["b"] = 0,
+						},
+						["General"] = {
+							["r"] = 1,
 							["g"] = 0.7529412508010864,
-							["r"] = 0.250980406999588,
+							["b"] = 0.7529412508010864,
+						},
+						["Real ID Conversation"] = {
+							["r"] = 0,
+							["g"] = 0.6941176652908325,
+							["b"] = 0.9411765336990356,
 						},
 					},
 				},
@@ -267,48 +267,53 @@ ChatterDB = {
 		},
 		["Server Positioning"] = {
 		},
-		["Mousewheel Scroll"] = {
+		["JustifyText"] = {
+			["profiles"] = {
+				["Funsponge"] = {
+					["FRAME_4"] = "RIGHT",
+				},
+			},
 		},
 		["Timestamps"] = {
 			["profiles"] = {
 				["Default"] = {
 					["frames"] = {
-						["Frame1"] = false,
 						["Frame4"] = false,
+						["Frame12"] = false,
 						["Frame18"] = false,
-						["Frame16"] = false,
+						["Frame3"] = false,
 						["Frame5"] = false,
-						["Frame14"] = false,
+						["Frame19"] = false,
 						["Frame6"] = false,
 						["Frame17"] = false,
-						["Frame3"] = false,
-						["Frame7"] = false,
-						["Frame19"] = false,
-						["Frame20"] = false,
-						["Frame13"] = false,
-						["Frame15"] = false,
 						["Frame11"] = false,
-						["Frame12"] = false,
+						["Frame13"] = false,
+						["Frame14"] = false,
+						["Frame20"] = false,
+						["Frame7"] = false,
+						["Frame15"] = false,
+						["Frame16"] = false,
+						["Frame1"] = false,
 					},
 				},
 				["Funsponge"] = {
 					["frames"] = {
-						["Frame4"] = false,
 						["Frame12"] = false,
+						["Frame1"] = false,
 						["Frame18"] = false,
-						["Frame3"] = false,
+						["Frame11"] = false,
 						["Frame5"] = false,
-						["Frame19"] = false,
+						["Frame14"] = false,
 						["Frame6"] = false,
 						["Frame17"] = false,
-						["Frame11"] = false,
-						["Frame13"] = false,
-						["Frame14"] = false,
-						["Frame20"] = false,
-						["Frame7"] = false,
-						["Frame15"] = false,
 						["Frame16"] = false,
-						["Frame1"] = false,
+						["Frame7"] = false,
+						["Frame19"] = false,
+						["Frame20"] = false,
+						["Frame13"] = false,
+						["Frame15"] = false,
+						["Frame3"] = false,
+						["Frame4"] = false,
 					},
 				},
 			},
@@ -321,46 +326,65 @@ ChatterDB = {
 					["border"] = "RothSquare",
 					["font"] = "Friz Quadrata TT",
 					["borderColor"] = {
-						["r"] = 0,
-						["g"] = 0,
 						["b"] = 0,
+						["g"] = 0,
+						["r"] = 0,
 					},
-					["inset"] = 1,
+					["background"] = "Solid",
 					["colorByChannel"] = false,
+					["inset"] = 1,
 					["backgroundColor"] = {
 						["a"] = 0.800000011920929,
 					},
-					["background"] = "Solid",
 				},
 				["Funsponge"] = {
 					["edgeSize"] = 1,
 					["attach"] = "TOP",
 					["border"] = "RothSquare",
-					["colorByChannel"] = false,
+					["inset"] = 1,
 					["font"] = "Friz Quadrata TT",
 					["borderColor"] = {
-						["b"] = 0,
-						["g"] = 0,
 						["r"] = 0,
+						["g"] = 0,
+						["b"] = 0,
 					},
-					["background"] = "Solid",
+					["colorByChannel"] = false,
 					["backgroundColor"] = {
 						["a"] = 0.800000011920929,
 					},
-					["inset"] = 1,
+					["background"] = "Solid",
 				},
 			},
 		},
-		["ChatFont"] = {
+		["Highlight"] = {
 			["profiles"] = {
 				["Default"] = {
-					["fontsize"] = 13,
-					["font"] = "Friz Quadrata TT",
+					["customChannels"] = {
+						"Whisper Ping", -- [1]
+					},
+					["words"] = {
+						["jim"] = "Jim",
+						["jimmeh"] = "Jimmeh",
+					},
+					["highlights"] = {
+						["1"] = true,
+						["GUILD"] = true,
+					},
+					["rerouteMessage"] = false,
 				},
 				["Funsponge"] = {
-					["outline"] = "",
-					["font"] = "Friz Quadrata TT",
-					["fontsize"] = 14,
+					["words"] = {
+						["jim"] = "Jim",
+						["jimmeh"] = "Jimmeh",
+					},
+					["customChannels"] = {
+						"Whisper Ping", -- [1]
+					},
+					["rerouteMessage"] = false,
+					["highlights"] = {
+						["1"] = true,
+						["GUILD"] = true,
+					},
 				},
 			},
 		},
@@ -384,80 +408,62 @@ ChatterDB = {
 			["realm"] = {
 				["Korgath"] = {
 					["history"] = {
-						"/tiptop", -- [1]
-						"/skada config", -- [2]
-						"/align", -- [3]
-						"/reload", -- [4]
-						"/g finished at last", -- [5]
-						"/g i uploaded it to github for brian if you want to take a look", -- [6]
-						"/g https://github.com/Funsponge/FunspongeUI", -- [7]
-						"/reload", -- [8]
-						"/macro", -- [9]
-						"/wa", -- [10]
-						"/dbm", -- [11]
-						"/stuf", -- [12]
-						"/dbm", -- [13]
-						"/msbt", -- [14]
-						"/dbm", -- [15]
-						"/reload", -- [16]
+						"/reload", -- [1]
+						"/dbm", -- [2]
+						"/reload", -- [3]
+						"/dbm", -- [4]
+						"/reload", -- [5]
+						"/dbm", -- [6]
+						"/reload", -- [7]
+						"/dbm", -- [8]
+						"/reload", -- [9]
+						"/dbm", -- [10]
+						"/reload", -- [11]
+						"/dbm", -- [12]
+						"/raven", -- [13]
+						"/raven", -- [14]
+						"/wa", -- [15]
+						"/raven", -- [16]
 						"/wa", -- [17]
-						"/wa", -- [18]
-						"/wa", -- [19]
+						"/raven", -- [18]
+						"/raven", -- [19]
 						"/wa", -- [20]
 						"/raven", -- [21]
-						"/raven", -- [22]
-						"/raven", -- [23]
-						"/reload", -- [24]
-						"/skada config", -- [25]
-						"/skada config", -- [26]
-						"/reload", -- [27]
-						"/dbm", -- [28]
+						"/chatter", -- [22]
+						"/wa", -- [23]
+						"/msbt", -- [24]
+						"/bartender", -- [25]
+						"/macro", -- [26]
+						"/macro", -- [27]
+						"/macro", -- [28]
 						"/raven", -- [29]
-						"/stuf", -- [30]
-						"/raven", -- [31]
-						"/bartender", -- [32]
+						"/dbm", -- [30]
+						"/reload", -- [31]
+						"/dbm", -- [32]
 					},
 				},
 			},
 		},
-		["Highlight"] = {
+		["ChatFont"] = {
 			["profiles"] = {
 				["Default"] = {
-					["customChannels"] = {
-						"Whisper Ping", -- [1]
-					},
-					["words"] = {
-						["jim"] = "Jim",
-						["jimmeh"] = "Jimmeh",
-					},
-					["rerouteMessage"] = false,
-					["highlights"] = {
-						["1"] = true,
-						["GUILD"] = true,
-					},
+					["fontsize"] = 13,
+					["font"] = "Friz Quadrata TT",
 				},
 				["Funsponge"] = {
-					["highlights"] = {
-						["1"] = true,
-						["GUILD"] = true,
-					},
-					["customChannels"] = {
-						"Whisper Ping", -- [1]
-					},
-					["rerouteMessage"] = false,
-					["words"] = {
-						["jim"] = "Jim",
-						["jimmeh"] = "Jimmeh",
+					["outline"] = "",
+					["font"] = "Friz Quadrata TT",
+					["fontsize"] = 13,
+					["frames"] = {
+						["FRAME_1"] = {
+							["fontsize"] = 14,
+							["outline"] = "",
+						},
 					},
 				},
 			},
 		},
-		["JustifyText"] = {
-			["profiles"] = {
-				["Funsponge"] = {
-					["FRAME_4"] = "RIGHT",
-				},
-			},
+		["Mousewheel Scroll"] = {
 		},
 	},
 	["profileKeys"] = {

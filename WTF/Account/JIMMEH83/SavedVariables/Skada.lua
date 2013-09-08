@@ -17,40 +17,40 @@ SkadaDB = {
 				{
 					["classicons"] = false,
 					["barslocked"] = true,
-					["background"] = {
-						["height"] = 124.1143417358398,
-						["color"] = {
-							["a"] = 0,
-							["b"] = 0.5019607843137255,
-						},
-					},
 					["y"] = 25.25498199462891,
 					["x"] = -11.6568603515625,
 					["title"] = {
 						["color"] = {
 							["a"] = 1,
-							["r"] = 0,
-							["g"] = 0,
 							["b"] = 0,
+							["g"] = 0,
+							["r"] = 0,
 						},
 						["font"] = "Friz Quadrata TT",
 						["texture"] = "Kait2",
 					},
-					["reversegrowth"] = true,
-					["mode"] = "Damage",
 					["barcolor"] = {
-						["r"] = 0,
-						["g"] = 0,
 						["b"] = 0,
+						["g"] = 0,
+						["r"] = 0,
 					},
+					["mode"] = "Damage",
+					["reversegrowth"] = true,
 					["bartexture"] = "Kait",
 					["barwidth"] = 177.8287200927734,
 					["point"] = "BOTTOMRIGHT",
-					["barfont"] = "Friz Quadrata TT",
+					["background"] = {
+						["color"] = {
+							["a"] = 0,
+							["b"] = 0.5019607843137255,
+						},
+						["height"] = 124.1143417358398,
+					},
 					["barfontsize"] = 10,
 					["buttons"] = {
 						["segment"] = false,
 					},
+					["barfont"] = "Friz Quadrata TT",
 				}, -- [1]
 			},
 			["icon"] = {

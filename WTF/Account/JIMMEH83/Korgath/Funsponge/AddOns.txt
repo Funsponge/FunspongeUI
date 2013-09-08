@@ -27,5 +27,5 @@ Masque_FlatSquares: disabled
 Masque_CleanIcons: disabled
 Masque_Elegance: disabled
 kgPanelsConfig: disabled
-Align: disabled
+Align: enabled
 DBM-SiegeOfOrgrimmar: disabled
