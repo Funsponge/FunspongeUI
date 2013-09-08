@@ -38,7 +38,7 @@ Frame: DBMMinimapButton
 FrameLevel: 8
 Anchor: TOPLEFT
 X: 5
-Y: -133
+Y: -142
 W: 32
 H: 32
 Frame: GridLayoutFrame
@@ -55,3 +55,17 @@ X: -112
 Y: -71
 W: 360
 H: 634
+Frame: RavenBarGroupDebuffs
+FrameLevel: 18
+Anchor: TOPRIGHT
+X: -27
+Y: -152
+W: 65
+H: 65
+Frame: DBM_GUI_OptionsFrame
+FrameLevel: 5
+Anchor: CENTER
+X: 78
+Y: 3
+W: 800
+H: 510

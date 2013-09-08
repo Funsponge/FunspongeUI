@@ -28,3 +28,4 @@ Masque_CleanIcons: disabled
 Masque_Elegance: disabled
 kgPanelsConfig: disabled
 Align: disabled
+DBM-SiegeOfOrgrimmar: disabled

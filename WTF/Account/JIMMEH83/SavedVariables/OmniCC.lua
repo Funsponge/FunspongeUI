@@ -1,10 +1,25 @@
 
 OmniCC4Config = {
-	["version"] = "5.3.1",
+	["engine"] = "AniUpdater",
+	["groups"] = {
+	},
 	["groupSettings"] = {
 		["base"] = {
 			["enabled"] = true,
 			["fontFace"] = "Interface\\Addons\\SharedMedia_MyMedia\\font\\big_noodle_titling.ttf",
+			["fontSize"] = 21,
+			["effect"] = "shine",
+			["yOff"] = 0,
+			["minEffectDuration"] = 30,
+			["minSize"] = 0.5,
+			["spiralOpacity"] = 1,
+			["scaleText"] = true,
+			["xOff"] = 0,
+			["tenthsDuration"] = 0,
+			["fontOutline"] = "OUTLINE",
+			["anchor"] = "CENTER",
+			["mmSSDuration"] = 0,
+			["minDuration"] = 3,
 			["styles"] = {
 				["hours"] = {
 					["a"] = 1,
@@ -35,22 +50,7 @@ OmniCC4Config = {
 					["b"] = 1,
 				},
 			},
-			["effect"] = "shine",
-			["yOff"] = 0,
-			["mmSSDuration"] = 0,
-			["anchor"] = "CENTER",
-			["spiralOpacity"] = 1,
-			["scaleText"] = true,
-			["xOff"] = 0,
-			["tenthsDuration"] = 0,
-			["fontOutline"] = "OUTLINE",
-			["minSize"] = 0.5,
-			["minEffectDuration"] = 30,
-			["minDuration"] = 3,
-			["fontSize"] = 21,
 		},
 	},
-	["engine"] = "AniUpdater",
-	["groups"] = {
-	},
+	["version"] = "5.3.1",
 }

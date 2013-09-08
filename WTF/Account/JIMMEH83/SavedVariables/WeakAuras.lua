@@ -5,9 +5,9 @@ WeakAurasSaved = {
 	},
 	["frame"] = {
 		["xOffset"] = -260.027587890625,
-		["width"] = 843.943359375,
-		["height"] = 668.4573364257813,
 		["yOffset"] = -123.5428466796875,
+		["height"] = 668.4573364257813,
+		["width"] = 843.943359375,
 	},
 	["tempIconCache"] = {
 		["Divine Purpose"] = "Interface\\Icons\\Spell_Holy_MindVision",
@@ -22,8 +22,8 @@ WeakAurasSaved = {
 				["power"] = "1",
 				["power_operator"] = "<",
 				["use_power"] = true,
-				["use_unit"] = true,
 				["unit"] = "player",
+				["use_unit"] = true,
 			},
 			["regionType"] = "texture",
 			["blendMode"] = "BLEND",
@@ -34,7 +34,210 @@ WeakAurasSaved = {
 				},
 			},
 			["texture"] = "Interface\\AddOns\\WeakAuras\\Media\\Textures\\Square_White_Border",
+			["color"] = {
+				0.9607843137254902, -- [1]
+				0.5490196078431373, -- [2]
+				0.7294117647058823, -- [3]
+				1, -- [4]
+			},
+			["selfPoint"] = "BOTTOM",
+			["id"] = "Holy Power 3",
+			["animation"] = {
+				["start"] = {
+					["type"] = "preset",
+					["duration_type"] = "seconds",
+					["preset"] = "fade",
+				},
+				["main"] = {
+					["type"] = "none",
+					["duration_type"] = "seconds",
+					["preset"] = "spiralandpulse",
+				},
+				["finish"] = {
+					["type"] = "preset",
+					["duration_type"] = "seconds",
+					["preset"] = "shrink",
+				},
+			},
+			["trigger"] = {
+				["type"] = "status",
+				["subeventSuffix"] = "_CAST_START",
+				["power_operator"] = ">=",
+				["use_power"] = true,
+				["event"] = "Holy Power",
+				["unit"] = "player",
+				["power"] = "3",
+				["names"] = {
+				},
+				["subeventPrefix"] = "SPELL",
+				["unevent"] = "auto",
+				["use_unit"] = true,
+				["debuffType"] = "HELPFUL",
+			},
+			["desaturate"] = false,
+			["frameStrata"] = 1,
+			["width"] = 22,
+			["rotation"] = 0,
+			["discrete_rotation"] = 0,
+			["numTriggers"] = 1,
+			["anchorPoint"] = "BOTTOM",
+			["height"] = 22,
+			["rotate"] = false,
+			["load"] = {
+				["use_class"] = false,
+				["role"] = {
+					["multi"] = {
+					},
+				},
+				["spec"] = {
+					["multi"] = {
+					},
+				},
+				["class"] = {
+					["multi"] = {
+						["PALADIN"] = true,
+					},
+				},
+				["size"] = {
+					["multi"] = {
+					},
+				},
+			},
 			["yOffset"] = 200,
+		},
+		["Avenging Wrath"] = {
+			["backdropColor"] = {
+				1, -- [1]
+				1, -- [2]
+				1, -- [3]
+				0.5, -- [4]
+			},
+			["sequence"] = 1,
+			["untrigger"] = {
+			},
+			["scale"] = 1,
+			["anchorPoint"] = "CENTER",
+			["border"] = false,
+			["borderEdge"] = "None",
+			["regionType"] = "model",
+			["model_x"] = 0,
+			["borderSize"] = 16,
+			["borderColor"] = {
+				1, -- [1]
+				1, -- [2]
+				1, -- [3]
+				0.5, -- [4]
+			},
+			["borderBackdrop"] = "Blizzard Tooltip",
+			["animation"] = {
+				["start"] = {
+					["type"] = "preset",
+					["preset"] = "fade",
+					["duration_type"] = "seconds",
+				},
+				["main"] = {
+					["duration_type"] = "seconds",
+					["type"] = "none",
+				},
+				["finish"] = {
+					["type"] = "preset",
+					["preset"] = "fade",
+					["duration_type"] = "seconds",
+				},
+			},
+			["actions"] = {
+				["start"] = {
+				},
+				["finish"] = {
+				},
+			},
+			["selfPoint"] = "CENTER",
+			["trigger"] = {
+				["names"] = {
+					"Avenging Wrath", -- [1]
+				},
+				["type"] = "aura",
+				["subeventPrefix"] = "SPELL",
+				["subeventSuffix"] = "_CAST_START",
+				["debuffType"] = "HELPFUL",
+				["ownOnly"] = true,
+				["event"] = "Health",
+				["unit"] = "player",
+			},
+			["borderOffset"] = 5,
+			["advance"] = true,
+			["model_path"] = "SPELLS/Holy_Precast_Uber_Base.m2",
+			["id"] = "Avenging Wrath",
+			["model_y"] = -0.25,
+			["frameStrata"] = 3,
+			["width"] = 330.7422180175781,
+			["rotation"] = 0,
+			["borderInset"] = 11,
+			["numTriggers"] = 1,
+			["model_z"] = 0,
+			["height"] = 172.5715026855469,
+			["xOffset"] = 0,
+			["load"] = {
+				["role"] = {
+					["multi"] = {
+					},
+				},
+				["class"] = {
+					["multi"] = {
+					},
+				},
+				["spec"] = {
+					["multi"] = {
+					},
+				},
+				["size"] = {
+					["multi"] = {
+					},
+				},
+			},
+			["yOffset"] = -385.8299713134766,
+		},
+		["Holy Power 4"] = {
+			["color"] = {
+				1, -- [1]
+				1, -- [2]
+				1, -- [3]
+				1, -- [4]
+			},
+			["mirror"] = false,
+			["yOffset"] = 200,
+			["regionType"] = "texture",
+			["blendMode"] = "BLEND",
+			["actions"] = {
+				["start"] = {
+				},
+				["finish"] = {
+				},
+			},
+			["texture"] = "Interface\\AddOns\\WeakAuras\\Media\\Textures\\Square_White_Border",
+			["untrigger"] = {
+				["power"] = "1",
+				["power_operator"] = "<",
+				["use_power"] = true,
+				["use_unit"] = true,
+				["unit"] = "player",
+			},
+			["selfPoint"] = "BOTTOM",
+			["trigger"] = {
+				["type"] = "status",
+				["subeventSuffix"] = "_CAST_START",
+				["power_operator"] = ">=",
+				["use_power"] = true,
+				["event"] = "Holy Power",
+				["unit"] = "player",
+				["power"] = "4",
+				["use_unit"] = true,
+				["unevent"] = "auto",
+				["subeventPrefix"] = "SPELL",
+				["names"] = {
+				},
+				["debuffType"] = "HELPFUL",
+			},
 			["animation"] = {
 				["start"] = {
 					["type"] = "preset",
@@ -52,23 +255,7 @@ WeakAurasSaved = {
 					["duration_type"] = "seconds",
 				},
 			},
-			["trigger"] = {
-				["type"] = "status",
-				["subeventSuffix"] = "_CAST_START",
-				["power_operator"] = ">=",
-				["use_power"] = true,
-				["event"] = "Holy Power",
-				["unit"] = "player",
-				["power"] = "3",
-				["use_unit"] = true,
-				["unevent"] = "auto",
-				["subeventPrefix"] = "SPELL",
-				["names"] = {
-				},
-				["debuffType"] = "HELPFUL",
-			},
-			["selfPoint"] = "BOTTOM",
-			["id"] = "Holy Power 3",
+			["id"] = "Holy Power 4",
 			["width"] = 22,
 			["frameStrata"] = 1,
 			["desaturate"] = false,
@@ -98,104 +285,7 @@ WeakAurasSaved = {
 					},
 				},
 			},
-			["color"] = {
-				0.9607843137254902, -- [1]
-				0.5490196078431373, -- [2]
-				0.7294117647058823, -- [3]
-				1, -- [4]
-			},
-		},
-		["Avenging Wrath"] = {
-			["backdropColor"] = {
-				1, -- [1]
-				1, -- [2]
-				1, -- [3]
-				0.5, -- [4]
-			},
-			["sequence"] = 1,
-			["untrigger"] = {
-			},
-			["scale"] = 1,
-			["regionType"] = "model",
-			["border"] = false,
-			["borderEdge"] = "None",
-			["anchorPoint"] = "CENTER",
-			["model_x"] = 0,
-			["xOffset"] = 0,
-			["borderColor"] = {
-				1, -- [1]
-				1, -- [2]
-				1, -- [3]
-				0.5, -- [4]
-			},
-			["borderBackdrop"] = "Blizzard Tooltip",
-			["model_z"] = 0,
-			["actions"] = {
-				["start"] = {
-				},
-				["finish"] = {
-				},
-			},
-			["model_path"] = "SPELLS/Holy_Precast_Uber_Base.m2",
-			["id"] = "Avenging Wrath",
-			["borderOffset"] = 5,
-			["advance"] = true,
-			["animation"] = {
-				["start"] = {
-					["type"] = "preset",
-					["duration_type"] = "seconds",
-					["preset"] = "fade",
-				},
-				["main"] = {
-					["type"] = "none",
-					["duration_type"] = "seconds",
-				},
-				["finish"] = {
-					["type"] = "preset",
-					["duration_type"] = "seconds",
-					["preset"] = "fade",
-				},
-			},
-			["trigger"] = {
-				["unit"] = "player",
-				["type"] = "aura",
-				["subeventPrefix"] = "SPELL",
-				["subeventSuffix"] = "_CAST_START",
-				["debuffType"] = "HELPFUL",
-				["ownOnly"] = true,
-				["event"] = "Health",
-				["names"] = {
-					"Avenging Wrath", -- [1]
-				},
-			},
-			["model_y"] = -0.25,
-			["frameStrata"] = 3,
-			["width"] = 330.7422180175781,
-			["rotation"] = 0,
-			["borderInset"] = 11,
-			["numTriggers"] = 1,
-			["selfPoint"] = "CENTER",
-			["height"] = 172.5715026855469,
-			["borderSize"] = 16,
-			["load"] = {
-				["class"] = {
-					["multi"] = {
-					},
-				},
-				["role"] = {
-					["multi"] = {
-					},
-				},
-				["spec"] = {
-					["multi"] = {
-					},
-				},
-				["size"] = {
-					["multi"] = {
-					},
-				},
-			},
-			["yOffset"] = -385.8299713134766,
+			["xOffset"] = -104,
 		},
 		["Divine Purpose"] = {
 			["borderBackdrop"] = "Blizzard Tooltip",
@@ -219,27 +309,27 @@ WeakAurasSaved = {
 			["advance"] = true,
 			["selfPoint"] = "CENTER",
 			["trigger"] = {
-				["subeventPrefix"] = "SPELL",
+				["names"] = {
+					"Divine Purpose", -- [1]
+				},
 				["type"] = "aura",
 				["unit"] = "player",
 				["subeventSuffix"] = "_CAST_START",
 				["debuffType"] = "HELPFUL",
 				["ownOnly"] = true,
 				["event"] = "Health",
-				["names"] = {
-					"Divine Purpose", -- [1]
-				},
+				["subeventPrefix"] = "SPELL",
 			},
 			["desaturate"] = false,
 			["discrete_rotation"] = 0,
 			["height"] = 117.7141494750977,
 			["rotate"] = true,
 			["load"] = {
-				["spec"] = {
+				["role"] = {
 					["multi"] = {
 					},
 				},
-				["role"] = {
+				["spec"] = {
 					["multi"] = {
 					},
 				},
@@ -267,20 +357,15 @@ WeakAurasSaved = {
 			["blendMode"] = "BLEND",
 			["texture"] = "Textures\\SpellActivationOverlays\\Eclipse_Sun",
 			["model_z"] = 0,
-			["borderOffset"] = 5,
+			["rotation"] = 0,
 			["id"] = "Divine Purpose",
 			["model_y"] = 0.3500001430511475,
 			["frameStrata"] = 3,
 			["width"] = 445.4850158691406,
-			["model_path"] = "SPELLS/Priest_PowerInfusion.m2",
+			["yOffset"] = -410,
 			["borderInset"] = 11,
 			["numTriggers"] = 1,
-			["color"] = {
-				1, -- [1]
-				1, -- [2]
-				1, -- [3]
-				0.75, -- [4]
-			},
+			["mirror"] = false,
 			["animation"] = {
 				["start"] = {
 					["colorR"] = 1,
@@ -297,16 +382,16 @@ WeakAurasSaved = {
 					["alpha"] = 0,
 					["y"] = -200,
 					["x"] = 0,
-					["scalex"] = 1,
-					["duration"] = "0.8",
+					["colorA"] = 1,
+					["translateType"] = "straightTranslate",
 					["scaley"] = 1,
 					["rotate"] = 0,
-					["translateType"] = "straightTranslate",
-					["colorA"] = 1,
+					["duration"] = "0.8",
+					["scalex"] = 1,
 				},
 				["main"] = {
-					["duration_type"] = "seconds",
 					["type"] = "none",
+					["duration_type"] = "seconds",
 				},
 				["finish"] = {
 					["colorR"] = 1,
@@ -321,16 +406,21 @@ WeakAurasSaved = {
 					["alpha"] = 0,
 					["y"] = 0,
 					["x"] = 0,
-					["scalex"] = 1,
-					["preset"] = "fade",
-					["rotate"] = 0,
-					["duration"] = "0.5",
 					["colorA"] = 1,
+					["duration"] = "0.5",
+					["rotate"] = 0,
+					["preset"] = "fade",
+					["scalex"] = 1,
 				},
 			},
-			["mirror"] = false,
-			["yOffset"] = -410,
-			["rotation"] = 0,
+			["color"] = {
+				1, -- [1]
+				1, -- [2]
+				1, -- [3]
+				0.75, -- [4]
+			},
+			["model_path"] = "SPELLS/Priest_PowerInfusion.m2",
+			["borderOffset"] = 5,
 		},
 		["Holy Power 2"] = {
 			["color"] = {
@@ -344,8 +434,8 @@ WeakAurasSaved = {
 				["power"] = "1",
 				["power_operator"] = "<",
 				["use_power"] = true,
-				["unit"] = "player",
 				["use_unit"] = true,
+				["unit"] = "player",
 			},
 			["regionType"] = "texture",
 			["blendMode"] = "BLEND",
@@ -356,22 +446,24 @@ WeakAurasSaved = {
 				},
 			},
 			["texture"] = "Interface\\AddOns\\WeakAuras\\Media\\Textures\\Square_White_Border",
-			["xOffset"] = -44,
+			["yOffset"] = 200,
+			["selfPoint"] = "BOTTOM",
+			["id"] = "Holy Power 2",
 			["animation"] = {
 				["start"] = {
 					["type"] = "preset",
-					["duration_type"] = "seconds",
 					["preset"] = "fade",
+					["duration_type"] = "seconds",
 				},
 				["main"] = {
 					["type"] = "none",
-					["duration_type"] = "seconds",
 					["preset"] = "spiralandpulse",
+					["duration_type"] = "seconds",
 				},
 				["finish"] = {
 					["type"] = "preset",
-					["duration_type"] = "seconds",
 					["preset"] = "shrink",
+					["duration_type"] = "seconds",
 				},
 			},
 			["trigger"] = {
@@ -382,93 +474,6 @@ WeakAurasSaved = {
 				["event"] = "Holy Power",
 				["unit"] = "player",
 				["power"] = "2",
-				["names"] = {
-				},
-				["subeventPrefix"] = "SPELL",
-				["unevent"] = "auto",
-				["use_unit"] = true,
-				["debuffType"] = "HELPFUL",
-			},
-			["selfPoint"] = "BOTTOM",
-			["id"] = "Holy Power 2",
-			["desaturate"] = false,
-			["frameStrata"] = 1,
-			["width"] = 22,
-			["rotation"] = 0,
-			["discrete_rotation"] = 0,
-			["numTriggers"] = 1,
-			["anchorPoint"] = "BOTTOM",
-			["height"] = 22,
-			["rotate"] = false,
-			["load"] = {
-				["use_class"] = false,
-				["role"] = {
-					["multi"] = {
-					},
-				},
-				["spec"] = {
-					["multi"] = {
-					},
-				},
-				["class"] = {
-					["multi"] = {
-						["PALADIN"] = true,
-					},
-				},
-				["size"] = {
-					["multi"] = {
-					},
-				},
-			},
-			["yOffset"] = 200,
-		},
-		["Holy Power 5"] = {
-			["xOffset"] = -134,
-			["mirror"] = false,
-			["yOffset"] = 200,
-			["regionType"] = "texture",
-			["blendMode"] = "BLEND",
-			["actions"] = {
-				["start"] = {
-				},
-				["finish"] = {
-				},
-			},
-			["texture"] = "Interface\\AddOns\\WeakAuras\\Media\\Textures\\Square_White_Border",
-			["untrigger"] = {
-				["power"] = "1",
-				["power_operator"] = "<",
-				["use_power"] = true,
-				["use_unit"] = true,
-				["unit"] = "player",
-			},
-			["animation"] = {
-				["start"] = {
-					["type"] = "preset",
-					["preset"] = "fade",
-					["duration_type"] = "seconds",
-				},
-				["main"] = {
-					["type"] = "preset",
-					["preset"] = "alphaPulse",
-					["duration_type"] = "seconds",
-				},
-				["finish"] = {
-					["type"] = "preset",
-					["preset"] = "shrink",
-					["duration_type"] = "seconds",
-				},
-			},
-			["id"] = "Holy Power 5",
-			["selfPoint"] = "BOTTOM",
-			["trigger"] = {
-				["type"] = "status",
-				["subeventSuffix"] = "_CAST_START",
-				["power_operator"] = ">=",
-				["use_power"] = true,
-				["event"] = "Holy Power",
-				["unit"] = "player",
-				["power"] = "5",
 				["use_unit"] = true,
 				["unevent"] = "auto",
 				["subeventPrefix"] = "SPELL",
@@ -505,102 +510,7 @@ WeakAurasSaved = {
 					},
 				},
 			},
-			["color"] = {
-				1, -- [1]
-				1, -- [2]
-				1, -- [3]
-				1, -- [4]
-			},
-		},
-		["Holy Power 4"] = {
-			["color"] = {
-				1, -- [1]
-				1, -- [2]
-				1, -- [3]
-				1, -- [4]
-			},
-			["mirror"] = false,
-			["yOffset"] = 200,
-			["regionType"] = "texture",
-			["blendMode"] = "BLEND",
-			["actions"] = {
-				["start"] = {
-				},
-				["finish"] = {
-				},
-			},
-			["texture"] = "Interface\\AddOns\\WeakAuras\\Media\\Textures\\Square_White_Border",
-			["xOffset"] = -104,
-			["animation"] = {
-				["start"] = {
-					["type"] = "preset",
-					["duration_type"] = "seconds",
-					["preset"] = "fade",
-				},
-				["main"] = {
-					["type"] = "none",
-					["duration_type"] = "seconds",
-					["preset"] = "spiralandpulse",
-				},
-				["finish"] = {
-					["type"] = "preset",
-					["duration_type"] = "seconds",
-					["preset"] = "shrink",
-				},
-			},
-			["id"] = "Holy Power 4",
-			["selfPoint"] = "BOTTOM",
-			["trigger"] = {
-				["type"] = "status",
-				["subeventSuffix"] = "_CAST_START",
-				["power_operator"] = ">=",
-				["use_power"] = true,
-				["event"] = "Holy Power",
-				["unit"] = "player",
-				["power"] = "4",
-				["names"] = {
-				},
-				["subeventPrefix"] = "SPELL",
-				["unevent"] = "auto",
-				["use_unit"] = true,
-				["debuffType"] = "HELPFUL",
-			},
-			["desaturate"] = false,
-			["frameStrata"] = 1,
-			["width"] = 22,
-			["rotation"] = 0,
-			["discrete_rotation"] = 0,
-			["numTriggers"] = 1,
-			["anchorPoint"] = "BOTTOM",
-			["height"] = 22,
-			["rotate"] = false,
-			["load"] = {
-				["use_class"] = false,
-				["role"] = {
-					["multi"] = {
-					},
-				},
-				["spec"] = {
-					["multi"] = {
-					},
-				},
-				["class"] = {
-					["multi"] = {
-						["PALADIN"] = true,
-					},
-				},
-				["size"] = {
-					["multi"] = {
-					},
-				},
-			},
-			["untrigger"] = {
-				["power"] = "1",
-				["power_operator"] = "<",
-				["use_power"] = true,
-				["unit"] = "player",
-				["use_unit"] = true,
-			},
+			["xOffset"] = -44,
 		},
 		["Holy Power"] = {
 			["color"] = {
@@ -620,31 +530,7 @@ WeakAurasSaved = {
 				},
 			},
 			["texture"] = "Interface\\AddOns\\WeakAuras\\Media\\Textures\\Square_White_Border",
-			["untrigger"] = {
-				["power"] = "1",
-				["power_operator"] = "<",
-				["use_power"] = true,
-				["use_unit"] = true,
-				["unit"] = "player",
-			},
-			["animation"] = {
-				["start"] = {
-					["type"] = "preset",
-					["preset"] = "fade",
-					["duration_type"] = "seconds",
-				},
-				["main"] = {
-					["type"] = "none",
-					["preset"] = "spiralandpulse",
-					["duration_type"] = "seconds",
-				},
-				["finish"] = {
-					["type"] = "preset",
-					["preset"] = "shrink",
-					["duration_type"] = "seconds",
-				},
-			},
-			["id"] = "Holy Power",
+			["xOffset"] = -14,
 			["selfPoint"] = "BOTTOM",
 			["trigger"] = {
 				["type"] = "status",
@@ -654,20 +540,38 @@ WeakAurasSaved = {
 				["event"] = "Holy Power",
 				["unit"] = "player",
 				["power"] = "1",
-				["use_unit"] = true,
-				["unevent"] = "auto",
-				["subeventPrefix"] = "SPELL",
 				["names"] = {
 				},
+				["subeventPrefix"] = "SPELL",
+				["unevent"] = "auto",
+				["use_unit"] = true,
 				["debuffType"] = "HELPFUL",
 			},
-			["width"] = 22,
-			["frameStrata"] = 1,
+			["animation"] = {
+				["start"] = {
+					["type"] = "preset",
+					["duration_type"] = "seconds",
+					["preset"] = "fade",
+				},
+				["main"] = {
+					["type"] = "none",
+					["duration_type"] = "seconds",
+					["preset"] = "spiralandpulse",
+				},
+				["finish"] = {
+					["type"] = "preset",
+					["duration_type"] = "seconds",
+					["preset"] = "shrink",
+				},
+			},
+			["id"] = "Holy Power",
 			["desaturate"] = false,
+			["frameStrata"] = 1,
+			["width"] = 22,
 			["rotation"] = 0,
-			["anchorPoint"] = "BOTTOM",
-			["numTriggers"] = 1,
 			["discrete_rotation"] = 0,
+			["numTriggers"] = 1,
+			["anchorPoint"] = "BOTTOM",
 			["height"] = 22,
 			["rotate"] = false,
 			["load"] = {
@@ -690,7 +594,103 @@ WeakAurasSaved = {
 					},
 				},
 			},
-			["xOffset"] = -14,
+			["untrigger"] = {
+				["power"] = "1",
+				["power_operator"] = "<",
+				["use_power"] = true,
+				["unit"] = "player",
+				["use_unit"] = true,
+			},
+		},
+		["Holy Power 5"] = {
+			["xOffset"] = -134,
+			["mirror"] = false,
+			["yOffset"] = 200,
+			["regionType"] = "texture",
+			["blendMode"] = "BLEND",
+			["actions"] = {
+				["start"] = {
+				},
+				["finish"] = {
+				},
+			},
+			["texture"] = "Interface\\AddOns\\WeakAuras\\Media\\Textures\\Square_White_Border",
+			["color"] = {
+				1, -- [1]
+				1, -- [2]
+				1, -- [3]
+				1, -- [4]
+			},
+			["selfPoint"] = "BOTTOM",
+			["trigger"] = {
+				["type"] = "status",
+				["subeventSuffix"] = "_CAST_START",
+				["power_operator"] = ">=",
+				["use_power"] = true,
+				["event"] = "Holy Power",
+				["unit"] = "player",
+				["power"] = "5",
+				["names"] = {
+				},
+				["subeventPrefix"] = "SPELL",
+				["unevent"] = "auto",
+				["use_unit"] = true,
+				["debuffType"] = "HELPFUL",
+			},
+			["animation"] = {
+				["start"] = {
+					["type"] = "preset",
+					["duration_type"] = "seconds",
+					["preset"] = "fade",
+				},
+				["main"] = {
+					["type"] = "preset",
+					["duration_type"] = "seconds",
+					["preset"] = "alphaPulse",
+				},
+				["finish"] = {
+					["type"] = "preset",
+					["duration_type"] = "seconds",
+					["preset"] = "shrink",
+				},
+			},
+			["id"] = "Holy Power 5",
+			["desaturate"] = false,
+			["frameStrata"] = 1,
+			["width"] = 22,
+			["rotation"] = 0,
+			["discrete_rotation"] = 0,
+			["numTriggers"] = 1,
+			["anchorPoint"] = "BOTTOM",
+			["height"] = 22,
+			["rotate"] = false,
+			["load"] = {
+				["use_class"] = false,
+				["role"] = {
+					["multi"] = {
+					},
+				},
+				["spec"] = {
+					["multi"] = {
+					},
+				},
+				["class"] = {
+					["multi"] = {
+						["PALADIN"] = true,
+					},
+				},
+				["size"] = {
+					["multi"] = {
+					},
+				},
+			},
+			["untrigger"] = {
+				["power"] = "1",
+				["power_operator"] = "<",
+				["use_power"] = true,
+				["unit"] = "player",
+				["use_unit"] = true,
+			},
 		},
 	},
 }
