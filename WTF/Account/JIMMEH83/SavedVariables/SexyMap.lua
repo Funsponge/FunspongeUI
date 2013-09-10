@@ -76,8 +76,8 @@ SexyMap2DB = {
 		},
 		["buttons"] = {
 			["radius"] = 0,
-			["lockDragging"] = true,
-			["allowDragging"] = true,
+			["lockDragging"] = false,
+			["allowDragging"] = false,
 			["visibilitySettings"] = {
 				["MiniMapInstanceDifficulty"] = "hover",
 				["MiniMapMailFrame"] = "always",
@@ -95,9 +95,9 @@ SexyMap2DB = {
 				["MiniMapMailFrame"] = 44.52324315846603,
 				["QueueStatusMinimapButton"] = -45.14619309720928,
 				["LibDBIcon10_Raven"] = -6.252435440455506,
-				["GameTimeFrame"] = 133.6865623084681,
+				["GameTimeFrame"] = 164.6865745080858,
 				["LibDBIcon10_Grid"] = -18.37250110795916,
-				["MiniMapTracking"] = 156.4407402329446,
+				["MiniMapTracking"] = 9.909047947952791,
 			},
 			["controlVisibility"] = true,
 		},
@@ -158,7 +158,7 @@ SexyMap2DB = {
 				["r"] = 0,
 			},
 			["xOffset"] = 0,
-			["fontsize"] = 15,
+			["fontsize"] = 16,
 			["yOffset"] = 145,
 		},
 		["borders"] = {
@@ -233,7 +233,7 @@ SexyMap2DB = {
 			["rightClickToConfig"] = false,
 		},
 		["movers"] = {
-			["enabled"] = true,
+			["enabled"] = false,
 			["framePositions"] = {
 				["DurabilityFrame"] = {
 					["y"] = 942.17138671875,

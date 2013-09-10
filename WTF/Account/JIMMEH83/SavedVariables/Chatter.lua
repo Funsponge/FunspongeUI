@@ -273,42 +273,42 @@ ChatterDB = {
 			["profiles"] = {
 				["Default"] = {
 					["frames"] = {
+						["Frame1"] = false,
 						["Frame4"] = false,
-						["Frame12"] = false,
 						["Frame18"] = false,
-						["Frame3"] = false,
+						["Frame16"] = false,
 						["Frame5"] = false,
 						["Frame14"] = false,
 						["Frame6"] = false,
 						["Frame17"] = false,
-						["Frame11"] = false,
+						["Frame3"] = false,
 						["Frame7"] = false,
 						["Frame19"] = false,
 						["Frame20"] = false,
 						["Frame13"] = false,
 						["Frame15"] = false,
-						["Frame16"] = false,
-						["Frame1"] = false,
+						["Frame11"] = false,
+						["Frame12"] = false,
 					},
 				},
 				["Funsponge"] = {
 					["frames"] = {
+						["Frame4"] = false,
 						["Frame12"] = false,
-						["Frame1"] = false,
 						["Frame18"] = false,
-						["Frame11"] = false,
+						["Frame3"] = false,
 						["Frame5"] = false,
 						["Frame19"] = false,
 						["Frame6"] = false,
 						["Frame17"] = false,
-						["Frame16"] = false,
+						["Frame11"] = false,
 						["Frame13"] = false,
 						["Frame14"] = false,
 						["Frame20"] = false,
 						["Frame7"] = false,
 						["Frame15"] = false,
-						["Frame3"] = false,
-						["Frame4"] = false,
+						["Frame16"] = false,
+						["Frame1"] = false,
 					},
 				},
 			},
@@ -325,29 +325,29 @@ ChatterDB = {
 						["g"] = 0,
 						["b"] = 0,
 					},
-					["inset"] = 1,
-					["colorByChannel"] = false,
 					["backgroundColor"] = {
 						["a"] = 0.800000011920929,
 					},
 					["background"] = "Solid",
+					["inset"] = 1,
+					["colorByChannel"] = false,
 				},
 				["Funsponge"] = {
 					["edgeSize"] = 1,
 					["attach"] = "TOP",
 					["border"] = "RothSquare",
-					["colorByChannel"] = false,
+					["background"] = "Solid",
 					["font"] = "Friz Quadrata TT",
 					["borderColor"] = {
 						["b"] = 0,
 						["g"] = 0,
 						["r"] = 0,
 					},
-					["background"] = "Solid",
+					["colorByChannel"] = false,
+					["inset"] = 1,
 					["backgroundColor"] = {
 						["a"] = 0.800000011920929,
 					},
-					["inset"] = 1,
 				},
 			},
 		},
@@ -390,38 +390,38 @@ ChatterDB = {
 			["realm"] = {
 				["Korgath"] = {
 					["history"] = {
-						"/dbm", -- [1]
-						"/raven", -- [2]
-						"/raven", -- [3]
-						"/wa", -- [4]
-						"/raven", -- [5]
-						"/wa", -- [6]
-						"/raven", -- [7]
-						"/raven", -- [8]
-						"/wa", -- [9]
+						"/g true, but i am a gifted individual", -- [1]
+						"/g ;)", -- [2]
+						"/msbt", -- [3]
+						"/g not the good stuff", -- [4]
+						"/g the proper weapon enchant is like 6 grand", -- [5]
+						"/g im using the cheapo one, windsong", -- [6]
+						"/g i got enchants for everything where it wasnt ridiculously priced", -- [7]
+						"/g and where it was i got the next best one that was affordable", -- [8]
+						"/g and ive blue gemmed everything", -- [9]
 						"/raven", -- [10]
-						"/chatter", -- [11]
-						"/wa", -- [12]
-						"/msbt", -- [13]
-						"/bartender", -- [14]
-						"/macro", -- [15]
-						"/macro", -- [16]
-						"/macro", -- [17]
+						"/wa", -- [11]
+						"/ma", -- [12]
+						"/align", -- [13]
+						"/g i'd recommend doing that since the majority of your gear can be gemmed and enchanted for like 500g total", -- [14]
+						"/g the gems are 30-50g", -- [15]
+						"/align", -- [16]
+						"/thank", -- [17]
 						"/raven", -- [18]
-						"/dbm", -- [19]
-						"/reload", -- [20]
-						"/dbm", -- [21]
-						"/dbm", -- [22]
-						"/xanam", -- [23]
-						"/stuf", -- [24]
-						"/align", -- [25]
-						"/xanam", -- [26]
-						"/lrm", -- [27]
-						"/lrm show", -- [28]
-						"/align", -- [29]
-						"/dbm", -- [30]
-						"/reload", -- [31]
-						"/dbm", -- [32]
+						"/raven", -- [19]
+						"/skada toggle", -- [20]
+						"/reload", -- [21]
+						"/align", -- [22]
+						"/align", -- [23]
+						"/reload", -- [24]
+						"/skada reset", -- [25]
+						"/reload", -- [26]
+						"/skada", -- [27]
+						"/skada config", -- [28]
+						"/raven", -- [29]
+						"/msbt", -- [30]
+						"/thank", -- [31]
+						"/raven", -- [32]
 					},
 				},
 			},

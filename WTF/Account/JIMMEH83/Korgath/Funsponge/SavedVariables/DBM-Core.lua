@@ -102,15 +102,15 @@ DBM_SavedOptions = {
 	["DontShowInfoFrame"] = true,
 	["DontSendBossWhispers"] = false,
 	["HealthFrameLocked"] = false,
-	["ShowFakedRaidWarnings"] = true,
+	["ShowFakedRaidWarnings"] = false,
 	["LatencyThreshold"] = 250,
 	["ShowLoadMessage"] = true,
 	["DontShowBossAnnounces"] = false,
 	["LFDEnhance"] = true,
 	["HPFrameMaxEntries"] = 5,
 	["SetPlayerRole"] = true,
-	["RangeFramePoint"] = "CENTER",
 	["ArrowPosY"] = -150,
+	["RangeFramePoint"] = "CENTER",
 	["WarningIconChat"] = true,
 	["SpecialWarningFlashDura2"] = 0.4,
 	["SpecialWarningFlashDura1"] = 0.4,
@@ -121,7 +121,7 @@ DBM_SavedOptions = {
 		1, -- [3]
 	},
 	["ShowPizzaMessage"] = true,
-	["RangeFrameSound2"] = "none",
+	["AdvancedAutologBosses"] = false,
 	["SpecialWarningFlashCol1"] = {
 		1, -- [1]
 		1, -- [2]
@@ -130,7 +130,7 @@ DBM_SavedOptions = {
 	["RangeFrameRadarY"] = 220.9138793945313,
 	["DontShowPTText"] = false,
 	["Enabled"] = true,
-	["AdvancedAutologBosses"] = false,
+	["RangeFrameSound2"] = "none",
 	["RangeFrameLocked"] = true,
 	["RangeFrameFrames"] = "radar",
 	["ShowEngageMessage"] = true,

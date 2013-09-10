@@ -4,15 +4,13 @@ GridDB = {
 		["GridFrame"] = {
 			["profiles"] = {
 				["Default"] = {
-					["fontSize"] = 11,
-					["borderSize"] = 2,
 					["enableBarColor"] = true,
 					["textlength"] = 14,
 					["texture"] = "Kait",
-					["frameHeight"] = 35,
-					["font"] = "Franklin Gothic Medium",
+					["frameHeight"] = 25,
 					["orientation"] = "HORIZONTAL",
-					["frameWidth"] = 90,
+					["cornerSize"] = 8,
+					["frameWidth"] = 80,
 				},
 			},
 		},
@@ -28,7 +26,7 @@ GridDB = {
 		},
 		["GridStatusRange"] = {
 		},
-		["GridStatusVoiceComm"] = {
+		["GridStatusHeals"] = {
 		},
 		["GridStatus"] = {
 			["profiles"] = {
@@ -95,34 +93,48 @@ GridDB = {
 		},
 		["GridStatusAggro"] = {
 		},
-		["GridStatusHeals"] = {
+		["GridStatusVoiceComm"] = {
 		},
 		["GridStatusReadyCheck"] = {
 		},
 		["GridStatusName"] = {
 		},
 		["GridRoster"] = {
-		},
-		["GridStatusHealth"] = {
+			["profiles"] = {
+				["Default"] = {
+					["party_state"] = "raid_25",
+				},
+			},
 		},
 		["GridLayout"] = {
 			["profiles"] = {
 				["Default"] = {
 					["backgroundTexture"] = "None",
 					["layouts"] = {
+						["raid_outside"] = true,
 						["solo"] = "None",
 					},
 					["FrameLock"] = true,
-					["PosX"] = 449,
-					["anchor"] = "BOTTOMLEFT",
+					["PosX"] = 0,
+					["anchor"] = "CENTER",
+					["backgroundColor"] = {
+						["a"] = 0.449999988079071,
+						["r"] = 0.1019607843137255,
+						["g"] = 0.1019607843137255,
+						["b"] = 0.1019607843137255,
+					},
 					["groupAnchor"] = "BOTTOMLEFT",
-					["PosY"] = 164,
-					["layout"] = "None",
-					["anchorRel"] = "BOTTOMLEFT",
+					["PosY"] = -165,
+					["layout"] = "By Group 25",
+					["anchorRel"] = "CENTER",
+					["Spacing"] = 0,
+					["Padding"] = 0,
 					["horizontal"] = true,
 					["borderTexture"] = "None",
 				},
 			},
+		},
+		["GridStatusHealth"] = {
 		},
 		["GridStatusMana"] = {
 		},
@@ -132,8 +144,26 @@ GridDB = {
 					["buff_Renew"] = {
 						["icon"] = "Interface\\Icons\\Spell_Holy_Renew",
 					},
+					["buff_BeaconofLight"] = {
+						["icon"] = "Interface\\Icons\\Ability_Paladin_BeaconofLight",
+					},
+					["buff_LifeCocoon"] = {
+						["icon"] = "Interface\\Icons\\ability_monk_chicocoon",
+					},
+					["buff_Rejuvenation"] = {
+						["icon"] = "Interface\\Icons\\Spell_Nature_Rejuvenation",
+					},
+					["buff_EarthShield"] = {
+						["icon"] = "Interface\\Icons\\Spell_Nature_SkinofEarth",
+					},
+					["buff_Regrowth"] = {
+						["icon"] = "Interface\\Icons\\Spell_Nature_ResistNature",
+					},
 					["buff_PowerWord:Shield"] = {
 						["icon"] = "Interface\\Icons\\Spell_Holy_PowerWordShield",
+					},
+					["buff_Lifebloom"] = {
+						["icon"] = "Interface\\Icons\\INV_Misc_Herb_Felblossom",
 					},
 				},
 			},

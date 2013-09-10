@@ -14,15 +14,21 @@ MSBTProfiles_SavedVars = {
 			},
 			["hideFullOverheals"] = true,
 			["scrollAreas"] = {
+				["Incoming"] = {
+					["stickyDirection"] = "Down",
+					["behavior"] = "MSBT_NORMAL",
+					["offsetX"] = -315,
+					["skillIconsDisabled"] = true,
+					["stickyBehavior"] = "MSBT_NORMAL",
+					["offsetY"] = -164,
+					["animationStyle"] = "Straight",
+					["stickyAnimationStyle"] = "Static",
+				},
 				["Notification"] = {
 					["stickyDirection"] = "Up",
 					["offsetY"] = 220,
 					["skillIconsDisabled"] = true,
 					["stickyAnimationStyle"] = "Static",
-				},
-				["Static"] = {
-					["disabled"] = true,
-					["skillIconsDisabled"] = true,
 				},
 				["Outgoing"] = {
 					["direction"] = "Up",
@@ -35,15 +41,9 @@ MSBTProfiles_SavedVars = {
 					["animationStyle"] = "Straight",
 					["stickyAnimationStyle"] = "Static",
 				},
-				["Incoming"] = {
-					["stickyDirection"] = "Down",
-					["behavior"] = "MSBT_NORMAL",
-					["offsetX"] = -315,
+				["Static"] = {
+					["disabled"] = true,
 					["skillIconsDisabled"] = true,
-					["stickyBehavior"] = "MSBT_NORMAL",
-					["offsetY"] = -164,
-					["animationStyle"] = "Straight",
-					["stickyAnimationStyle"] = "Static",
 				},
 			},
 			["block"] = {
@@ -60,11 +60,11 @@ MSBTProfiles_SavedVars = {
 				},
 				["Custom1"] = {
 					["message"] = "Whompin' Time!",
-					["fontSize"] = 26,
-					["alwaysSticky"] = true,
 					["iconSkill"] = "32182",
-					["mainEvents"] = "SPELL_AURA_APPLIED{skillID;;eq;;32181;;skillID;;eq;;80353;;skillID;;eq;;90355}",
+					["alwaysSticky"] = true,
 					["soundFile"] = "Drums of War",
+					["mainEvents"] = "SPELL_AURA_APPLIED{skillName;;eq;;Heroism;;recipientAffiliation;;eq;;4026531840}&&SPELL_AURA_APPLIED{skillName;;eq;;Time Warp;;recipientAffiliation;;eq;;4026531840}&&SPELL_AURA_APPLIED{skillName;;eq;;Ancient Hysteria;;recipientAffiliation;;eq;;4026531840}",
+					["fontSize"] = 26,
 				},
 				["MSBT_TRIGGER_MAELSTROM_WEAPON"] = {
 					["disabled"] = true,
@@ -137,16 +137,16 @@ MSBTProfiles_SavedVars = {
 				["MSBT_TRIGGER_OWLKIN_FRENZY"] = {
 					["disabled"] = true,
 				},
-				["MSBT_TRIGGER_KILLING_MACHINE"] = {
+				["MSBT_TRIGGER_MOLTEN_CORE"] = {
 					["disabled"] = true,
 				},
 				["MSBT_TRIGGER_SHOOTING_STARS"] = {
 					["disabled"] = true,
 				},
-				["MSBT_TRIGGER_BLOODSURGE"] = {
+				["MSBT_TRIGGER_LOW_PET_HEALTH"] = {
 					["disabled"] = true,
 				},
-				["MSBT_TRIGGER_MOLTEN_CORE"] = {
+				["MSBT_TRIGGER_KILLING_MACHINE"] = {
 					["disabled"] = true,
 				},
 				["MSBT_TRIGGER_ECLIPSE_SOLAR"] = {
@@ -170,7 +170,7 @@ MSBTProfiles_SavedVars = {
 				["MSBT_TRIGGER_EXECUTE"] = {
 					["disabled"] = true,
 				},
-				["MSBT_TRIGGER_LOW_PET_HEALTH"] = {
+				["MSBT_TRIGGER_BLOODSURGE"] = {
 					["disabled"] = true,
 				},
 				["MSBT_TRIGGER_HAMMER_OF_WRATH"] = {
@@ -212,10 +212,10 @@ MSBTProfiles_SavedVars = {
 					["disabled"] = true,
 				},
 				["NOTIFICATION_BUFF_FADE"] = {
-					["colorR"] = 1,
 					["colorB"] = 0.4117647058823529,
-					["colorG"] = 0.9607843137254902,
+					["colorR"] = 1,
 					["disabled"] = true,
+					["colorG"] = 0.9607843137254902,
 				},
 				["INCOMING_SPELL_PARRY"] = {
 					["colorG"] = 0.4392156862745098,
@@ -593,9 +593,10 @@ MSBTProfiles_SavedVars = {
 				["NOTIFICATION_CHI_CHANGE"] = {
 					["disabled"] = true,
 				},
-				["INCOMING_MISS"] = {
-					["colorG"] = 0.4392156862745098,
-					["colorB"] = 0.8705882352941177,
+				["INCOMING_SPELL_DOT"] = {
+					["colorR"] = 0.8,
+					["colorG"] = 0.3019607843137255,
+					["colorB"] = 0.2196078431372549,
 				},
 				["PET_INCOMING_HEAL"] = {
 					["disabled"] = true,
@@ -610,10 +611,10 @@ MSBTProfiles_SavedVars = {
 					["colorB"] = 0.4117647058823529,
 				},
 				["NOTIFICATION_BUFF"] = {
-					["colorR"] = 1,
 					["colorB"] = 0.4117647058823529,
-					["colorG"] = 0.9607843137254902,
+					["colorR"] = 1,
 					["disabled"] = true,
+					["colorG"] = 0.9607843137254902,
 				},
 				["NOTIFICATION_ITEM_COOLDOWN"] = {
 					["disabled"] = true,
@@ -627,10 +628,9 @@ MSBTProfiles_SavedVars = {
 					["colorG"] = 1,
 					["disabled"] = true,
 				},
-				["INCOMING_SPELL_DOT"] = {
-					["colorR"] = 0.8,
-					["colorG"] = 0.3019607843137255,
-					["colorB"] = 0.2196078431372549,
+				["INCOMING_MISS"] = {
+					["colorG"] = 0.4392156862745098,
+					["colorB"] = 0.8705882352941177,
 				},
 				["INCOMING_SPELL_ABSORB"] = {
 					["colorG"] = 0.9607843137254902,
@@ -659,10 +659,10 @@ MSBTProfiles_SavedVars = {
 					["disabled"] = true,
 				},
 				["NOTIFICATION_BUFF_STACK"] = {
-					["colorR"] = 1,
 					["colorB"] = 0.4117647058823529,
-					["colorG"] = 0.9607843137254902,
+					["colorR"] = 1,
 					["disabled"] = true,
+					["colorG"] = 0.9607843137254902,
 				},
 				["NOTIFICATION_EXTRA_ATTACK"] = {
 					["colorB"] = 0.4117647058823529,

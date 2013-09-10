@@ -12,7 +12,7 @@ TexBrowser: enabled
 BagBrother: enabled
 Raven: enabled
 Raven_Options: enabled
-WeakAurasTutorials: enabled
+WeakAurasTutorials: disabled
 WeakAurasOptions: enabled
 WeakAurasModelPaths: enabled
 Stuf_Options: enabled
@@ -29,3 +29,6 @@ Masque_Elegance: disabled
 kgPanelsConfig: disabled
 Align: enabled
 DBM-SiegeOfOrgrimmar: disabled
+TidyPlates_Neon: disabled
+TidyPlates_Grey: disabled
+TidyPlates_Graphite: disabled

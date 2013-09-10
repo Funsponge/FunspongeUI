@@ -113,11 +113,12 @@ WeakAurasSaved = {
 				0.5, -- [4]
 			},
 			["sequence"] = 1,
-			["borderEdge"] = "None",
+			["untrigger"] = {
+			},
 			["scale"] = 1,
 			["anchorPoint"] = "CENTER",
 			["border"] = false,
-			["yOffset"] = -358,
+			["borderEdge"] = "None",
 			["regionType"] = "model",
 			["model_x"] = 0,
 			["borderSize"] = 16,
@@ -128,6 +129,15 @@ WeakAurasSaved = {
 				0.5, -- [4]
 			},
 			["borderBackdrop"] = "Blizzard Tooltip",
+			["selfPoint"] = "CENTER",
+			["actions"] = {
+				["start"] = {
+					["sound"] = "Interface\\Addons\\SharedMedia_MyMedia\\sound\\drumsofwar.wav",
+					["do_sound"] = false,
+				},
+				["finish"] = {
+				},
+			},
 			["animation"] = {
 				["start"] = {
 					["type"] = "preset",
@@ -144,15 +154,6 @@ WeakAurasSaved = {
 					["duration_type"] = "seconds",
 				},
 			},
-			["actions"] = {
-				["start"] = {
-					["sound"] = "Interface\\Addons\\SharedMedia_MyMedia\\sound\\drumsofwar.wav",
-					["do_sound"] = false,
-				},
-				["finish"] = {
-				},
-			},
-			["selfPoint"] = "CENTER",
 			["trigger"] = {
 				["names"] = {
 					"Avenging Wrath", -- [1]
@@ -165,7 +166,7 @@ WeakAurasSaved = {
 				["event"] = "Health",
 				["unit"] = "player",
 			},
-			["borderOffset"] = 5,
+			["model_z"] = 0,
 			["advance"] = true,
 			["model_path"] = "SPELLS/Holy_Precast_Uber_Base.m2",
 			["id"] = "Avenging Wrath",
@@ -175,7 +176,7 @@ WeakAurasSaved = {
 			["rotation"] = 0,
 			["borderInset"] = 11,
 			["numTriggers"] = 1,
-			["model_z"] = 0,
+			["borderOffset"] = 5,
 			["height"] = 225.5999908447266,
 			["xOffset"] = 0,
 			["load"] = {
@@ -196,8 +197,7 @@ WeakAurasSaved = {
 					},
 				},
 			},
-			["untrigger"] = {
-			},
+			["yOffset"] = -358,
 		},
 		["Holy Power 4"] = {
 			["color"] = {

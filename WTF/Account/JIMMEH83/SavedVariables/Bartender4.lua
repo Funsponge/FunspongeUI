@@ -66,6 +66,8 @@ Bartender4DB = {
 						}, -- [5]
 						{
 							["rows"] = 2,
+							["hidehotkey"] = true,
+							["padding"] = 1,
 							["version"] = 3,
 							["position"] = {
 								["y"] = 76,
@@ -73,7 +75,7 @@ Bartender4DB = {
 								["point"] = "BOTTOM",
 								["scale"] = 0.95,
 							},
-							["padding"] = 1,
+							["hidemacrotext"] = true,
 						}, -- [6]
 						{
 							["showgrid"] = true,
@@ -104,10 +106,9 @@ Bartender4DB = {
 		["ExtraActionBar"] = {
 			["profiles"] = {
 				["Funsponge - Korgath"] = {
-					["enabled"] = false,
 					["position"] = {
-						["y"] = 193.2857360839844,
-						["x"] = -31.49990844726563,
+						["y"] = 144,
+						["x"] = -306,
 						["point"] = "BOTTOM",
 					},
 					["version"] = 3,

@@ -114,7 +114,11 @@ TidyPlatesHubGlobal = {
 		["r"] = 0.5137243866920471,
 	},
 	["WidgetTargetHighlight"] = true,
-	["ScaleIgnoreInactive"] = false,
+	["ColorFriendlyPlayer"] = {
+		["b"] = 1,
+		["g"] = 0,
+		["r"] = 0,
+	},
 	["ColorHealthBarMode"] = 3,
 	["ColorPartyAggroGlow"] = true,
 	["ColorMediumHealth"] = {
@@ -132,13 +136,13 @@ TidyPlatesHubGlobal = {
 		["g"] = 0,
 		["r"] = 1,
 	},
-	["TextShowLevel"] = false,
-	["ColorNormalSpellCast"] = {
-		["b"] = 0,
-		["g"] = 0.5490196078431373,
-		["r"] = 0.9882352941176471,
-	},
 	["LowHealthThreshold"] = 0.3,
+	["ColorAggroTransition"] = {
+		["b"] = 0,
+		["g"] = 0.6274509803921569,
+		["r"] = 1,
+	},
+	["TextShowLevel"] = false,
 	["ScaleSpotlightMode"] = 4,
 	["HighHealthThreshold"] = 0.7,
 	["ColorHostileNPC"] = {
@@ -152,10 +156,10 @@ TidyPlatesHubGlobal = {
 	["OpacityFullSpell"] = false,
 	["UseGlobalSet"] = false,
 	["ColorShowPartyAggro"] = false,
-	["ColorAggroTransition"] = {
+	["ColorNormalSpellCast"] = {
 		["b"] = 0,
-		["g"] = 0.6274509803921569,
-		["r"] = 1,
+		["g"] = 0.5490196078431373,
+		["r"] = 0.9882352941176471,
 	},
 	["WidgetAuraTrackDisease"] = true,
 	["ColorNeutral"] = {
@@ -164,11 +168,7 @@ TidyPlatesHubGlobal = {
 		["r"] = 1,
 	},
 	["ScaleSpotlight"] = 1.2,
-	["ColorFriendlyPlayer"] = {
-		["b"] = 1,
-		["g"] = 0,
-		["r"] = 0,
-	},
+	["ScaleIgnoreInactive"] = false,
 	["ColorPartyAggroText"] = false,
 	["ColorGuildMember"] = {
 		["b"] = 1,
