@@ -1,10 +1,10 @@
 
 MADB = {
-	["collapsed"] = true,
+	["frameListRows"] = 18,
 	["characters"] = {
 	},
 	["tooltips"] = 1,
-	["frameListRows"] = 18,
+	["collapsed"] = true,
 	["profiles"] = {
 		["default"] = {
 			["frames"] = {
@@ -44,8 +44,8 @@ MADB = {
 						"TOP", -- [1]
 						"UIParent", -- [2]
 						"TOP", -- [3]
-						-725.0285639762878, -- [4]
-						-746.0573120117188, -- [5]
+						-686.2284641265869, -- [4]
+						-746.7996826171875, -- [5]
 					},
 				},
 				["BonusRollLootWonFrame"] = {
@@ -85,8 +85,8 @@ MADB = {
 						"TOP", -- [1]
 						"UIParent", -- [2]
 						"TOP", -- [3]
-						-728.6856913566589, -- [4]
-						-465.285888671875, -- [5]
+						-690.2856159210205, -- [4]
+						-465.4573974609375, -- [5]
 					},
 				},
 				["LFGDungeonReadyStatus"] = {
@@ -115,8 +115,8 @@ MADB = {
 						"BOTTOM", -- [1]
 						"UIParent", -- [2]
 						"BOTTOM", -- [3]
-						3.0517578125e-005, -- [4]
-						403.4859313964844, -- [5]
+						-660.1143989562988, -- [4]
+						272.743408203125, -- [5]
 					},
 				},
 				["DurabilityFrame"] = {
@@ -145,8 +145,8 @@ MADB = {
 						"TOP", -- [1]
 						"UIParent", -- [2]
 						"TOP", -- [3]
-						-728.6857328414917, -- [4]
-						-534.8569946289063, -- [5]
+						-690.2856884002686, -- [4]
+						-535.9429931640625, -- [5]
 					},
 				},
 				["LFGDungeonReadyPopup"] = {
@@ -206,8 +206,8 @@ MADB = {
 						"TOP", -- [1]
 						"UIParent", -- [2]
 						"TOP", -- [3]
-						-727.771420955658, -- [4]
-						-604.3432006835938, -- [5]
+						-690.2856864929199, -- [4]
+						-605.0861511230469, -- [5]
 					},
 				},
 				["GroupLootFrame1"] = {
@@ -216,8 +216,8 @@ MADB = {
 						"TOP", -- [1]
 						"UIParent", -- [2]
 						"TOP", -- [3]
-						-728.6857194900513, -- [4]
-						-674.7428588867188, -- [5]
+						-690.2856960296631, -- [4]
+						-674.7430114746094, -- [5]
 					},
 				},
 				["LootWonAlertFrame1"] = {
@@ -250,6 +250,16 @@ MADB = {
 						-114.6288452148438, -- [5]
 					},
 				},
+				["ChatConfigFrame"] = {
+					["name"] = "ChatConfigFrame",
+					["pos"] = {
+						"BOTTOMLEFT", -- [1]
+						"UIParent", -- [2]
+						"BOTTOMLEFT", -- [3]
+						555.21435546875, -- [4]
+						251.0714874267578, -- [5]
+					},
+				},
 				["MiniMapMailFrame"] = {
 					["disableLayerBackground"] = 1,
 					["name"] = "MiniMapMailFrame",
@@ -274,15 +284,16 @@ MADB = {
 						111.9469223022461, -- [5]
 					},
 				},
-				["GameTimeFrame"] = {
+				["QueueStatusFrame"] = {
+					["disableLayerArtwork"] = 1,
 					["scale"] = 0.7999999523162842,
-					["name"] = "GameTimeFrame",
+					["name"] = "QueueStatusFrame",
 					["pos"] = {
-						"CENTER", -- [1]
-						"Minimap", -- [2]
-						"CENTER", -- [3]
-						-88.51752350336018, -- [4]
-						88.3927008764893, -- [5]
+						"TOPRIGHT", -- [1]
+						"QueueStatusMinimapButton", -- [2]
+						"TOPLEFT", -- [3]
+						310.6306576996637, -- [4]
+						158.3673524658642, -- [5]
 					},
 				},
 				["MiniMapInstanceDifficulty"] = {
@@ -291,8 +302,8 @@ MADB = {
 						"CENTER", -- [1]
 						"Minimap", -- [2]
 						"CENTER", -- [3]
-						90.53066825866699, -- [4]
-						50.33135986328125, -- [5]
+						85.53071403503418, -- [4]
+						50.33139038085938, -- [5]
 					},
 				},
 				["MinimapZoneTextButton"] = {
@@ -306,9 +317,9 @@ MADB = {
 					},
 				},
 				["RaidUnitFramesManagerMover"] = {
+					["clampToScreen"] = true,
 					["name"] = "RaidUnitFramesManagerMover",
 					["orgClampToScreen"] = 1,
-					["clampToScreen"] = true,
 					["pos"] = {
 						"TOPLEFT", -- [1]
 						"UIParent", -- [2]
@@ -337,24 +348,24 @@ MADB = {
 						-23.6002197265625, -- [5]
 					},
 				},
-				["ChatConfigFrame"] = {
-					["name"] = "ChatConfigFrame",
-					["pos"] = {
-						"BOTTOMLEFT", -- [1]
-						"UIParent", -- [2]
-						"BOTTOMLEFT", -- [3]
-						555.21435546875, -- [4]
-						251.0714874267578, -- [5]
-					},
-				},
-				["AchievementAlertFrame1"] = {
-					["name"] = "AchievementAlertFrame1",
+				["CriteriaAlertFrame2"] = {
+					["name"] = "CriteriaAlertFrame2",
 					["pos"] = {
 						"BOTTOM", -- [1]
 						"UIParent", -- [2]
 						"BOTTOM", -- [3]
-						-1.82855224609375, -- [4]
-						878.6284790039063, -- [5]
+						-6.103515625e-005, -- [4]
+						878.62841796875, -- [5]
+					},
+				},
+				["HelpOpenTicketButton"] = {
+					["name"] = "HelpOpenTicketButton",
+					["pos"] = {
+						"CENTER", -- [1]
+						"HelpMicroButton", -- [2]
+						"TOPRIGHT", -- [3]
+						-321.857177734375, -- [4]
+						-108.2859497070313, -- [5]
 					},
 				},
 				["LFDRoleCheckPopup"] = {
@@ -387,25 +398,18 @@ MADB = {
 						-110.5431518554688, -- [5]
 					},
 				},
-				["HelpOpenTicketButton"] = {
-					["name"] = "HelpOpenTicketButton",
-					["pos"] = {
-						"CENTER", -- [1]
-						"HelpMicroButton", -- [2]
-						"TOPRIGHT", -- [3]
-						-321.857177734375, -- [4]
-						-108.2859497070313, -- [5]
-					},
-				},
-				["CriteriaAlertFrame2"] = {
-					["name"] = "CriteriaAlertFrame2",
+				["AchievementAlertFrame1"] = {
+					["name"] = "AchievementAlertFrame1",
 					["pos"] = {
 						"BOTTOM", -- [1]
 						"UIParent", -- [2]
 						"BOTTOM", -- [3]
-						-6.103515625e-005, -- [4]
-						878.62841796875, -- [5]
+						-1.82855224609375, -- [4]
+						878.6284790039063, -- [5]
 					},
+				},
+				["MACompactRaidFrameManagerToggleButton"] = {
+					["name"] = "MACompactRaidFrameManagerToggleButton",
 				},
 				["MirrorTimer1"] = {
 					["name"] = "MirrorTimer1",
@@ -417,16 +421,15 @@ MADB = {
 						-138.9716186523438, -- [5]
 					},
 				},
-				["QueueStatusFrame"] = {
-					["name"] = "QueueStatusFrame",
+				["GameTimeFrame"] = {
 					["scale"] = 0.7999999523162842,
-					["disableLayerArtwork"] = 1,
+					["name"] = "GameTimeFrame",
 					["pos"] = {
-						"TOPRIGHT", -- [1]
-						"QueueStatusMinimapButton", -- [2]
-						"TOPLEFT", -- [3]
-						310.6306576996637, -- [4]
-						158.3673524658642, -- [5]
+						"CENTER", -- [1]
+						"Minimap", -- [2]
+						"CENTER", -- [3]
+						-88.51752350336018, -- [4]
+						88.3927008764893, -- [5]
 					},
 				},
 				["AlertFrame"] = {
