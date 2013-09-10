@@ -1,0 +1,348 @@
+
+MADB = {
+	["tooltips"] = 1,
+	["characters"] = {
+	},
+	["frameListRows"] = 18,
+	["collapsed"] = true,
+	["profiles"] = {
+		["default"] = {
+			["frames"] = {
+				["DungeonCompletionAlertFrame1"] = {
+					["name"] = "DungeonCompletionAlertFrame1",
+					["pos"] = {
+						"BOTTOM", -- [1]
+						"UIParent", -- [2]
+						"BOTTOM", -- [3]
+						-6.103515625e-005, -- [4]
+						876.6287841796875, -- [5]
+					},
+				},
+				["PlayerPowerBarAltMover"] = {
+					["name"] = "PlayerPowerBarAltMover",
+					["pos"] = {
+						"CENTER", -- [1]
+						"UIParent", -- [2]
+						"CENTER", -- [3]
+						6.103515625e-005, -- [4]
+						-9.1552734375e-005, -- [5]
+					},
+				},
+				["BonusRollFrame"] = {
+					["name"] = "BonusRollFrame",
+					["pos"] = {
+						"TOP", -- [1]
+						"UIParent", -- [2]
+						"TOP", -- [3]
+						0, -- [4]
+						0, -- [5]
+					},
+				},
+				["BonusRollLootWonFrame"] = {
+					["name"] = "BonusRollLootWonFrame",
+					["pos"] = {
+						"TOP", -- [1]
+						"UIParent", -- [2]
+						"TOP", -- [3]
+						0, -- [4]
+						0, -- [5]
+					},
+				},
+				["BonusRollMoneyWonFrame"] = {
+					["name"] = "BonusRollMoneyWonFrame",
+					["pos"] = {
+						"TOP", -- [1]
+						"UIParent", -- [2]
+						"TOP", -- [3]
+						0, -- [4]
+						0, -- [5]
+					},
+				},
+				["QueueStatusMinimapButton"] = {
+					["name"] = "QueueStatusMinimapButton",
+					["disableLayerOverlay"] = 1,
+					["pos"] = {
+						"CENTER", -- [1]
+						"Minimap", -- [2]
+						"CENTER", -- [3]
+						69.7725887298584, -- [4]
+						-69.99993896484376, -- [5]
+					},
+				},
+				["GroupLootFrame4"] = {
+					["name"] = "GroupLootFrame4",
+					["pos"] = {
+						"TOP", -- [1]
+						"UIParent", -- [2]
+						"TOP", -- [3]
+						0, -- [4]
+						0, -- [5]
+					},
+				},
+				["LevelUpDisplay"] = {
+					["name"] = "LevelUpDisplay",
+					["pos"] = {
+						"TOP", -- [1]
+						"UIParent", -- [2]
+						"TOP", -- [3]
+						6.103515625e-005, -- [4]
+						-148.1143798828125, -- [5]
+					},
+				},
+				["MissingLootFrame"] = {
+					["name"] = "MissingLootFrame",
+					["pos"] = {
+						"BOTTOM", -- [1]
+						"UIParent", -- [2]
+						"BOTTOM", -- [3]
+						3.0517578125e-005, -- [4]
+						110, -- [5]
+					},
+				},
+				["DurabilityFrame"] = {
+					["name"] = "DurabilityFrame",
+					["pos"] = {
+						"TOPLEFT", -- [1]
+						"UIParent", -- [2]
+						"BOTTOMLEFT", -- [3]
+						239.0571746826172, -- [4]
+						942.17138671875, -- [5]
+					},
+				},
+				["HelpOpenTicketButtonTutorial"] = {
+					["name"] = "HelpOpenTicketButtonTutorial",
+					["pos"] = {
+						"BOTTOM", -- [1]
+						"HelpOpenTicketButton", -- [2]
+						"TOP", -- [3]
+						95.99993896484375, -- [4]
+						-83.1429443359375, -- [5]
+					},
+				},
+				["GroupLootFrame3"] = {
+					["name"] = "GroupLootFrame3",
+					["pos"] = {
+						"TOP", -- [1]
+						"UIParent", -- [2]
+						"TOP", -- [3]
+						0, -- [4]
+						0, -- [5]
+					},
+				},
+				["LFGDungeonReadyPopup"] = {
+					["name"] = "LFGDungeonReadyPopup",
+					["pos"] = {
+						"TOP", -- [1]
+						"UIParent", -- [2]
+						"TOP", -- [3]
+						0, -- [4]
+						0, -- [5]
+					},
+				},
+				["MiniMapTracking"] = {
+					["name"] = "MiniMapTracking",
+					["pos"] = {
+						"CENTER", -- [1]
+						"Minimap", -- [2]
+						"CENTER", -- [3]
+						-70.00000166893005, -- [4]
+						36.64779663085938, -- [5]
+					},
+				},
+				["VehicleSeatIndicator"] = {
+					["name"] = "VehicleSeatIndicator",
+					["pos"] = {
+						"TOPLEFT", -- [1]
+						"UIParent", -- [2]
+						"BOTTOMLEFT", -- [3]
+						239.4868011474609, -- [4]
+						1073.343139648438, -- [5]
+					},
+				},
+				["GroupLootFrame2"] = {
+					["name"] = "GroupLootFrame2",
+					["pos"] = {
+						"TOP", -- [1]
+						"UIParent", -- [2]
+						"TOP", -- [3]
+						0, -- [4]
+						0, -- [5]
+					},
+				},
+				["GroupLootFrame1"] = {
+					["name"] = "GroupLootFrame1",
+					["pos"] = {
+						"TOP", -- [1]
+						"UIParent", -- [2]
+						"TOP", -- [3]
+						0, -- [4]
+						0, -- [5]
+					},
+				},
+				["LootWonAlertFrame1"] = {
+					["name"] = "LootWonAlertFrame1",
+					["pos"] = {
+						"TOP", -- [1]
+						"UIParent", -- [2]
+						"TOP", -- [3]
+						0, -- [4]
+						0, -- [5]
+					},
+				},
+				["MinimapBorderTop"] = {
+					["name"] = "MinimapBorderTop",
+					["pos"] = {
+						"TOPRIGHT", -- [1]
+						"MinimapCluster", -- [2]
+						"TOPRIGHT", -- [3]
+						-41.1427001953125, -- [4]
+						-6.8572998046875, -- [5]
+					},
+				},
+				["ScenarioAlertFrame1"] = {
+					["name"] = "ScenarioAlertFrame1",
+					["pos"] = {
+						"BOTTOM", -- [1]
+						"UIParent", -- [2]
+						"BOTTOM", -- [3]
+						3.0517578125e-005, -- [4]
+						878.6287841796875, -- [5]
+					},
+				},
+				["QueueStatusFrame"] = {
+					["scale"] = 0.7999999523162842,
+					["name"] = "QueueStatusFrame",
+					["disableLayerArtwork"] = 1,
+					["pos"] = {
+						"TOPRIGHT", -- [1]
+						"QueueStatusMinimapButton", -- [2]
+						"TOPLEFT", -- [3]
+						310.6306576996637, -- [4]
+						158.3673524658642, -- [5]
+					},
+				},
+				["OverrideActionBarLeaveFrame"] = {
+					["name"] = "OverrideActionBarLeaveFrame",
+					["scale"] = 0.6982843333225505,
+					["pos"] = {
+						"BOTTOMLEFT", -- [1]
+						"OverrideActionBarMicroBGR", -- [2]
+						"BOTTOMRIGHT", -- [3]
+						-71.93141117030221, -- [4]
+						111.9469223022461, -- [5]
+					},
+				},
+				["MinimapZoneTextButton"] = {
+					["name"] = "MinimapZoneTextButton",
+					["pos"] = {
+						"BOTTOM", -- [1]
+						"Minimap", -- [2]
+						"TOP", -- [3]
+						0, -- [4]
+						-142.9999389648438, -- [5]
+					},
+				},
+				["TimeManagerFrame"] = {
+					["name"] = "TimeManagerFrame",
+					["pos"] = {
+						"TOPRIGHT", -- [1]
+						"UIParent", -- [2]
+						"TOPRIGHT", -- [3]
+						-1322.913940429688, -- [4]
+						-23.6002197265625, -- [5]
+					},
+				},
+				["LFDRoleCheckPopup"] = {
+					["name"] = "LFDRoleCheckPopup",
+					["pos"] = {
+						"TOP", -- [1]
+						"UIParent", -- [2]
+						"TOP", -- [3]
+						0, -- [4]
+						0, -- [5]
+					},
+				},
+				["HelpOpenTicketButton"] = {
+					["name"] = "HelpOpenTicketButton",
+					["pos"] = {
+						"CENTER", -- [1]
+						"HelpMicroButton", -- [2]
+						"TOPRIGHT", -- [3]
+						-321.857177734375, -- [4]
+						-108.2859497070313, -- [5]
+					},
+				},
+				["LFGDungeonReadyDialog"] = {
+					["name"] = "LFGDungeonReadyDialog",
+					["pos"] = {
+						"TOPLEFT", -- [1]
+						"LFGDungeonReadyPopup", -- [2]
+						"TOPLEFT", -- [3]
+						0, -- [4]
+						-110.5431518554688, -- [5]
+					},
+				},
+				["ChatConfigFrame"] = {
+					["name"] = "ChatConfigFrame",
+					["pos"] = {
+						"BOTTOMLEFT", -- [1]
+						"UIParent", -- [2]
+						"BOTTOMLEFT", -- [3]
+						555.21435546875, -- [4]
+						251.0714874267578, -- [5]
+					},
+				},
+				["FramerateLabel"] = {
+					["name"] = "FramerateLabel",
+					["pos"] = {
+						"BOTTOMLEFT", -- [1]
+						"UIParent", -- [2]
+						"BOTTOMLEFT", -- [3]
+						74.88019561767578, -- [4]
+						752.5599975585938, -- [5]
+					},
+				},
+				["GameTimeFrame"] = {
+					["name"] = "GameTimeFrame",
+					["pos"] = {
+						"CENTER", -- [1]
+						"Minimap", -- [2]
+						"CENTER", -- [3]
+						-67.95686948299407, -- [4]
+						70, -- [5]
+					},
+				},
+				["LootFrame"] = {
+					["name"] = "LootFrame",
+					["pos"] = {
+						"BOTTOMLEFT", -- [1]
+						"UIParent", -- [2]
+						"BOTTOMLEFT", -- [3]
+						0, -- [4]
+						0, -- [5]
+					},
+				},
+				["AlertFrame"] = {
+					["name"] = "AlertFrame",
+					["pos"] = {
+						"BOTTOM", -- [1]
+						"UIParent", -- [2]
+						"BOTTOM", -- [3]
+						0, -- [4]
+						128.0000152587891, -- [5]
+					},
+				},
+				["HelpFrame"] = {
+					["name"] = "HelpFrame",
+					["pos"] = {
+						"BOTTOMLEFT", -- [1]
+						"UIParent", -- [2]
+						"BOTTOMLEFT", -- [3]
+						390.7143249511719, -- [4]
+						286.5714416503906, -- [5]
+					},
+				},
+			},
+		},
+	},
+}
