@@ -126,7 +126,7 @@ DBM_CORE_SLASHCMD_HELP				= {
 	"/dbm pull <sec>: Starts a pull timer for <sec> seconds. Gives all raid members with DBM a pull timer (requires leader/promoted status).",
 	"/dbm arrow: shows the DBM arrow, see /dbm arrow help for details.",
 	"/dbm lockout: asks raid members for their current raid instance lockouts (aliases: lockouts, ids) (requires leader/promoted status).",
-	"/dbm help: Shows this message.",
+	"/dbm help: Shows this message."
 }
 
 DBM_ERROR_NO_PERMISSION				= "You don't have the required permission to do this."
@@ -200,6 +200,7 @@ DBM_CORE_AUTO_SPEC_WARN_TEXTS = {
 	move		= "%s - move away",
 	run			= "%s - run away",
 	cast		= "%s - stop casting",
+	reflect		= "%s - stop attacking",
 	count		= "%s! (%%d)",
 	stack		= "%%d stacks of %s on you",
 	switch		= ">%s< - switch targets"
@@ -219,7 +220,8 @@ DBM_CORE_AUTO_SPEC_WARN_OPTIONS = {
 	close 		= "Show special warning when someone close to you is affected by $spell:%s",
 	move 		= "Show special warning to move out from $spell:%s",
 	run 		= "Show special warning to run away from $spell:%s",
-	cast 		= "Show special warning for $spell:%s cast",
+	cast 		= "Show special warning to stop casting for $spell:%s",--Spell Interrupt
+	reflect 	= "Show special warning to stop attacking $spell:%s",--Spell Reflect
 	count 		= "Show special warning for $spell:%s",
 	stack 		= "Show special warning when you are affected by >=%d stacks of $spell:%s",--too long?
 	switch		= "Show special warning to switch targets for $spell:%s"
@@ -280,7 +282,7 @@ DBM_ARROW_ERROR_USAGE	= {
 	"/dbm arrow <x> <y>  creates an arrow that points to a specific locataion (0 < x/y < 100)",
 	"/dbm arrow <player>  creates and arrow that points to a specific player in your party or raid",
 	"/dbm arrow hide  hides the arrow",
-	"/dbm arrow move  makes the arrow movable",
+	"/dbm arrow move  makes the arrow movable"
 }
 
 DBM_SPEED_KILL_TIMER_TEXT	= "Record Victory"

@@ -1,7 +1,7 @@
 local mod	= DBM:NewMod(865, "DBM-SiegeOfOrgrimmar", nil, 369)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision(("$Revision: 10167 $"):sub(12, -3))
+mod:SetRevision(("$Revision: 10267 $"):sub(12, -3))
 mod:SetCreatureID(71504)--71591 Automated Shredder
 mod:SetZone()
 
@@ -36,7 +36,7 @@ local warnShockwaveMissile				= mod:NewCountAnnounce(143641, 3)
 --local warnLaserTurretActivated			= mod:NewSpellAnnounce("ej8208", 3, 143867, false)--Many scripted triggers. gonna need an emote or UNIT_SPELL event for this i'm sure
 local warnLaserFixate					= mod:NewTargetAnnounce(143828, 3, 143867)--Not in combat log, needs more debugging to find a way around blizz fail
 local warnMagneticCrush					= mod:NewSpellAnnounce(144466, 3)--Unsure if correct ID, could be 143487 instead
-local warnCrawlerMine					= mod:NewSpellAnnounce("ej8212", 3, "INTERFACE\ICONS\INV_MISC_BOMB_02.BLP")--Crawler Mine Spawning
+local warnCrawlerMine					= mod:NewSpellAnnounce("ej8212", 3, 144010)--Crawler Mine Spawning
 local warnReadyToGo						= mod:NewTargetAnnounce(145580, 4)--Crawler mine not dead fast enough
 
 --Siegecrafter Blackfuse
@@ -57,8 +57,8 @@ local specWarnLaserFixate				= mod:NewSpecialWarningRun(143828)
 local yellLaserFixate					= mod:NewYell(143828)
 local specWarnSuperheated				= mod:NewSpecialWarningMove(143856)--From lasers. Hard to see, this warning will help a ton
 local specWarnMagneticCrush				= mod:NewSpecialWarningSpell(144466, nil, nil, nil, 2)
-local specWarnCrawlerMineFixate			= mod:NewSpecialWarningRun(144010)
-local yellCrawlerMineFixate				= mod:NewYell(144010, nil, false)
+local specWarnCrawlerMineFixate			= mod:NewSpecialWarningRun("ej8212")
+local yellCrawlerMineFixate				= mod:NewYell("ej8212", nil, false)
 
 --Siegecrafter Blackfuse
 local timerProtectiveFrenzy				= mod:NewBuffActiveTimer(10, 145365, nil, mod:IsTank() or mod:IsHealer())
@@ -66,7 +66,7 @@ local timerElectroStaticCharge			= mod:NewTargetTimer(60, 143385, nil, mod:IsTan
 local timerElectroStaticChargeCD		= mod:NewCDTimer(17, 143385, nil, mod:IsTank())--17-22 second variation
 local timerLaunchSawbladeCD				= mod:NewCDTimer(10, 143265)--10-15sec cd
 --Automated Shredders
-local timerAutomatedShredderCD			= mod:NewNextTimer(120, "ej8199", nil, nil, nil, 85914)
+local timerAutomatedShredderCD			= mod:NewNextTimer(60, "ej8199", nil, nil, nil, 85914)
 local timerDeathFromAboveDebuff			= mod:NewTargetTimer(5, 144210, nil, not mod:IsHealer())
 local timerDeathFromAboveCD				= mod:NewNextTimer(40, 144208, nil, not mod:IsHealer())
 --The Assembly Line

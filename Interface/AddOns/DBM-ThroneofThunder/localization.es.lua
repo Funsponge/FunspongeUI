@@ -72,7 +72,7 @@ L:SetWarningLocalization({
 })
 
 L:SetOptionLocalization({
-	specWarnCrystalShell	= "Mostrar aviso especial cuando te falta $spell:137633 y estás por encima del 90% de salud",
+	specWarnCrystalShell	= "Mostrar aviso especial cuando te falta<br/> $spell:137633 y estás por encima del 90% de salud",
 	InfoFrame				= "Mostrar cuadro de información para los jugadores sin $spell:137633",
 	SetIconOnTurtles		= "Poner iconos en $journal:7129",
 	ClearIconOnTurtles		= "Quitar iconos en $journal:7129 cuando les afecte $spell:133971",
@@ -170,7 +170,7 @@ L:SetOptionLocalization({
 	specWarnFogRevealed			= "Mostrar aviso especial cuando se descubre una bestia de niebla",
 	ArrowOnBeam					= "Mostrar flecha indicando la dirección en la que moverse durante $journal:6882",
 	InfoFrame					= "Mostrar cuadro de información para acumulaciones de $spell:133795",
-	SetParticle					= "Bajar densidad de partículas al comenzar el encuentro\n(Restaurar la configuración original al terminar)"
+	SetParticle					= "Bajar densidad de partículas al comenzar el encuentro<br/>(Restaurar la configuración original al terminar)"
 })
 
 L:SetMiscLocalization({
@@ -183,7 +183,7 @@ L:SetMiscLocalization({
 L= DBM:GetModLocalization(820)
 
 L:SetWarningLocalization({
-	warnDebuffCount				= "Mutaciones: %d/5 buenas, %d malas",
+	warnDebuffCount				= "Mutaciones: %d/5 buenas, %d malas"
 })
 
 L:SetOptionLocalization({
@@ -220,7 +220,7 @@ L:SetWarningLocalization({
 })
 
 L:SetOptionLocalization({
-	RangeFrame				= "Mostrar radar de rango dinámico (10)\n(Radar inteligente que muestra cuando hay demasiados jugadores cerca)",
+	RangeFrame				= "Mostrar radar de rango dinámico (10)<br/>(Radar inteligente que muestra cuando hay demasiados jugadores cerca)",
 	InfoFrame				= "Mostrar cuadro de información para jugadores con $spell:136193"
 })
 

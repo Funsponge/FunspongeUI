@@ -1,7 +1,7 @@
 local mod	= DBM:NewMod(850, "DBM-SiegeOfOrgrimmar", nil, 369)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision(("$Revision: 10170 $"):sub(12, -3))
+mod:SetRevision(("$Revision: 10204 $"):sub(12, -3))
 mod:SetCreatureID(71515)
 mod:SetZone()
 
@@ -25,7 +25,7 @@ local warnBattleStance				= mod:NewSpellAnnounce(143589, 2)
 local warnBerserkerStance			= mod:NewSpellAnnounce(143594, 3)
 local warnDefensiveStanceSoon		= mod:NewAnnounce("warnDefensiveStanceSoon", 4, 143593, nil, nil, true)
 local warnDefensiveStance			= mod:NewSpellAnnounce(143593, 4)
-local warnAdds						= mod:NewCountAnnounce("ej7920", 3)
+local warnAdds						= mod:NewCountAnnounce("ej7920", 3, 2457)
 local warnExecute					= mod:NewSpellAnnounce(143502, 4, nil, mod:IsTank())--Heroic
 --Nazgrim Rage Abilities
 local warnHeroicShockwave			= mod:NewSpellAnnounce(143500, 2)
@@ -39,7 +39,7 @@ local warnArcaneShock				= mod:NewSpellAnnounce(143432, 3, nil, false)--Spammy
 local warnMagistrike				= mod:NewSpellAnnounce(143431, 3, nil, false)--Spammy
 local warnAssasinsMark				= mod:NewTargetAnnounce(143480, 3)
 local warnEarthShield				= mod:NewTargetAnnounce(143475, 4, nil, mod:IsMagicDispeller())
-local warnEmpoweredChainHeal		= mod:NewSpellAnnounce(143473, 4)
+local warnEmpoweredChainHeal		= mod:NewCastAnnounce(143473, 4)
 local warnHealingTideTotem			= mod:NewSpellAnnounce(143474, 4)
 
 --Nazgrim Core Abilities
@@ -82,6 +82,8 @@ local timerEmpoweredChainHealCD		= mod:NewNextSourceTimer(6, 143473)
 local countdownAdds					= mod:NewCountdown(45, "ej7920")
 local countdownCoolingOff			= mod:NewCountdown(15, 143484, nil, nil, nil, nil, true)
 
+local berserkTimer					= mod:NewBerserkTimer(600)
+
 local addsCount = 0
 local boneTargets = {}
 local UnitName, UnitExists, UnitGUID, UnitDetailedThreatSituation = UnitName, UnitExists, UnitGUID, UnitDetailedThreatSituation
@@ -97,6 +99,7 @@ function mod:OnCombatStart(delay)
 	table.wipe(boneTargets)
 	timerAddsCD:Start(-delay, 1)
 	countdownAdds:Start()
+	berserkTimer:Start(-delay)
 end
 
 function mod:SPELL_CAST_START(args)

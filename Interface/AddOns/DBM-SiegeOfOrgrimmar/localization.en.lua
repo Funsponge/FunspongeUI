@@ -19,6 +19,10 @@ L:SetOptionLocalization({
 	InfoFrame			= "Show info frame for $journal:8252"
 })
 
+L:SetMiscLocalization({
+	wasteOfTime			= "Very well, I will create a field to keep your corruption quarantined."
+})
+
 ------------------
 -- Sha of Pride --
 ------------------
@@ -41,15 +45,16 @@ L:SetTimerLocalization({
 
 L:SetOptionLocalization({
 	timerAddsCD		= "Show timer for next adds wave",
-	timerTowerCD	= "Show timer for next tower assault"
+	timerTowerCD	= "Show timer for next tower assault",
+	FixateIcon		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(147068)
 })
 
 L:SetMiscLocalization({
 	newForces1	= "Here they come!",--Jaina's line, horde may not be same
 	newForces2	= "Dragonmaw, advance!",
 	newForces3	= "For Hellscream!",
-	newForces4	= "Next squad, push forward!",
-	tower		= "The door barring the"--The door barring the South/North Tower has been breached!
+	newForces4	= "Next squad, push forward!"
+--	tower		= "The door barring the"--The door barring the South/North Tower has been breached!
 })
 
 --------------------
@@ -71,6 +76,10 @@ L= DBM:GetModLocalization(856)
 L:SetOptionLocalization({
 	SetIconOnToxicMists		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(144089),
 	RangeFrame				= DBM_CORE_AUTO_RANGE_OPTION_TEXT:format(4, 143990)
+})
+
+L:SetMiscLocalization({
+	PrisonYell		= "Prison on %s fades (%d)"
 })
 
 ---------------------
@@ -121,7 +130,8 @@ L:SetMiscLocalization({
 L= DBM:GetModLocalization(851)
 
 L:SetOptionLocalization({
-	RangeFrame	= "Show dynamic range frame (10)\n(This is a smart range frame that shows when you reach Frenzy threshold)"
+	RangeFrame	= "Show dynamic range frame (10)<br/>(This is a smart range frame that shows when you reach Frenzy threshold)",
+	FixateIcon		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(143445)
 })
 
 ----------------------------
@@ -146,8 +156,6 @@ L:SetWarningLocalization({
 
 L:SetOptionLocalization({
 	warnToxicCatalyst				= DBM_CORE_AUTO_ANNOUNCE_OPTIONS.spell:format("ej8036"),
-	specWarnToxicInjection			= DBM_CORE_AUTO_SPEC_WARN_OPTIONS.you:format(142528),
-	specWarnToxicCatalyst			= DBM_CORE_AUTO_SPEC_WARN_OPTIONS.you:format("ej8036"),
 	specWarnActivatedVulnerable		= "Show special warning when you are vulnerable to activating paragons",
 	specWarnCriteriaLinked			= "Show special warning when you are linked to $spell:144095",
 	SetIconOnAim					= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(142948),
@@ -157,8 +165,6 @@ L:SetOptionLocalization({
 
 L:SetMiscLocalization({
 	--thanks to blizz, the only accurate way for this to work, is to translate 5 emotes in all languages
-	purple				= "Purple",--Needs color code replacement still
-	green				= "Green",--Needs color code replacement still
 	one					= "One",
 	two					= "Two",
 	three				= "Three",
@@ -185,7 +191,7 @@ L= DBM:GetModLocalization(869)
 -------------
 --  Trash  --
 -------------
-L = DBM:GetModLocalization("FoOTrash")
+L = DBM:GetModLocalization("SoOTrash")
 
 L:SetGeneralLocalization({
 	name =	"Siege of Orgrimmar Trash"

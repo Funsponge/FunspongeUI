@@ -127,7 +127,7 @@ DBM_CORE_SLASHCMD_HELP				= {
 	"/dbm pull <sec>: Startet einen Pull-Timer für <sec> Sekunden. Schickt allen Schlachzugsmitgliedern mit DBM einen Pull-Timer (nur als Leiter/Assistent).",
 	"/dbm arrow: Zeigt den DBM-Pfeil, siehe /dbm arrow help für Details.",
 	"/dbm lockout: Fragt die Schlachtzugsmitglieder nach ihren derzeitigen Instanzsperren (IDs) (nur als Leiter/Assistent).",
-	"/dbm help: Zeigt diese Hilfe.",
+	"/dbm help: Zeigt diese Hilfe."
 }
 
 DBM_ERROR_NO_PERMISSION				= "Du hast nicht die benötigte Berechtigung für diesen Befehl!"
@@ -201,6 +201,7 @@ DBM_CORE_AUTO_SPEC_WARN_TEXTS = {
 	move		= "%s - geh weg",
 	run			= "%s - lauf weg",
 	cast		= "%s - stoppe Zauber",
+	reflect		= "%s - stoppe Angriffe",
 	count		= "%s! (%%d)",
 	stack		= "%%d Stapel von %s auf dir",
 	switch		= ">%s< - Ziel wechseln"
@@ -221,6 +222,7 @@ DBM_CORE_AUTO_SPEC_WARN_OPTIONS = {
 	move 		= "Spezialwarnung zum Herausgehen aus $spell:%s",
 	run 		= "Spezialwarnung zum Weglaufen vor $spell:%s",
 	cast 		= "Spezialwarnung zum Zauberstopp bei $spell:%s",
+	reflect 	= "Spezialwarnung zum Angriffsstopp auf $spell:%s",
 	count 		= "Spezialwarnung für $spell:%s",
 	stack 		= "Spezialwarnung bei >=%d Stapel von $spell:%s auf dir",
 	switch		= "Spezialwarnung für Zielwechsel auf $spell:%s"
@@ -281,7 +283,7 @@ DBM_ARROW_ERROR_USAGE	= {
 	"/dbm arrow <x> <y>  erzeugt einen Pfeil, der auf bestimmte Koordinaten zeigt (0 < x/y < 100)",
 	"/dbm arrow <player>  erzeugt einen Pfeil, der auf einen bestimmten Spieler in deiner Gruppe oder deinem Schlachtzug zeigt",
 	"/dbm arrow hide  versteckt den Pfeil",
-	"/dbm arrow move  macht den Pfeil beweglich",
+	"/dbm arrow move  macht den Pfeil beweglich"
 }
 
 DBM_SPEED_KILL_TIMER_TEXT	= "Rekordzeit"

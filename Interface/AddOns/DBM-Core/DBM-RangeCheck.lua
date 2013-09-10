@@ -433,7 +433,7 @@ function createRadarFrame()
 	local bg = radarFrame:CreateTexture(nil, "BACKGROUND")
 	bg:SetAllPoints(radarFrame)
 	bg:SetBlendMode("BLEND")
-	bg:SetTexture(0, 0, 0, 0)
+	bg:SetTexture(0, 0, 0, 0.3)
 	radarFrame.background = bg
 
 	local circle = radarFrame:CreateTexture(nil, "ARTWORK")

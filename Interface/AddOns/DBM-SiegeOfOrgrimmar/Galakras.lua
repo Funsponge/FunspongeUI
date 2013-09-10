@@ -1,7 +1,7 @@
 local mod	= DBM:NewMod(868, "DBM-SiegeOfOrgrimmar", nil, 369)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision(("$Revision: 10174 $"):sub(12, -3))
+mod:SetRevision(("$Revision: 10202 $"):sub(12, -3))
 mod:SetCreatureID(72311, 72560, 72249)--Boss needs to engage off Varian/Lor'themar, not the boss. I include the boss too so we don't detect a win off losing varian. :)
 mod:SetReCombatTime(120)--fix combat re-starts after killed. Same issue as tsulong. Fires TONS of IEEU for like 1-2 minutes after fight ends.
 mod:SetMainBossID(72249)
@@ -13,6 +13,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_CAST_START",
 	"SPELL_CAST_SUCCESS",
 	"SPELL_AURA_APPLIED",
+	"SPELL_AURA_APPLIED_DOSE",
 	"SPELL_AURA_REMOVED",
 	"SPELL_PERIODIC_DAMAGE",
 	"SPELL_PERIODIC_MISSED",
@@ -42,6 +43,7 @@ local warnShatteringCleave			= mod:NewSpellAnnounce(146849, 3, nil, mod:IsTank()
 --Phase 3: Galakras,The Last of His Progeny
 local warnPhase2					= mod:NewPhaseAnnounce(2, 2)
 local warnFlamesofGalakrondTarget	= mod:NewTargetAnnounce(147068, 4)
+local warnFlamesofGalakrond			= mod:NewStackAnnounce(147029, 2, nil, mod:IsTank())
 
 --Stage 2: Bring Her Down!
 local specWarnWarBanner				= mod:NewSpecialWarningSwitch(147328, not mod:IsHealer())
@@ -62,17 +64,20 @@ local specWarnPoisonCloud			= mod:NewSpecialWarningMove(147705)
 local specWarnFlamesofGalakrond		= mod:NewSpecialWarningSpell(147029, false, nil, nil, 2)--Cast often, so lets make this optional since it's spammy
 local specWarnFlamesofGalakrondYou	= mod:NewSpecialWarningYou(147068)
 local yellFlamesofGalakrond			= mod:NewYell(147068)
+local specWarnFlamesofGalakrondTank	= mod:NewSpecialWarningStack(147029, mod:IsTank(), 3)
+local specWarnFlamesofGalakrondOther= mod:NewSpecialWarningTarget(147029, mod:IsTank())
 
 --Stage 2: Bring Her Down!
-local timerAddsCD					= mod:NewTimer(20, "timerAddsCD")
-local timerTowerCD					= mod:NewTimer(20, "timerTowerCD")
+local timerAddsCD					= mod:NewTimer(55, "timerAddsCD", 2457)
+local timerTowerCD					= mod:NewTimer(20, "timerTowerCD", 88852)
 local timerDemolisherCD				= mod:NewNextTimer(20, "ej8562", nil, nil, nil, 116040)--EJ is just not complete yet, shouldn't need localizing
 ----High Enforcer Thranok (Road)
 local timerShatteringCleaveCD		= mod:NewCDTimer(7.5, 146849, nil, mod:IsTank())
 local timerCrushersCallCD			= mod:NewNextTimer(30, 146769)
 
 --Phase 3: Galakras,The Last of His Progeny
-local timerFlamesofGalakrondCD		= mod:NewCDTimer(6, 147029)
+local timerFlamesofGalakrondCD		= mod:NewCDTimer(6, 147068)
+local timerFlamesofGalakrond		= mod:NewTargetTimer(15, 147029, nil, mod:IsTank())
 
 mod:AddBoolOption("FixateIcon", true)
 
@@ -86,8 +91,7 @@ ENGAGE
 45.5 adds 2
 55.5 adds 3 (also tower)
 +20 (Demolisher)
---Double check for missing wave here I may have been out of yell range
---It makes sense for a set to be here then the pattern would be new adds every 55 seconds
+--This gap verified in 2 logs now and video. Seems intended for miniboss.
 +90 adds 4
 +55 adds 5(also tower)
 +20 (Demolisher)
@@ -140,6 +144,9 @@ function mod:SPELL_AURA_APPLIED(args)
 		if self.Options.FixateIcon then
 			self:SetIcon(args.destName, 8)
 		end
+	elseif args.spellId == 147029 then--Tank debuff version
+		warnFlamesofGalakrond:Show(args.destName, 1)
+		timerFlamesofGalakrond:Start(args.destName)
 	elseif args.spellId == 147328 and self:checkTankDistance(args.sourceGUID, 60) then
 		warnWarBanner:Show()
 		specWarnWarBanner:Show()
@@ -154,12 +161,28 @@ function mod:SPELL_AURA_APPLIED(args)
 	end
 end
 
+function mod:SPELL_AURA_APPLIED_DOSE(args)
+	if args.spellId == 147029 then--Tank debuff version
+		local amount = args.amount or 1
+		warnFlamesofGalakrond:Show(args.destName, amount)
+		timerFlamesofGalakrond:Start(args.destName)
+		if amount >= 3 then
+			if args:IsPlayer() then
+				specWarnFlamesofGalakrondTank:Show(amount)
+			else
+				specWarnFlamesofGalakrondOther:Show(args.destName)
+			end
+		end
+	end
+end
+
 function mod:SPELL_AURA_REMOVED(args)
 	if args.spellId == 147068 then
-		timerFlamesofGalakrondCD:Cancel(args.destName)
 		if self.Options.FixateIcon then
 			self:SetIcon(args.destName, 0)
 		end
+	elseif args.spellId == 147029 then--Tank debuff version
+		timerFlamesofGalakrond:Cancel(args.destName)
 	end
 end
 
@@ -210,12 +233,10 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(msg)
 		demoCount = demoCount + 1
 		warnDemolisher:Show()
 		if demoCount == 1 then
-			timerAddsCD:Start(90)--May be 34-35 as well and i was out of range of yell (since i was assaulting tower pretty far away) If i missed one the rest of timers were all be wrong
+			timerAddsCD:Start(90)
 		elseif demoCount == 2 then
 			timerAddsCD:Start(34)
 		end
---	elseif msg == L.tower or msg:find(L.tower) then
-		--towerCount = towerCount + 1
 	end
 end
 
@@ -225,20 +246,15 @@ function mod:OnSync(msg)
 		if addsCount == 1 then
 			timerAddsCD:Start(45)
 		elseif addsCount == 2 then
-			timerTowerCD:Start(55)
+			timerTowerCD:Start()
 		elseif addsCount == 3 then--This is also a tower so probably don't need redundant emote
 			timerDemolisherCD:Start()
 		elseif addsCount == 4 then
-			timerTowerCD:Start(55)
+			timerTowerCD:Start()
 		elseif addsCount == 5 then--This is also a tower
 			timerDemolisherCD:Start()
-		elseif addsCount == 6 then
-			timerAddsCD:Start(55)
-			addsDebug = GetTime()
-		elseif addsCount >= 7 then--Automatic debugging yay. This will let us jot down additional wave timers with ease
---			print("DBM Debug: Time since adds wave "..addscount-1.." "..GetTime()-addsDebug)
-			addsDebug = GetTime()
-			timerAddsCD:Start(55)--Assumed based on pattern, debugging will confirm it easy enough
+		elseif addsCount >= 6 then
+			timerAddsCD:Start()
 		end
 	end
 end
