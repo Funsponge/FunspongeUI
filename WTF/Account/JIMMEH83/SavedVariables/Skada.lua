@@ -23,9 +23,9 @@ SkadaDB = {
 					["title"] = {
 						["color"] = {
 							["a"] = 1,
-							["r"] = 0,
-							["g"] = 0,
 							["b"] = 0,
+							["g"] = 0,
+							["r"] = 0,
 						},
 						["font"] = "Friz Quadrata TT",
 						["texture"] = "Kait2",
@@ -38,19 +38,19 @@ SkadaDB = {
 					},
 					["barwidth"] = 177.8287200927734,
 					["point"] = "BOTTOMRIGHT",
+					["barfont"] = "Friz Quadrata TT",
+					["barcolor"] = {
+						["b"] = 0,
+						["g"] = 0,
+						["r"] = 0,
+					},
 					["background"] = {
-						["height"] = 124.1143417358398,
 						["color"] = {
 							["a"] = 0,
 							["b"] = 0.5019607843137255,
 						},
+						["height"] = 124.1143417358398,
 					},
-					["barcolor"] = {
-						["r"] = 0,
-						["g"] = 0,
-						["b"] = 0,
-					},
-					["barfont"] = "Friz Quadrata TT",
 					["barfontsize"] = 10,
 				}, -- [1]
 			},
@@ -58,7 +58,6 @@ SkadaDB = {
 				["hide"] = true,
 			},
 			["report"] = {
-				["number"] = 5,
 				["channel"] = "guild",
 			},
 			["showranks"] = false,

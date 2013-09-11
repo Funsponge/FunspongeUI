@@ -514,7 +514,6 @@ addon.borderPresets = {
 		["backdrop"] = {
 			["show"] = true,
 			["textureColor"] = {
-				["a"] = 0.5,
 				["r"] = 0,
 				["g"] = 0,
 				["b"] = 0,

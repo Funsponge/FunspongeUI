@@ -1,0 +1,13 @@
+tag v2.4.9
+b42b0e5fea0ff47db03928cddabdb0335c58b848
+funkydude <none>
+2013-09-10 00:02:23 +0100
+
+Tagging as v2.4.9
+
+
+--------------------
+
+funkydude:
+	- bump toc
+	- Buttons: add another tracked addon button.

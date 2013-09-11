@@ -49,8 +49,9 @@ MOD.BarGroupTemplate = { -- default bar group settings
 	timeOffset = 0, timeInset = 0, timeAlign = "normal", timeIcon = false, iconOffset = 0, iconInset = 0, iconHide = false, iconAlign = "CENTER",
 	expireTime = 5, expireMinimum = 0, colorExpiring = false, expireMSBT = false, criticalMSBT = false, clockReverse = true, -- clockEdge = false,
 	expireColor = false, expireLabelColor = false, expireTimeColor = false, desaturate = false, desaturateFriend = false,
-	timelineWidth = 225, timelineHeight = 25, timelineDuration = 300, timelineExp = 3, timelineHide = false, timelineAlternate = true, timelineSwitch = 2,
-	timelineTexture = "Blizzard", timelineAlpha = 1, timelineColor = false, timelineLabels = false, timelineSplash = true,
+	timelineWidth = 225, timelineHeight = 25, timelineDuration = 300, timelineExp = 3, timelineHide = false, timelineAlternate = true,
+	timelineSwitch = 2, timelineTexture = "Blizzard", timelineAlpha = 1, timelineColor = false, timelineLabels = false,
+	timelineSplash = true, timelineSplashX = 0, timelineSplashY = 0, timelinePercent = 50, timelineOffset = 0, timelineDelta = 0,
 	showSolo = true, showParty = true, showRaid = true, showCombat = true, showOOC = true, showFishing = true, showFocusTarget = true,
 	showInstance = true, showNotInstance = true, showArena = true, showBattleground = true, showPrimary = true, showSecondary = true,
 	showResting = true, showMounted = true, showVehicle = true, showFriendly = true, showEnemy = true, showBlizz = true, showNotBlizz = true,
@@ -590,7 +591,8 @@ function MOD:UpdateBarGroup(bp)
 		Nest_SetBarGroupVisibles(bg, not bp.hideIcon, not bp.hideClock, not bp.hideBar, not bp.hideSpark, not bp.hideLabel, not bp.hideValue)
 		if bp.timelineTexture then bgtexture = media:Fetch("statusbar", bp.timelineTexture) else bgtexture = nil end
 		Nest_SetBarGroupTimeline(bg, bp.timelineWidth, bp.timelineHeight, bp.timelineDuration, bp.timelineExp, bp.timelineHide, bp.timelineAlternate,
-			bp.timelineSwitch, bp.timelineSplash, bgtexture, bp.timelineAlpha, bp.timelineColor or gc, bp.timelineLabels or defaultLabels)
+			bp.timelineSwitch, bp.timelinePercent, bp.timelineSplash, bp.timelineSplashX, bp.timelineSplashY, bp.timelineOffset, bp.timelineDelta,
+			bgtexture, bp.timelineAlpha, bp.timelineColor or gc, bp.timelineLabels or defaultLabels)
 		Nest_SetBarGroupAttribute(bg, "targetFirst", bp.targetFirst) -- for multi-target tracking, sort target first
 		Nest_SetBarGroupAttribute(bg, "pulseStart", bp.pulseStart) -- pulse icon at start
 		Nest_SetBarGroupAttribute(bg, "pulseEnd", bp.pulseEnd) -- pulse icon when expiring
@@ -691,6 +693,7 @@ local function Bar_OnEnter(frame, bgName, barName, ttanchor)
 	local tt = Nest_GetAttribute(bar, "tooltipType")
 	local id = Nest_GetAttribute(bar, "tooltipID")
 	local unit = Nest_GetAttribute(bar, "tooltipUnit")	
+	local spell = Nest_GetAttribute(bar, "tooltipSpell")	
 	local caster = Nest_GetAttribute(bar, "caster")	
 	if tt == "text" then
 		GameTooltip:SetText(id)
@@ -707,13 +710,13 @@ local function Bar_OnEnter(frame, bgName, barName, ttanchor)
 		local ect = MOD.db.global.SpellEffects[id]
 		if ect and ect.id then GameTooltip:SetSpellByID(ect.id) else GameTooltip:SetText(id) end
 	elseif tt == "buff" then
-		GameTooltip:SetUnitBuff(unit, id)
+		GameTooltip:SetUnitAura(unit, id, "HELPFUL")
 	elseif tt == "debuff" then
-		GameTooltip:SetUnitDebuff(unit, id)
+		GameTooltip:SetUnitAura(unit, id, "HARMFUL")
 	elseif tt == "vehicle buff" then
-		GameTooltip:SetUnitBuff("vehicle", id)
+		GameTooltip:SetUnitAura("vehicle", id, "HELPFUL")
 	elseif tt == "vehicle debuff" then
-		GameTooltip:SetUnitDebuff("vehicle", id)
+		GameTooltip:SetUnitAura("vehicle", id, "HARMFUL")
 	elseif tt == "tracking" then
 		GameTooltip:SetText(id) -- id is localized name of tracking type
 	elseif tt == "spell" then
@@ -731,6 +734,7 @@ local function Bar_OnEnter(frame, bgName, barName, ttanchor)
 		GameTooltip:AddLine(id)
 		GameTooltip:AddLine(L["Header click"], 1, 1, 1, true)
 	end
+	if spell and IsAltKeyDown() and IsControlKeyDown() then GameTooltip:AddLine("<Spell #" .. tonumber(spell) .. ">", 0, 1, 0.2, false) end
 	if caster and (caster ~= "") then GameTooltip:AddLine(L["<Applied by "] .. caster .. ">", 0, 0.8, 1, false) end
 	GameTooltip:Show()
 end
@@ -781,9 +785,9 @@ end
 local function GetTooltipNumber(ttType, ttID, ttUnit)
 	local tt = nil
 	if ttType == "buff" then
-		tt = MOD:GetBuffTooltip(); tt:SetUnitBuff(ttUnit, ttID) -- fill in the tooltip for the buff
+		tt = MOD:GetBuffTooltip(); tt:SetUnitAura(ttUnit, ttID, "HELPFUL") -- fill in the tooltip for the buff
 	elseif ttType == "debuff" then
-		tt = MOD:GetBuffTooltip(); tt:SetUnitDebuff(ttUnit, ttID) -- fill in the tooltip for the debuff
+		tt = MOD:GetBuffTooltip(); tt:SetUnitAura(ttUnit, ttID, "HARMFUL") -- fill in the tooltip for the debuff
 	elseif (ttType == "spell link") or (ttType == "item link") then
 		tt = MOD:GetBuffTooltip(); tt:SetHyperlink(ttID)
 	elseif (ttType == "spell id") or (ttType == "internal") then
@@ -902,6 +906,7 @@ local function UpdateBar(bp, vbp, bg, b, icon, timeLeft, duration, count, btype,
 		Nest_SetAttribute(bar, "tooltipType", ttType) -- tooltip info
 		Nest_SetAttribute(bar, "tooltipID", ttID)
 		Nest_SetAttribute(bar, "tooltipUnit", ttUnit)
+		Nest_SetAttribute(bar, "tooltipSpell", b.spellID) -- for optional spell id in tooltip when control and alt keys are both down
 		if vbp.casterTips then Nest_SetAttribute(bar, "caster", ttCaster) else Nest_SetAttribute(bar, "caster", nil) end
 		Nest_SetAttribute(bar, "saveBar", b) -- not valid in auto bar group since it then points to a local not a permanent table!
 		Nest_SetAttribute(bar, "pulseStart", b.pulseStart) -- pulse icon at start
@@ -1069,7 +1074,7 @@ local function DetectNewBuffs(unit, n, aura, isBuff, bp, vbp, bg)
 		if tt == "buff" and aura[14] and fixEnchants[aura[14]] then tag = tag .. tostring(fixDups); fixDups = fixDups + 1 end -- allow duplicate enchants
 		if unit == "all" then
 			tag = tag .. id
-			if bp.noHeaders then label = (bp.noLabels and "" or (label .. (bp.noTargets and "" or " - "))) .. (bp.noTargets and "" or gname) end
+			if vbp.noHeaders then label = (vbp.noLabels and "" or (label .. (vbp.noTargets and "" or " - "))) .. (vbp.noTargets and "" or gname) end
 		end
 		if tt == "effect" and ta then
 			local ect = MOD.db.global.SpellEffects[ta]
@@ -1124,7 +1129,7 @@ local function DetectNewDebuffs(unit, n, aura, isBuff, bp, vbp, bg)
 		if aura[14] then tag = tag .. tostring(aura[14]) elseif (tt == "weapon") or (tt == "tracking") then tag = tag .. ta end
 		if unit == "all" then
 			tag = tag .. id
-			if bp.noHeaders then label = (bp.noLabels and "" or (label .. (bp.noTargets and "" or " - "))) .. (bp.noTargets and "" or gname) end
+			if vbp.noHeaders then label = (vbp.noLabels and "" or (label .. (vbp.noTargets and "" or " - "))) .. (vbp.noTargets and "" or gname) end
 		end
 		if tt == "effect" and ta then
 			local ect = MOD.db.global.SpellEffects[ta]
@@ -1277,7 +1282,7 @@ local function UpdateBarGroupBars(bp, vbp, bg)
 			if bp.detectRuneCooldowns then AutoRuneBars(bp, vbp, bg) end
 			if bp.detectTotems then AutoTotemBars(bp, vbp, bg) end
 
-			if not bp.noHeaders and ((bp.detectBuffs and bp.detectAllBuffs) or (bp.detectDebuffs and bp.detectAllDebuffs)) then -- add group headers, if necessary
+			if not vbp.noHeaders and ((bp.detectBuffs and bp.detectAllBuffs) or (bp.detectDebuffs and bp.detectAllDebuffs)) then -- add group headers, if necessary
 				table.wipe(groupIDs) -- cache for group ids
 				for _, bar in pairs(Nest_GetBars(bg)) do
 					local id = Nest_GetAttribute(bar, "group")

@@ -1,0 +1,44 @@
+------------------------------------------------------------------------
+r90 | xodiv | 2013-09-10 22:44:23 +0000 (Tue, 10 Sep 2013) | 3 lines
+Changed paths:
+   A /tags/5.4.0 (from /trunk:89)
+
+Tagging as 5.4.0
+
+Support the "New Item" overlay on bag items for the Blizzard in-game store.
+------------------------------------------------------------------------
+r89 | xodiv | 2013-09-10 22:27:03 +0000 (Tue, 10 Sep 2013) | 2 lines
+Changed paths:
+   M /trunk/LiteBagItemButtonTemplate.lua
+
+Fix typo with New Item stuff.
+
+------------------------------------------------------------------------
+r88 | xodiv | 2013-09-09 06:48:24 +0000 (Mon, 09 Sep 2013) | 3 lines
+Changed paths:
+   M /trunk/LiteBagItemButtonTemplate.lua
+   M /trunk/LiteBagItemButtonTemplate.xml
+
+Add some explanatory comments about what comprises a
+LiteBagItemButton
+
+------------------------------------------------------------------------
+r87 | xodiv | 2013-09-09 02:27:34 +0000 (Mon, 09 Sep 2013) | 2 lines
+Changed paths:
+   M /trunk/LiteBagFrameTemplate.lua
+   M /trunk/LiteBagItemButtonTemplate.lua
+
+Fix for C_NewItem stuff.
+
+------------------------------------------------------------------------
+r86 | xodiv | 2013-09-07 03:30:58 +0000 (Sat, 07 Sep 2013) | 4 lines
+Changed paths:
+   M /trunk/LiteBag.toc
+   M /trunk/LiteBagFrameTemplate.lua
+   M /trunk/LiteBagItemButtonTemplate.lua
+
+Update ToC ready for 5.4
+Add the New Item icon changes from 5.4's base bags UI (untested).
+
+
+------------------------------------------------------------------------

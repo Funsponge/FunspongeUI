@@ -375,7 +375,7 @@ function MOD:GetSpellID(name)
 
 	if not id and not InCombatLockdown() then -- disallow the search when in combat due to script time limit (MoP)
 		id = 0
-		while id < 142000 do -- increased for 5.2
+		while id < 155000 do -- increased for 5.4, with a bit of headroom for good measure
 			id = id + 1
 			local n = GetSpellInfo(id)
 			if n == name then
@@ -463,6 +463,13 @@ function MOD:GetLabel(name, spellID)
 	local label = nil
 	if spellID then label = MOD.db.global.Labels["#" .. tostring(spellID)] end -- allow names stored as #spellid
 	if not label then label = MOD.db.global.Labels[name] end
+	if not label and name and string.find(name, "^#%d+") then
+		local id = tonumber(string.sub(name, 2))
+		if id then
+			local t = GetSpellInfo(id)
+			if t then label = t .. " (" .. name .. ")" end -- special case format: spellname (#spellid)
+		end
+	end
 	if not label then label = name end
 	return label
 end
@@ -487,15 +494,18 @@ end
 -- Reset all sounds to default values
 function MOD:ResetSoundDefaults() table.wipe(MOD.db.global.Sounds) end
 
--- Add a spell duration to the per-profile cache, always save latest value since changes with equipped haste
-function MOD:SetDuration(name, duration)
+-- Add a spell duration to the per-profile cache, always save latest value since could change with haste
+-- When the spell id is known, save duration indexed by spell id; otherwise save indexed by name
+function MOD:SetDuration(name, spellID, duration)
 	if duration == 0 then duration = nil end -- remove cache entry if duration is 0
-	MOD.db.profile.Durations[name] = duration
+	if spellID then MOD.db.profile.Durations[spellID] = duration else MOD.db.profile.Durations[name] = duration end
 end
 
 -- Get a duration from the cache, but if not in the cache then return 0
-function MOD:GetDuration(name)
-	local duration = MOD.db.profile.Durations[name]
+function MOD:GetDuration(name, spellID)
+	local duration = 0
+	if spellID then duration = MOD.db.profile.Durations[spellID] end -- first look for durations indexed by spell id
+	if not duration then duration = MOD.db.profile.Durations[name] end -- second look at durations indexed by just name
 	if not duration then duration = 0 end
 	return duration
 end

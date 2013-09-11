@@ -1,0 +1,8 @@
+------------------------------------------------------------------------
+r219 | sutorix | 2013-09-11 05:47:19 +0000 (Wed, 11 Sep 2013) | 1 line
+Changed paths:
+   M /trunk/FishingAce.toc
+   M /trunk/LibFishing-1.0.lua
+
+FishingAce: Update TOC for 5.4, better fishing lib
+------------------------------------------------------------------------

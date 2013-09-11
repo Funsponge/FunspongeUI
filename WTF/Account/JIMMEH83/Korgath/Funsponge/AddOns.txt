@@ -22,13 +22,14 @@ SkadaAbsorbs: disabled
 SkadaCC: disabled
 SkadaDebuffs: disabled
 SkadaPower: disabled
-OmniCC_Config: disabled
+OmniCC_Config: enabled
 Masque_FlatSquares: disabled
 Masque_CleanIcons: disabled
 Masque_Elegance: disabled
 kgPanelsConfig: disabled
 Align: enabled
-DBM-SiegeOfOrgrimmar: disabled
+DBM-SiegeOfOrgrimmar: enabled
 TidyPlates_Neon: disabled
 TidyPlates_Grey: disabled
 TidyPlates_Graphite: disabled
+LiteBag_Masque: enabled

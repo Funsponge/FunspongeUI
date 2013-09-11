@@ -5,7 +5,7 @@ if not MSQ then return end
 
 MSQ:AddSkin("Elegance: Light",{
 	Author = "Kallieen",
-	Version = "5.3.0",
+	Version = "5.4.0",
 	Shape = "Square",
 	Masque_Version = 40200,
 	

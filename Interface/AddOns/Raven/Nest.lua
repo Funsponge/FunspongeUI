@@ -96,7 +96,7 @@ local function BarAnimation(bar, anchor1, frame, anchor2, xoffset, yoffset)
 	local tex = bar.iconTexture:GetTexture(); if not tex then return end
 	local b = next(animationPool)
 	if b then animationPool[b] = nil else
-		b = {} -- initializae a new animation
+		b = {} -- initialize a new animation
 		b.frame = CreateFrame("Frame", nil, UIParent)
 		b.frame:SetFrameLevel(bar.frame:GetFrameLevel() + 10)
 		b.texture = b.frame:CreateTexture(nil, "ARTWORK") -- texture for the texture to be animated	
@@ -171,7 +171,7 @@ local function BarGroup_TimelineAnimation(bg, bar, config)
 	end
 	local delta = Timeline_Offset(bg, 0)
 	local x1 = isVertical and 0 or ((delta - w) * dir); local y1 = isVertical and ((delta - h) * dir) or 0
-	BarAnimation(bar, edge, bg.background, edge, x1, y1)
+	BarAnimation(bar, edge, bg.background, edge, x1 + (bg.tlSplashX or 0), y1 + (bg.tlSplashY or 0))
 end
 
 -- Bar sorting functions: alphabetic, time left, duration, bar's start time
@@ -413,7 +413,7 @@ end
 
 -- Set icon text font options for a bar group
 function Nest_SetBarGroupIconFont(bg, font, fsize, alpha, color, outline, shadow, thick, mono)
-	if not color then color = defaultBackdropColor end; if not fill then fill = defaultBackdropColor end
+	if not color then color = defaultBackdropColor end
 	if UseTukui() then font = GetTukuiFont(font) end
 	bg.iconFont = font; bg.iconFSize = fsize or 9; bg.iconAlpha = alpha or 1; bg.iconColor = color
 	bg.iconFlags = TextFlags(outline, thick, mono); bg.iconShadow = shadow
@@ -452,9 +452,10 @@ function Nest_SetBarGroupVisibles(bg, icon, cooldown, bar, spark, labelText, tim
 end
 
 -- Set parameters related to timeline configurations
-function Nest_SetBarGroupTimeline(bg, w, h, duration, scale, hide, alternate, switch, splash, texture, alpha, color, labels)
+function Nest_SetBarGroupTimeline(bg, w, h, duration, scale, hide, alternate, switch, percent, splash, x, y, offset, delta, texture, alpha, color, labels)
 	bg.tlWidth = PS(w); bg.tlHeight = PS(h); bg.tlDuration = duration; bg.tlScale = scale; bg.tlHide = hide; bg.tlAlternate = alternate
-	bg.tlSwitch = switch; bg.tlSplash = splash; bg.tlTexture = texture; bg.tlAlpha = alpha; bg.tlColor = color; bg.tlLabels = labels
+	bg.tlSwitch = switch; bg.tlPercent = percent; bg.tlSplash = splash; bg.tlSplashX = x; bg.tlSplashY = y; bg.tlOffset = offset; bg.tlDelta = delta
+	bg.tlTexture = texture; bg.tlAlpha = alpha; bg.tlColor = color; bg.tlLabels = labels
 	bg.update = true
 end
 
@@ -1293,31 +1294,34 @@ local function BarGroup_RefreshTimeline(bg, config)
 	else
 		w = bg.tlHeight; h = bg.tlWidth; edge = bg.reverse and "TOP" or "BOTTOM"
 	end
-	local overlapCount = 0
+	local overlapCount, switchCount = 0, 0
 	for i = 1, bg.count do
 		local bar = bg.bars[bg.sorter[i].name]
 		if i <= maxBars and bar.timeLeft then
 			local clevel = level + ((bg.count - i) * 10)
 			local delta = Timeline_Offset(bg, bar.timeLeft)
-			if bg.tlAlternate and i > 1 and lastBar and math.abs(delta - lastDelta) < (bg.iconSize / 2) then
-				overlapCount = overlapCount + 1
+			local isOverlap = i > 1 and lastBar and math.abs(delta - lastDelta) < (bg.iconSize * (1 - ((bg.tlPercent or 50) / 100)))
+			if isOverlap then overlapCount = overlapCount + 1 else overlapCount = 0 end -- number of overlapping icons
+			if bg.tlAlternate and isOverlap then
+				switchCount = switchCount + 1
 				local phase = math.floor(t / (bg.tlSwitch or 2)) -- time between alternating overlapping icons
-				if overlapCount == 1 then
+				if switchCount == 1 then
 					if (phase % 2) == 1 then SetBarFrameLevel(lastBar, clevel, true); clevel = lastLevel end
 				else
-					local seed = phase % (overlapCount + 1) -- 0, 1, ..., overLapCount
-					for k = 1, overlapCount do
+					local seed = phase % (switchCount + 1) -- 0, 1, ..., switchCount
+					for k = 1, switchCount do
 						local b = bg.bars[bg.sorter[i - k].name]
-						SetBarFrameLevel(b, clevel + (((seed + k) % (overlapCount + 1)) * 10), true)
+						SetBarFrameLevel(b, clevel + (((seed + k) % (switchCount + 1)) * 10), true)
 					end
 					clevel = clevel + (seed * 10)
 				end
 			else
-				overlapCount = 0
+				switchCount = 0
 			end
 			SetBarFrameLevel(bar, clevel, true)
 			lastDelta = delta; lastBar = bar; lastLevel = clevel
 			local x1 = isVertical and 0 or ((delta - w) * dir); local y1 = isVertical and ((delta - h) * dir) or 0
+			y1 = y1 + (bg.tlOffset or 0) + (overlapCount * (bg.tlDelta or 0))
 			bar.frame:ClearAllPoints(); bar.frame:SetPoint(edge, back, edge, PS(x1), PS(y1)); bar.frame:Show()
 		else
 			lastBar = nil; bar.frame:Hide()
