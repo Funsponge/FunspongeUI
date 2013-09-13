@@ -1,10 +1,10 @@
 
 MADB = {
-	["tooltips"] = 1,
+	["frameListRows"] = 18,
 	["characters"] = {
 	},
+	["tooltips"] = 1,
 	["collapsed"] = true,
-	["frameListRows"] = 18,
 	["profiles"] = {
 		["default"] = {
 			["frames"] = {
@@ -251,6 +251,16 @@ MADB = {
 						-114.6288452148438, -- [5]
 					},
 				},
+				["CriteriaAlertFrame2"] = {
+					["name"] = "CriteriaAlertFrame2",
+					["pos"] = {
+						"BOTTOM", -- [1]
+						"UIParent", -- [2]
+						"BOTTOM", -- [3]
+						-6.103515625e-005, -- [4]
+						878.62841796875, -- [5]
+					},
+				},
 				["FramerateLabel"] = {
 					["name"] = "FramerateLabel",
 					["pos"] = {
@@ -261,14 +271,14 @@ MADB = {
 						752.5599975585938, -- [5]
 					},
 				},
-				["WorldStateCaptureBar1"] = {
-					["name"] = "WorldStateCaptureBar1",
+				["ChatConfigFrame"] = {
+					["name"] = "ChatConfigFrame",
 					["pos"] = {
-						"TOPRIGHT", -- [1]
-						"MinimapCluster", -- [2]
-						"BOTTOMRIGHT", -- [3]
-						-791.2142333984375, -- [4]
-						107.1715698242188, -- [5]
+						"BOTTOMLEFT", -- [1]
+						"UIParent", -- [2]
+						"BOTTOMLEFT", -- [3]
+						555.21435546875, -- [4]
+						251.0714874267578, -- [5]
 					},
 				},
 				["MiniMapMailFrame"] = {
@@ -281,17 +291,6 @@ MADB = {
 						"CENTER", -- [3]
 						74.46426227087078, -- [4]
 						74.61544867922368, -- [5]
-					},
-				},
-				["GameTimeFrame"] = {
-					["scale"] = 0.7999999523162842,
-					["name"] = "GameTimeFrame",
-					["pos"] = {
-						"CENTER", -- [1]
-						"Minimap", -- [2]
-						"CENTER", -- [3]
-						-88.51752350336018, -- [4]
-						88.3927008764893, -- [5]
 					},
 				},
 				["MiniMapInstanceDifficulty"] = {
@@ -327,14 +326,15 @@ MADB = {
 						-330.1715698242188, -- [5]
 					},
 				},
-				["CriteriaAlertFrame2"] = {
-					["name"] = "CriteriaAlertFrame2",
+				["GameTimeFrame"] = {
+					["scale"] = 0.7999999523162842,
+					["name"] = "GameTimeFrame",
 					["pos"] = {
-						"BOTTOM", -- [1]
-						"UIParent", -- [2]
-						"BOTTOM", -- [3]
-						-6.103515625e-005, -- [4]
-						878.62841796875, -- [5]
+						"CENTER", -- [1]
+						"Minimap", -- [2]
+						"CENTER", -- [3]
+						-88.51752350336018, -- [4]
+						88.3927008764893, -- [5]
 					},
 				},
 				["TimeManagerFrame"] = {
@@ -347,24 +347,16 @@ MADB = {
 						-23.6002197265625, -- [5]
 					},
 				},
-				["AchievementAlertFrame1"] = {
-					["name"] = "AchievementAlertFrame1",
+				["QueueStatusFrame"] = {
+					["name"] = "QueueStatusFrame",
+					["scale"] = 0.7999999523162842,
+					["disableLayerArtwork"] = 1,
 					["pos"] = {
-						"BOTTOM", -- [1]
-						"UIParent", -- [2]
-						"BOTTOM", -- [3]
-						-1.82855224609375, -- [4]
-						878.6284790039063, -- [5]
-					},
-				},
-				["LFDRoleCheckPopup"] = {
-					["name"] = "LFDRoleCheckPopup",
-					["pos"] = {
-						"TOP", -- [1]
-						"UIParent", -- [2]
-						"TOP", -- [3]
-						-6.103515625e-005, -- [4]
-						-108.8001098632813, -- [5]
+						"TOPRIGHT", -- [1]
+						"QueueStatusMinimapButton", -- [2]
+						"TOPLEFT", -- [3]
+						310.6306576996637, -- [4]
+						158.3673524658642, -- [5]
 					},
 				},
 				["ScenarioAlertFrame1"] = {
@@ -375,6 +367,16 @@ MADB = {
 						"BOTTOM", -- [3]
 						3.0517578125e-005, -- [4]
 						878.6287841796875, -- [5]
+					},
+				},
+				["LFDRoleCheckPopup"] = {
+					["name"] = "LFDRoleCheckPopup",
+					["pos"] = {
+						"TOP", -- [1]
+						"UIParent", -- [2]
+						"TOP", -- [3]
+						-6.103515625e-005, -- [4]
+						-108.8001098632813, -- [5]
 					},
 				},
 				["HelpOpenTicketButton"] = {
@@ -397,16 +399,14 @@ MADB = {
 						-110.5431518554688, -- [5]
 					},
 				},
-				["QueueStatusFrame"] = {
-					["disableLayerArtwork"] = 1,
-					["scale"] = 0.7999999523162842,
-					["name"] = "QueueStatusFrame",
+				["AchievementAlertFrame1"] = {
+					["name"] = "AchievementAlertFrame1",
 					["pos"] = {
-						"TOPRIGHT", -- [1]
-						"QueueStatusMinimapButton", -- [2]
-						"TOPLEFT", -- [3]
-						310.6306576996637, -- [4]
-						158.3673524658642, -- [5]
+						"BOTTOM", -- [1]
+						"UIParent", -- [2]
+						"BOTTOM", -- [3]
+						-1.82855224609375, -- [4]
+						878.6284790039063, -- [5]
 					},
 				},
 				["MACompactRaidFrameManagerToggleButton"] = {
@@ -430,14 +430,14 @@ MADB = {
 						-138.9716186523438, -- [5]
 					},
 				},
-				["ChatConfigFrame"] = {
-					["name"] = "ChatConfigFrame",
+				["WorldStateCaptureBar1"] = {
+					["name"] = "WorldStateCaptureBar1",
 					["pos"] = {
-						"BOTTOMLEFT", -- [1]
-						"UIParent", -- [2]
-						"BOTTOMLEFT", -- [3]
-						555.21435546875, -- [4]
-						251.0714874267578, -- [5]
+						"TOPRIGHT", -- [1]
+						"MinimapCluster", -- [2]
+						"BOTTOMRIGHT", -- [3]
+						-791.2142333984375, -- [4]
+						107.1715698242188, -- [5]
 					},
 				},
 				["AlertFrame"] = {

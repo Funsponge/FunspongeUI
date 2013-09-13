@@ -6,7 +6,11 @@ VER 3 0000000000000006 "1" "INV_MISC_QUESTIONMARK"
 END
 VER 3 0000000000000007 "cleanse" "INV_MISC_QUESTIONMARK"
 #showtooltip Cleanse
-/cast [target=mouseover,exists] Cleanse; Cleanse
+/use [target=mouseover,exists][] Cleanse
+END
+VER 3 000000000000000B "Holywhomp" "INV_MISC_QUESTIONMARK"
+/castsequence  Crusader Strike
+/use Hammer of Wrath
 END
 VER 3 0000000000000008 "Mount" "INV_MISC_QUESTIONMARK"
 #show

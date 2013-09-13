@@ -11,15 +11,15 @@ GEM_TYPE_INFO = {
 	Prismatic = {tex=engineeringGemTexture, left=0.01562500, right=0.68750000, top=0.76367188, bottom=0.84765625, r=1, g=1, b=1, OBLeft=0.01562500, OBRight=0.68750000, OBTop=0.58789063, OBBottom=0.67187500}
 }
 
-GemIcon = inheritsFrom(ItemIcon)
+AskMrRobot.GemIcon = AskMrRobot.inheritsFrom(AskMrRobot.ItemIcon)
 
 -- item icon contructor
-function GemIcon:new(name, parent)
+function AskMrRobot.GemIcon:new(name, parent)
 	-- create a new frame (if one isn't supplied)
-	local o = ItemIcon:new(name, parent)
+	local o = AskMrRobot.ItemIcon:new(name, parent)
 
 	-- use the ItemIcon class
-	setmetatable(o, { __index = GemIcon })
+	setmetatable(o, { __index = AskMrRobot.GemIcon })
 
 	-- add the overlay for the 
 	o.openBracket = o:CreateTexture(nil, "ARTWORK")
@@ -30,7 +30,7 @@ function GemIcon:new(name, parent)
 	return o
 end
 
-function GemIcon:SetGemColor(color)
+function AskMrRobot.GemIcon:SetGemColor(color)
 	local info = GEM_TYPE_INFO[color]
 
 	if self.itemLink then

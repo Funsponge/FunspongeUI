@@ -5533,14 +5533,14 @@ MOD.OptionsTable = {
 								},
 								Space2 = { type = "description", name = "", order = 60 },
 								OffsetX = {
-									type = "range", order = 70, name = L["Offset X"], min = -500, max = 500, step = 0.01,
+									type = "range", order = 70, name = L["Offset X"], min = -1000, max = 1000, step = 0.01,
 									desc = L["Set horizontal offset from the selected bar group."],
 									disabled = function(info) return not GetBarGroupField("anchor") and not GetBarGroupField("anchorFrame") end,
 									get = function(info) return GetBarGroupField("anchorX") end,
 									set = function(info, value) SetBarGroupField("anchorX", value) end,
 								},
 								OffsetY = {
-									type = "range", order = 80, name = L["Offset Y"], min = -500, max = 500, step = 0.01,
+									type = "range", order = 80, name = L["Offset Y"], min = -1000, max = 1000, step = 0.01,
 									desc = L["Set vertical offset from the selected bar group."],
 									disabled = function(info) return not GetBarGroupField("anchor") and not GetBarGroupField("anchorFrame") end,
 									get = function(info) return GetBarGroupField("anchorY") end,

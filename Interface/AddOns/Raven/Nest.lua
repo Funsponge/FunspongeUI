@@ -522,7 +522,11 @@ end
 -- Set a bar group's display position as relative to another bar group
 function Nest_SetRelativeAnchorPoint(bg, rTo, rFrame, rPoint, rX, rY, rLB, rEmpty, rRow, rColumn)
 	if rFrame and GetClickFrame(rFrame) then -- set relative to a specific frame
-		bg.frame:ClearAllPoints(); bg.frame:SetPoint(rPoint or "CENTER", rFrame, rPoint or "CENTER", PS(rX), PS(rY))
+		bg.frame:ClearAllPoints(); bg.frame:SetPoint(rPoint or "CENTER", GetClickFrame(rFrame), rPoint or "CENTER", rX, rY)
+		if pixelPerfect then -- have to re-align relative to bottom left since we can't be sure that anchor point itself is pixel aligned
+			local xoffset, yoffset = PS(bg.frame:GetLeft()), PS(bg.frame:GetBottom())
+			bg.frame:ClearAllPoints(); bg.frame:SetPoint("BOTTOMLEFT", nil, "BOTTOMLEFT", xoffset, yoffset)		
+		end
 		bg.relativeTo = nil -- remove relative anchor point	
 	elseif bg.relativeTo and not rTo then -- removing a relative anchor point
 		local left, bottom = bg.frame:GetLeft(), bg.frame:GetBottom()
@@ -1468,7 +1472,7 @@ local function BarGroup_SortBars(bg, config)
 			scale = scale / bg.scale -- compute scaling factor
 			x0 = bg.frame:GetLeft() * scale; y0 = bg.frame:GetBottom() * scale -- normalize by scale factor
 			bg.frame:SetScale(bg.scale)
-			bg.frame:ClearAllPoints(); bg.frame:SetPoint("BOTTOMLEFT", nil, "BOTTOMLEFT", x0, y0)
+			bg.frame:ClearAllPoints(); bg.frame:SetPoint("BOTTOMLEFT", nil, "BOTTOMLEFT", PS(x0), PS(y0))
 		end
 	end
 end

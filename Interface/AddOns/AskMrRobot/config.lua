@@ -47,7 +47,7 @@ frame:SetScript("OnShow", function(frame)
 		"Show Ask Mr Robot Minimap Icon",
 		function(self, value) 
 			AmrHideMapIcon = not AmrHideMapIcon;
-			AmrUpdateMinimap();
+			AskMrRobot.AmrUpdateMinimap();
 		end
 	)
 	autoPopup:SetChecked(not AmrHideMapIcon)

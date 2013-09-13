@@ -1069,7 +1069,8 @@ local function DetectNewBuffs(unit, n, aura, isBuff, bp, vbp, bg)
 			MOD:CheckCastBy(aura[6], bp.detectBuffsCastBy))) and CheckTimeAndDuration(bp, aura[2], aura[5]) and checkTracking and checkTypes then
 		local b, tag = detectedBar, "Buff"
 		b.action = n; b.spellID = aura[14]; b.barType = "Buff"
-		if aura[6] then tag = tag .. aura[6] elseif aura[10] and (aura[10] > 0) then tag = tag .. tostring(aura[10]) end
+		if aura[6] then tag = tag .. aura[6] end -- include caster in unique tag
+		if aura[10] and (aura[10] > 0) then tag = tag .. tostring(math.floor((aura[10] * 100) + 0.5)) end -- add expire time to unique tag
 		if aura[14] then tag = tag .. tostring(aura[14]) elseif (tt == "weapon") or (tt == "tracking") then tag = tag .. ta end
 		if tt == "buff" and aura[14] and fixEnchants[aura[14]] then tag = tag .. tostring(fixDups); fixDups = fixDups + 1 end -- allow duplicate enchants
 		if unit == "all" then
@@ -1125,7 +1126,8 @@ local function DetectNewDebuffs(unit, n, aura, isBuff, bp, vbp, bg)
 			MOD:CheckCastBy(aura[6], bp.detectDebuffsCastBy))) and CheckTimeAndDuration(bp, aura[2], aura[5]) and checkTypes then
 		local b, tag = detectedBar, "Debuff"
 		b.action = n; b.spellID = aura[14]; b.barType = "Debuff"
-		if aura[6] then tag = tag .. aura[6] elseif aura[10] and (aura[10] > 0) then tag = tag .. tostring(aura[10]) end
+		if aura[6] then tag = tag .. aura[6] end -- include caster in unique tag
+		if aura[10] and (aura[10] > 0) then tag = tag .. tostring(math.floor((aura[10] * 100) + 0.5)) end -- add expire time to unique tag
 		if aura[14] then tag = tag .. tostring(aura[14]) elseif (tt == "weapon") or (tt == "tracking") then tag = tag .. ta end
 		if unit == "all" then
 			tag = tag .. id
