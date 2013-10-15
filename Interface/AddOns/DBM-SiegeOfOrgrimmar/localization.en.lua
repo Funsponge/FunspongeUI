@@ -5,10 +5,18 @@ local L
 ---------------
 L= DBM:GetModLocalization(852)
 
+L:SetMiscLocalization({
+	Victory			= "Ah, you have done it!  The waters are pure once more."
+})
+
 ---------------------------
 -- The Fallen Protectors --
 ---------------------------
 L= DBM:GetModLocalization(849)
+
+L:SetOptionLocalization({
+	SetIconOnStrike		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(143962)
+})
 
 ---------------------------
 -- Norushen --
@@ -39,22 +47,22 @@ L:SetOptionLocalization({
 L= DBM:GetModLocalization(868)
 
 L:SetTimerLocalization({
-	timerAddsCD		= "Next Adds",
-	timerTowerCD	= "Next Tower & Adds"
+	timerTowerCD	= "Next Tower"
 })
 
 L:SetOptionLocalization({
-	timerAddsCD		= "Show timer for next adds wave",
 	timerTowerCD	= "Show timer for next tower assault",
 	FixateIcon		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(147068)
 })
 
 L:SetMiscLocalization({
-	newForces1	= "Here they come!",--Jaina's line, horde may not be same
+	Pull		= "Dragonmaw clan, retake the docks and push them into the sea!  In the name of Hellscream and the True Horde!",
+	newForces1	= "Here they come!",--Jaina's line, alliance
+	newForces1H	= "Bring her down quick so i can wrap my fingers around her neck.",--Sylva's line, horde
 	newForces2	= "Dragonmaw, advance!",
 	newForces3	= "For Hellscream!",
-	newForces4	= "Next squad, push forward!"
---	tower		= "The door barring the"--The door barring the South/North Tower has been breached!
+	newForces4	= "Next squad, push forward!",
+	tower		= "The door barring the"--The door barring the South/North Tower has been breached!
 })
 
 --------------------
@@ -92,7 +100,9 @@ L:SetWarningLocalization({
 })
 
 L:SetOptionLocalization({
-	warnDefensiveStanceSoon		= "Show pre-warning countdown for $spell:143593 (5s before)"
+	warnDefensiveStanceSoon		= "Show pre-warning countdown for $spell:143593 (5s before)",
+	SetIconOnAdds				= "Set icon on $journal:7920",
+	InfoFrame					= "Show info frame for $journal:7909"
 })
 
 L:SetMiscLocalization({
@@ -119,9 +129,13 @@ L:SetOptionLocalization({
 ------------------------
 L= DBM:GetModLocalization(870)
 
+L:SetOptionLocalization({
+	RangeFrame	= DBM_CORE_AUTO_RANGE_OPTION_TEXT:format(10, 145987)
+})
+
 L:SetMiscLocalization({
 	Module1 = "Module 1's all prepared for system reset.",
-	Victory	= "Module 2's all prepared for system reset"
+	Victory	= "Module 2's all prepared for system reset."
 })
 
 ---------------------------
@@ -138,6 +152,10 @@ L:SetOptionLocalization({
 -- Siegecrafter Blackfuse --
 ----------------------------
 L= DBM:GetModLocalization(865)
+
+L:SetOptionLocalization({
+	InfoFrame			= "Show info frame for $journal:8202"
+})
 
 L:SetMiscLocalization({
 	newWeapons	= "Unfinished weapons begin to roll out on the assembly line.",
@@ -187,6 +205,10 @@ L:SetMiscLocalization({
 -- Garrosh Hellscream --
 ------------------------
 L= DBM:GetModLocalization(869)
+
+L:SetOptionLocalization({
+	SetIconOnShaman			= "Set icon on $journal:8294"
+})
 
 -------------
 --  Trash  --

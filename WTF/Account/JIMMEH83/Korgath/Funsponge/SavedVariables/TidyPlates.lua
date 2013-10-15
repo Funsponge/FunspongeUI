@@ -1,7 +1,7 @@
 
 TidyPlatesOptions = {
-	["_EnableMiniButton"] = false,
 	["FriendlyAutomation"] = "No Automation",
+	["_EnableMiniButton"] = false,
 	["EnemyAutomation"] = "No Automation",
 	["primary"] = "Quatre/|cFFFF4400Damage",
 	["WelcomeShown"] = true,

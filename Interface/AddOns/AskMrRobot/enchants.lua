@@ -4236,9 +4236,9 @@ function AskMrRobot.addEnchantMaterials(materialList, enchantId)
         for materialId, count in pairs(materials) do
             local existingCount = materialList[materialId]
             if existingCount then
-            	existingCount.total = existingCount.total + 1
+            	existingCount.total = existingCount.total + count
             else
-            	materialList[materialId] = {count = 0, total = 1}
+            	materialList[materialId] = {count = 0, total = count}
             end
         end
     end

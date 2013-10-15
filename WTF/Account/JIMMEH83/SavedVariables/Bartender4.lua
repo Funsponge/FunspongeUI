@@ -7,8 +7,8 @@ Bartender4DB = {
 					["actionbars"] = {
 						{
 							["rows"] = 2,
-							["version"] = 3,
 							["hidehotkey"] = true,
+							["version"] = 3,
 							["position"] = {
 								["y"] = 76,
 								["x"] = -306,
@@ -30,8 +30,8 @@ Bartender4DB = {
 						{
 							["rows"] = 12,
 							["fadeout"] = true,
-							["fadeoutalpha"] = 0,
 							["version"] = 3,
+							["fadeoutalpha"] = 0,
 							["position"] = {
 								["y"] = 264.2940368652344,
 								["x"] = -86.4996337890625,
@@ -42,8 +42,8 @@ Bartender4DB = {
 						{
 							["rows"] = 12,
 							["fadeout"] = true,
-							["fadeoutalpha"] = 0,
 							["version"] = 3,
+							["fadeoutalpha"] = 0,
 							["position"] = {
 								["y"] = 264.2940368652344,
 								["x"] = -43.499755859375,
@@ -55,8 +55,8 @@ Bartender4DB = {
 							["rows"] = 12,
 							["fadeout"] = true,
 							["enabled"] = false,
-							["fadeoutalpha"] = 0,
 							["version"] = 3,
+							["fadeoutalpha"] = 0,
 							["position"] = {
 								["y"] = 163.4764404296875,
 								["x"] = -1.000002861022949,
@@ -66,31 +66,31 @@ Bartender4DB = {
 						}, -- [5]
 						{
 							["rows"] = 2,
-							["version"] = 3,
-							["padding"] = 1,
 							["hidehotkey"] = true,
+							["hidemacrotext"] = true,
+							["version"] = 3,
 							["position"] = {
 								["y"] = 76,
 								["x"] = 87,
 								["point"] = "BOTTOM",
 								["scale"] = 0.95,
 							},
-							["hidemacrotext"] = true,
+							["padding"] = 1,
 						}, -- [6]
 						{
 							["showgrid"] = true,
 							["enabled"] = true,
 							["buttons"] = 3,
-							["hidemacrotext"] = true,
-							["version"] = 3,
+							["padding"] = 1,
 							["hidehotkey"] = true,
+							["version"] = 3,
 							["position"] = {
 								["y"] = -480,
 								["x"] = -89,
 								["point"] = "CENTER",
 								["scale"] = 1.5,
 							},
-							["padding"] = 1,
+							["hidemacrotext"] = true,
 						}, -- [7]
 						{
 						}, -- [8]
@@ -110,8 +110,8 @@ Bartender4DB = {
 								["scale"] = 0.95,
 							},
 							["rows"] = 2,
-							["padding"] = 1,
 							["hidemacrotext"] = true,
+							["padding"] = 1,
 						}, -- [1]
 						{
 							["enabled"] = false,
@@ -129,10 +129,10 @@ Bartender4DB = {
 								["x"] = -86.4996337890625,
 								["point"] = "RIGHT",
 							},
-							["padding"] = 5,
+							["fadeoutalpha"] = 0,
 							["rows"] = 12,
 							["version"] = 3,
-							["fadeoutalpha"] = 0,
+							["padding"] = 5,
 						}, -- [3]
 						{
 							["fadeout"] = true,
@@ -141,10 +141,10 @@ Bartender4DB = {
 								["x"] = -43.499755859375,
 								["point"] = "RIGHT",
 							},
-							["padding"] = 5,
+							["fadeoutalpha"] = 0,
 							["rows"] = 12,
 							["version"] = 3,
-							["fadeoutalpha"] = 0,
+							["padding"] = 5,
 						}, -- [4]
 						{
 							["enabled"] = false,
@@ -154,10 +154,10 @@ Bartender4DB = {
 								["x"] = -1.000002861022949,
 								["point"] = "LEFT",
 							},
-							["padding"] = 6,
+							["fadeoutalpha"] = 0,
 							["rows"] = 12,
 							["version"] = 3,
-							["fadeoutalpha"] = 0,
+							["padding"] = 6,
 						}, -- [5]
 						{
 							["version"] = 3,
@@ -168,14 +168,14 @@ Bartender4DB = {
 								["scale"] = 0.95,
 							},
 							["rows"] = 2,
-							["padding"] = 1,
 							["hidemacrotext"] = true,
+							["padding"] = 1,
 						}, -- [6]
 						{
 							["enabled"] = true,
 							["version"] = 3,
 							["showgrid"] = true,
-							["hidemacrotext"] = true,
+							["buttons"] = 3,
 							["padding"] = 1,
 							["position"] = {
 								["y"] = -480,
@@ -183,7 +183,7 @@ Bartender4DB = {
 								["point"] = "CENTER",
 								["scale"] = 1.5,
 							},
-							["buttons"] = 3,
+							["hidemacrotext"] = true,
 						}, -- [7]
 						{
 						}, -- [8]
@@ -198,8 +198,8 @@ Bartender4DB = {
 			["char"] = {
 				["Funsponge - Korgath"] = {
 					["profile"] = "Holy",
-					["enabled"] = true,
 					["specGroup"] = 1,
+					["enabled"] = true,
 				},
 			},
 		},
@@ -226,14 +226,14 @@ Bartender4DB = {
 		["MicroMenu"] = {
 			["profiles"] = {
 				["Funsponge - Korgath"] = {
-					["fadeoutalpha"] = 0,
+					["fadeout"] = true,
 					["position"] = {
 						["y"] = -23.57840197139012,
 						["x"] = 254.7766639527181,
 						["point"] = "TOPLEFT",
 						["scale"] = 0.800000011920929,
 					},
-					["fadeout"] = true,
+					["fadeoutalpha"] = 0,
 					["padding"] = 0,
 					["visibility"] = {
 						["combat"] = false,
@@ -248,12 +248,12 @@ Bartender4DB = {
 						["point"] = "TOPLEFT",
 						["scale"] = 0.800000011920929,
 					},
-					["fadeout"] = true,
+					["fadeoutalpha"] = 0,
 					["padding"] = 0,
 					["visibility"] = {
 						["combat"] = false,
 					},
-					["fadeoutalpha"] = 0,
+					["fadeout"] = true,
 				},
 			},
 		},
@@ -321,6 +321,26 @@ Bartender4DB = {
 				},
 			},
 		},
+		["Vehicle"] = {
+			["profiles"] = {
+				["Funsponge - Korgath"] = {
+					["version"] = 3,
+					["position"] = {
+						["y"] = 47.49993896484375,
+						["x"] = 99.50006103515625,
+						["point"] = "CENTER",
+					},
+				},
+				["Holy"] = {
+					["version"] = 3,
+					["position"] = {
+						["y"] = 47.49993896484375,
+						["x"] = 99.50006103515625,
+						["point"] = "CENTER",
+					},
+				},
+			},
+		},
 		["StanceBar"] = {
 			["profiles"] = {
 				["Funsponge - Korgath"] = {
@@ -343,26 +363,6 @@ Bartender4DB = {
 						["x"] = 25.69559288024902,
 						["point"] = "LEFT",
 						["scale"] = 1,
-					},
-				},
-			},
-		},
-		["Vehicle"] = {
-			["profiles"] = {
-				["Funsponge - Korgath"] = {
-					["version"] = 3,
-					["position"] = {
-						["y"] = 47.49993896484375,
-						["x"] = 99.50006103515625,
-						["point"] = "CENTER",
-					},
-				},
-				["Holy"] = {
-					["version"] = 3,
-					["position"] = {
-						["y"] = 47.49993896484375,
-						["x"] = 99.50006103515625,
-						["point"] = "CENTER",
 					},
 				},
 			},

@@ -50,10 +50,10 @@
 --  Globals/Default Options  --
 -------------------------------
 DBM = {
-	Revision = tonumber(("$Revision: 10267 $"):sub(12, -3)),
-	DisplayVersion = "5.4.0", -- the string that is shown as version
-	DisplayReleaseVersion = "5.4.0", -- Needed to work around bigwigs sending improper version information
-	ReleaseRevision = 10267 -- the revision of the latest stable version that is available
+	Revision = tonumber(("$Revision: 10395 $"):sub(12, -3)),
+	DisplayVersion = "5.4.2", -- the string that is shown as version
+	DisplayReleaseVersion = "5.4.2", -- Needed to work around bigwigs sending improper version information
+	ReleaseRevision = 10395 -- the revision of the latest stable version that is available
 }
 
 -- Legacy crap; that stupid "Version" field was never a good idea.
@@ -204,6 +204,8 @@ local enabled = true
 local blockEnable = false
 local lastCombatStarted = GetTime()
 local loadcIds = {}
+local forceloadmapIds = {}
+local blockMovieSkipItems = {}
 local inCombat = {}
 local combatInfo = {}
 local bossIds = {}
@@ -277,6 +279,7 @@ local UnitGroupRolesAssigned = UnitGroupRolesAssigned
 local LoadAddOn = LoadAddOn
 local IsEncounterInProgress = IsEncounterInProgress
 local InCombatLockdown = InCombatLockdown
+local GetAddOnInfo = GetAddOnInfo
 
 -- for Phanx' Class Colors
 local RAID_CLASS_COLORS = CUSTOM_CLASS_COLORS or RAID_CLASS_COLORS
@@ -709,19 +712,36 @@ do
 	end
 	
 	local function showOldVerWarning()
-		StaticPopupDialogs["DBM_OLD_BC_VERSION"] = {
-			preferredIndex = STATICPOPUP_NUMDIALOGS,
-			text = "You are still running the old DBM3 compatibility layer for deprecated DBM3 mods which have been replaced by DBM4 mods. This mod will cause error messages on login and must be disabled.\nYou should also remove the folder DBM-BurningCrusade from your Interface/AddOns folder.\nClick okay to disable the mod and reload the UI.",
-			button1 = OKAY,
-			OnAccept = function()
-				DisableAddOn("DBM-BurningCrusade")
-				ReloadUI()
-			end,
-			timeout = 0,
-			exclusive = 1,
-			whileDead = 1
-		}
-		StaticPopup_Show("DBM_OLD_BC_VERSION")
+		local popup = CreateFrame("Frame", nil, UIParent)
+		popup:SetBackdrop({bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background-Dark",
+			edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border",
+			tile = true, tileSize = 16, edgeSize = 16,
+			insets = {left = 1, right = 1, top = 1, bottom = 1}}
+		)
+		popup:SetSize(600, 160)
+		popup:SetPoint("TOP", UIParent, "TOP", 0, -200)
+		popup:SetFrameStrata("DIALOG")
+
+		local text = popup:CreateFontString()
+		text:SetFontObject(ChatFontNormal)
+		text:SetWidth(570)
+		text:SetWordWrap(true)
+		text:SetPoint("TOP", popup, "TOP", 0, -15)
+		text:SetText("You are still running the old DBM3 compatibility layer for deprecated DBM3 mods which have been replaced by DBM4 mods. This mod will cause error messages on login and must be disabled.\nYou should also remove the folder DBM-BurningCrusade from your Interface/AddOns folder.\nClick okay to disable the mod and reload the UI.")
+
+		local accept = CreateFrame("Button", nil, popup)
+		accept:SetNormalTexture("Interface\\Buttons\\UI-DialogBox-Button-Up")
+		accept:SetPushedTexture("Interface\\Buttons\\UI-DialogBox-Button-Down")
+		accept:SetHighlightTexture("Interface\\Buttons\\UI-DialogBox-Button-Highlight", "ADD")
+		accept:SetSize(128, 35)
+		accept:SetPoint("BOTTOM", popup, "BOTTOM", 0, 0)
+		accept:SetScript("OnClick", function(f) DisableAddOn("DBM-BurningCrusade") ReloadUI() f:GetParent():Hide() end)
+
+		local atext = accept:CreateFontString()
+		atext:SetFontObject(ChatFontNormal)
+		atext:SetPoint("CENTER", accept, "CENTER", 0, 5)
+		atext:SetText(OKAY)
+		PlaySound("igMainMenuOpen")
 	end
 
 	function DBM:ADDON_LOADED(modname)
@@ -741,8 +761,8 @@ do
 			if not DBM.Options.ShowMinimapButton then self:HideMinimapButton() end
 			self.AddOns = {}
 			for i = 1, GetNumAddOns() do
-				local addonName = GetAddOnInfo(i)
-				if GetAddOnMetadata(i, "X-DBM-Mod") then
+				local addonName, _, _, enabled = GetAddOnInfo(i)
+				if GetAddOnMetadata(i, "X-DBM-Mod") and enabled then
 					if checkEntry(bannedMods, addonName) then
 						print("The mod " .. addonName .. " is deprecated and will not be available. Please remove the folder " .. addonName .. " from your Interface" .. (IsWindowsClient() and "\\" or "/") .. "AddOns folder to get rid of this message.")
 					else
@@ -781,9 +801,21 @@ do
 							end
 						end
 						if GetAddOnMetadata(i, "X-DBM-Mod-LoadCID") then
-							local cIdTable = {strsplit(",", GetAddOnMetadata(i, "X-DBM-Mod-LoadCID"))}
-							for i = 1, #cIdTable do
-								loadcIds[tonumber(cIdTable[i]) or ""] = addonName
+							local idTable = {strsplit(",", GetAddOnMetadata(i, "X-DBM-Mod-LoadCID"))}
+							for i = 1, #idTable do
+								loadcIds[tonumber(idTable[i]) or ""] = addonName
+							end
+						end
+						if GetAddOnMetadata(i, "X-DBM-Mod-ForceLoad-MapID") then
+							local idTable = {strsplit(",", GetAddOnMetadata(i, "X-DBM-Mod-ForceLoad-MapID"))}
+							for i = 1, #idTable do
+								forceloadmapIds[tonumber(idTable[i]) or ""] = true
+							end
+						end
+						if GetAddOnMetadata(i, "X-DBM-Mod-Block-Movie-Skip-ItemID") then
+							local idTable = {strsplit(",", GetAddOnMetadata(i, "X-DBM-Mod-Block-Movie-Skip-ItemID"))}
+							for i = 1, #idTable do
+								blockMovieSkipItems[tonumber(idTable[i]) or ""] = tonumber(mapIdTable[1])
 							end
 						end
 					end
@@ -1016,7 +1048,7 @@ do
 		-- clean up sync spam timers and auto respond spam blockers
 		-- TODO: optimize this; using next(t, k) all the time on nearly empty hash tables is not a good idea...doesn't really matter here as modSyncSpam only very rarely contains more than 4 entries...
 		local k, v = next(modSyncSpam, nil)
-		if v and (time - v > 2.5) then
+		if v and (time - v > 8) then
 			modSyncSpam[k] = nil
 		end
 	end)
@@ -1108,7 +1140,8 @@ SlashCmdList["DEADLYBOSSMODS"] = function(msg)
 		time = min * 60 + sec
 		DBM:CreatePizzaTimer(time, text, true)
 	elseif cmd:sub(0,5) == "break" then
-		if DBM:GetRaidRank(playerName) == 0 or IsInGroup(LE_PARTY_CATEGORY_INSTANCE) or IsEncounterInProgress() then--No break timers if not assistant or if it's LFR (because break timers in LFR are just not cute)
+		local _, _, difficultyID = GetInstanceInfo()
+		if DBM:GetRaidRank(playerName) == 0 or difficultyID == 7 or difficultyID == 1 or difficultyID == 2 or IsEncounterInProgress() then--No break timers if not assistant or if it's LFR (because break timers in LFR are just not cute)
 			DBM:AddMsg(DBM_ERROR_NO_PERMISSION)
 			return
 		end
@@ -1129,8 +1162,11 @@ SlashCmdList["DEADLYBOSSMODS"] = function(msg)
 			return DBM:AddMsg(DBM_ERROR_NO_PERMISSION)
 		end
 		local timer = tonumber(cmd:sub(5)) or 10
---		sendSync("PT", timer.."\t"..LastInstanceMapID)--Temp disable until 5.4 release
-		sendSync("PT", timer)
+		sendSync("PT", timer.."\t"..LastInstanceMapID)
+	elseif cmd:sub(1, 3) == "lag" then
+		sendSync("L")
+		DBM:AddMsg(DBM_CORE_LAG_CHECKING)
+		DBM:Schedule(5, function() DBM:ShowLag() end)
 	elseif cmd:sub(1, 5) == "arrow" then
 		if not DBM:IsInRaid() then
 			DBM:AddMsg(DBM_ARROW_NO_RAIDGROUP)
@@ -1249,6 +1285,37 @@ do
 	end
 end
 
+do
+	local sortLag = {}
+	local nolagResponse = {}
+	local function sortit(v1, v2)
+		return (v1.worldlag or 0) < (v2.worldlag or 0)
+	end
+	function DBM:ShowLag()
+		for i, v in pairs(raid) do
+			table.insert(sortLag, v)
+		end
+		table.sort(sortLag, sortit)
+		self:AddMsg(DBM_CORE_LAG_HEADER)
+		for i, v in ipairs(sortLag) do
+			if v.worldlag then
+				self:AddMsg(DBM_CORE_LAG_ENTRY:format(v.name, v.worldlag, v.homelag))
+			else
+				table.insert(nolagResponse, v.name)
+			end
+		end
+		if #nolagResponse > 0 then
+			DBM:AddMsg(DBM_CORE_LAG_FOOTER:format(table.concat(nolagResponse, ", ")))
+			for i = #nolagResponse, 1, -1 do
+				nolagResponse[i] = nil
+			end
+		end
+		for i = #sortLag, 1, -1 do
+			sortLag[i] = nil
+		end
+	end
+end
+
 -------------------
 --  Pizza Timer  --
 -------------------
@@ -1281,19 +1348,55 @@ end
 ------------------
 do
 	local ignore, cancel
-	StaticPopupDialogs["DBM_CONFIRM_IGNORE"] = {
-		preferredIndex = STATICPOPUP_NUMDIALOGS,
-		text = DBM_PIZZA_CONFIRM_IGNORE,
-		button1 = YES,
-		button2 = NO,
-		OnAccept = function(self)
-			DBM:AddToPizzaIgnore(ignore)
-			DBM.Bars:CancelBar(cancel)
-		end,
-		timeout = 0,
-		hideOnEscape = 1
-	}
-	
+	local popuplevel = 0
+	local function showPopupConfirmIgnore(ignore, cancel)
+		local popup = CreateFrame("Frame", nil, UIParent)
+		popup:SetBackdrop({bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background-Dark",
+			edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border",
+			tile = true, tileSize = 16, edgeSize = 16,
+			insets = {left = 1, right = 1, top = 1, bottom = 1}}
+		)
+		popup:SetSize(500, 80)
+		popup:SetPoint("TOP", UIParent, "TOP", 0, -200)
+		popup:SetFrameStrata("DIALOG")
+		popup:SetFrameLevel(popuplevel)
+		popuplevel = popuplevel + 1
+
+		local text = popup:CreateFontString()
+		text:SetFontObject(ChatFontNormal)
+		text:SetWidth(470)
+		text:SetWordWrap(true)
+		text:SetPoint("TOP", popup, "TOP", 0, -15)
+		text:SetText(DBM_PIZZA_CONFIRM_IGNORE:format(ignore))
+
+		local accept = CreateFrame("Button", nil, popup)
+		accept:SetNormalTexture("Interface\\Buttons\\UI-DialogBox-Button-Up")
+		accept:SetPushedTexture("Interface\\Buttons\\UI-DialogBox-Button-Down")
+		accept:SetHighlightTexture("Interface\\Buttons\\UI-DialogBox-Button-Highlight", "ADD")
+		accept:SetSize(128, 35)
+		accept:SetPoint("BOTTOM", popup, "BOTTOM", -75, 0)
+		accept:SetScript("OnClick", function(f) DBM:AddToPizzaIgnore(ignore) DBM.Bars:CancelBar(cancel) f:GetParent():Hide() end)
+
+		local atext = accept:CreateFontString()
+		atext:SetFontObject(ChatFontNormal)
+		atext:SetPoint("CENTER", accept, "CENTER", 0, 5)
+		atext:SetText(YES)
+
+		local decline = CreateFrame("Button", nil, popup)
+		decline:SetNormalTexture("Interface\\Buttons\\UI-DialogBox-Button-Up")
+		decline:SetPushedTexture("Interface\\Buttons\\UI-DialogBox-Button-Down")
+		decline:SetHighlightTexture("Interface\\Buttons\\UI-DialogBox-Button-Highlight", "ADD")
+		decline:SetSize(128, 35)
+		decline:SetPoint("BOTTOM", popup, "BOTTOM", 75, 0)
+		decline:SetScript("OnClick", function(f) f:GetParent():Hide() end)
+
+		local dtext = decline:CreateFontString()
+		dtext:SetFontObject(ChatFontNormal)
+		dtext:SetPoint("CENTER", decline, "CENTER", 0, 5)
+		dtext:SetText(NO)
+		PlaySound("igMainMenuOpen")
+	end
+
 	local function linkHook(self, link, string, button, ...)
 		local linkType, arg1, arg2, arg3 = strsplit(":", link)
 		if linkType ~= "DBM" then
@@ -1304,7 +1407,7 @@ do
 		elseif arg1 == "ignore" then
 			cancel = link:match("DBM:ignore:(.+):[^%s:]+$")
 			ignore = link:match(":([^:]+)$")
-			StaticPopup_Show("DBM_CONFIRM_IGNORE", ignore)
+			showPopupConfirmIgnore(ignore, cancel)
 		elseif arg1 == "update" then
 			DBM:ShowUpdateReminder(arg2, arg3) -- displayVersion, revision
 		elseif arg1 == "forums" then
@@ -1460,7 +1563,6 @@ do
 	
 	local raidUIds = {}
 	local raidGuids = {}
-	local raidShortNames = {}
 	
 
 	--	save playerinfo into raid table on load. (for solo raid)
@@ -1480,14 +1582,12 @@ do
 				raid[playerName].locale = GetLocale()
 				raidUIds["player"] = playerName
 				raidGuids[UnitGUID("player")] = playerName
-				raidShortNames[playerName] = playerName
 			end
 		end)
 	end)
 
 	local function updateAllRoster()
 		if IsInRaid() then
-			twipe(raidShortNames)
 			enableIcons = false
 			local latestRevision = tonumber(DBM.Revision)
 			if not inRaid then
@@ -1522,11 +1622,6 @@ do
 					raid[name].updated = true
 					raidUIds[id] = name
 					raidGuids[UnitGUID(id) or ""] = name
-					if not raidShortNames[shortname] then
-						raidShortNames[shortname] = name
-					else
-						raidShortNames[shortname] = DBM_CORE_GENERIC_WARNING_DUPLICATE:format(name:gsub("%-.*$", ""))
-					end
 					--Something is wrong here, need to investigate. I watched MULTIPLE revisions OLDER than mine setting icons, revisions that HAVE this change. it is NOT disabling icons for revisions. I am seeing 5.2.3 release set icons when i have 5.2.4 alpha, even some 5.2.2 alphas setting icons when there is a 5.2.3 and 5.2.4 alpha in raid. this should not happen!
 					--Maybe this improve wrong icon setting? (but, older verison also to be updated)
 					if raid[name].revision and raid[name].revision > tonumber(DBM.Revision) then
@@ -1541,7 +1636,6 @@ do
 				if not v.updated then
 					raidUIds[v.id] = nil
 					raidGuids[v.guid] = nil
-					raidShortNames[v.shortname] = nil
 					raid[i] = nil
 					fireEvent("raidLeave", i)
 				else
@@ -1549,7 +1643,6 @@ do
 				end
 			end
 		elseif IsInGroup() then
-			twipe(raidShortNames)
 			if not inRaid then
 				-- joined a new party
 				inRaid = true
@@ -1589,17 +1682,11 @@ do
 				raid[name].updated = true
 				raidUIds[id] = name
 				raidGuids[UnitGUID(id) or ""] = name
-				if not raidShortNames[shortname] then
-					raidShortNames[shortname] = name
-				else
-					raidShortNames[shortname] = DBM_CORE_GENERIC_WARNING_DUPLICATE:format(name:gsub("%-.*$", ""))
-				end
 			end
 			for i, v in pairs(raid) do
 				if not v.updated then
 					raidUIds[v.id] = nil
 					raidGuids[v.guid] = nil
-					raidShortNames[v.shortname] = nil
 					raid[i] = nil
 					fireEvent("partyLeave", i)
 				else
@@ -1626,7 +1713,6 @@ do
 			raid[playerName].locale = GetLocale()
 			raidUIds["player"] = playerName
 			raidGuids[UnitGUID("player")] = playerName
-			raidShortNames[playerName] = playerName
 		end
 	end
 
@@ -1668,10 +1754,6 @@ do
 
 	function DBM:GetRaidUnitId(name)
 		return raid[name] and raid[name].id
-	end
-
-	function DBM:GetFullNameByShortName(name)
-		return raidShortNames[name]
 	end
 
 	function DBM:GetUnitFullName(uId)
@@ -1935,7 +2017,8 @@ function DBM:UPDATE_MOUSEOVER_UNIT()
 	if guid and (bit.band(guid:sub(1, 5), 0x00F) == 3 or bit.band(guid:sub(1, 5), 0x00F) == 5) then
 		local cId = tonumber(guid:sub(6, 10), 16)
 		for bosscId, addon in pairs(loadcIds) do
-			if cId and bosscId and cId == bosscId and not IsAddOnLoaded(addon) then
+			local _, _, _, enabled = GetAddOnInfo(addon)
+			if cId and bosscId and cId == bosscId and not IsAddOnLoaded(addon) and enabled then
 				for i, v in ipairs(DBM.AddOns) do
 					if v.modId == addon then
 						self:LoadMod(v)
@@ -1953,7 +2036,8 @@ function DBM:PLAYER_TARGET_CHANGED()
 	if guid and (bit.band(guid:sub(1, 5), 0x00F) == 3 or bit.band(guid:sub(1, 5), 0x00F) == 5) then
 		local cId = tonumber(guid:sub(6, 10), 16)
 		for bosscId, addon in pairs(loadcIds) do
-			if cId and bosscId and cId == bosscId and not IsAddOnLoaded(addon) then
+			local _, _, _, enabled = GetAddOnInfo(addon)
+			if cId and bosscId and cId == bosscId and not IsAddOnLoaded(addon) and enabled then
 				for i, v in ipairs(DBM.AddOns) do
 					if v.modId == addon then
 						self:LoadMod(v)
@@ -1965,10 +2049,15 @@ function DBM:PLAYER_TARGET_CHANGED()
 	end
 end
 
-function DBM:CINEMATIC_START(...)
+function DBM:CINEMATIC_START()
 	if DBM.Options.MovieFilter == "Never" then return end
 	SetMapToCurrentZone()
-	local currentMapID = GetCurrentMapAreaID()
+	local _, _, _, _, _, _, _, currentMapID = GetInstanceInfo()
+	for itemId, mapId in pairs(blockMovieSkipItems) do
+		if mapId == currentMapID then
+			if select(3, GetItemCooldown(itemId)) > 0 then return end
+		end
+	end
 	local currentFloor = GetCurrentMapDungeonLevel() or 0
 	if DBM.Options.MovieFilter == "Block" or DBM.Options.MovieFilter == "AfterFirst" and DBM.Options.MoviesSeen[currentMapID..currentFloor] then
 		CinematicFrame_CancelCinematic()
@@ -2026,11 +2115,8 @@ do
 	local function FixForShittyComputers()
 		local _, instanceType, _, _, _, _, _, mapID = GetInstanceInfo()
 		LastInstanceMapID = mapID
-		if instanceType == "none" and (mapID ~= 369) and (mapID ~= 1043) and (mapID ~= 974) then return end -- instance type of brawlers guild and DMF are none
+		if instanceType == "none" and not forceloadmapIds[mapID] then return end
 		DBM:LoadModsOnDemand("mapId", mapID)
-		if instanceType == "scenario" and (mapID ~= 1148) and DBM:GetModByName("d511") then--mod already loaded (Filter 1148, which is proving grounds)
-			DBM:InstanceCheck()
-		end
 	end
 	--Faster and more accurate loading for instances, but useless outside of them
 	function DBM:LOADING_SCREEN_DISABLED()
@@ -2040,17 +2126,17 @@ do
 	function DBM:LoadModsOnDemand(checkTable, checkValue)
 		for i, v in ipairs(DBM.AddOns) do
 			local modTable = v[checkTable]
-			if not IsAddOnLoaded(v.modId) and modTable and checkEntry(modTable, checkValue) then
-				if self:LoadMod(v) and v.type == "SCENARIO" then
-					DBM:InstanceCheck()
-				end
+			local _, _, _, enabled = GetAddOnInfo(v.modId)
+			if enabled and not IsAddOnLoaded(v.modId) and modTable and checkEntry(modTable, checkValue) then
+				self:LoadMod(v)
 			end
 		end
+		DBM:ScenarioCheck()--Do not filter. Because ScenarioCheck function includes filter.
 	end
 end
 
 --Scenario mods
-function DBM:InstanceCheck()
+function DBM:ScenarioCheck()
 	if combatInfo[LastInstanceMapID] then
 		for i, v in ipairs(combatInfo[LastInstanceMapID]) do
 			if (v.type == "scenario") and checkEntry(v.msgs, LastInstanceMapID) then
@@ -2064,11 +2150,11 @@ end
 	--This should avoid most load problems (especially in LFR) When zoning in while in combat which causes the mod to fail to load/work correctly
 	--IF we are fighting a boss, we don't have much of a choice but to try and load anyways since script ran too long isn't actually a guarentee.
 	--The main place we should force a mod load in combat is for IsEncounterInProgress because i'm pretty sure blizzard waves "script ran too long" function for a small amount of time after a DC
-	--Now that there are 9 world bosses, that mod is generating "script ran too long" more often on slow computers. Trying some micro optimizes to see if that eliminates
-	--If i still get many reports of world boss mod load failing, I will remove them from load delay since a failed mod load is even less useful than no mod load.
+	--Now that there are 9 world bosses, that mod is generating "script ran too long" more often on slow computers.
+	--I had to remove world boss combat loading because of this. it's rare you engage boss before loading mod anyways.
 function DBM:LoadMod(mod)
 	if type(mod) ~= "table" then return false end
-	if InCombatLockdown() and IsInInstance() and not IsEncounterInProgress() then
+	if InCombatLockdown() and not IsEncounterInProgress() then
 		if not loadDelay then--Prevent duplicate DBM_CORE_LOAD_MOD_COMBAT message.
 			self:AddMsg(DBM_CORE_LOAD_MOD_COMBAT:format(tostring(mod.name)))
 		end
@@ -2078,10 +2164,6 @@ function DBM:LoadMod(mod)
 			loadDelay = mod
 		end
 		return
-	end
-	local _, _, _, enabled = GetAddOnInfo(mod.modId)
-	if not enabled then
-		EnableAddOn(mod.modId)
 	end
 
 	local loaded, reason = LoadAddOn(mod.modId)
@@ -2115,7 +2197,7 @@ function DBM:LoadMod(mod)
 			RequestChallengeModeMapInfo()
 			RequestChallengeModeLeaders(mapID)
 		end
-		if instanceType == "pvp" and IsAddOnLoaded("DBM-PVP") then--Is a battleground and pvp mods are installed
+		if instanceType == "pvp" and IsAddOnLoaded("DBM-PvP") then--Is a battleground and pvp mods are installed
 			if DBM:GetModByName("z30") and DBM:GetModByName("z30").revision >= 3 then--They are loaded and correct revision
 				--Do nothing
 			else--They either aren't loaded or are wrong revision. in either case, it means they have old pvp mods installed that don't load correctly or are out of date
@@ -2293,15 +2375,19 @@ do
 				end
 				if not showedUpdateReminder then
 					local found = false
+					local secondfound = false
 					local other = nil
 					for i, v in pairs(raid) do
 						if v.version == version and v ~= raid[sender] then
+							if found then
+								secondfound = true
+								break
+							end
 							found = true
 							other = i
-							break
 						end
 					end
-					if found then
+					if found then--Only requires 2 for update notification (maybe also make 3?)
 						showedUpdateReminder = true
 						if not DBM.Options.BlockVersionUpdateNotice or revDifference > 333 then
 							DBM:ShowUpdateReminder(displayVersion, version)
@@ -2310,10 +2396,11 @@ do
 							DBM:AddMsg(DBM_CORE_UPDATEREMINDER_HEADER:match("\n(.*)"):format(displayVersion, version))
 							DBM:AddMsg(("|HDBM:update:%s:%s|h|cff3588ff[http://www.deadlybossmods.com]"):format(displayVersion, version))
 						end
-	--					if revDifference > 400 then--WTF? Sorry but your DBM is being turned off until you update. Grossly out of date mods cause fps loss, freezes, lua error spam, or just very bad information, if mod is not up to date with latest changes. All around undesirable experience to put yourself or other raid mates through
-	--						DBM:AddMsg(DBM_CORE_UPDATEREMINDER_DISABLE:format(revDifference))
-	--						DBM:Disable(true)
-	--					end
+						--The following code requires at least THREE people to send that higher revision (I just upped it from 2). That should be more than adaquate, especially since there is also a display version validator now too (that had to be writen when bigwigs was sending bad revisions few versions back)
+						if secondfound and revDifference > 400 then--WTF? Sorry but your DBM is being turned off until you update. Grossly out of date mods cause fps loss, freezes, lua error spam, or just very bad information, if mod is not up to date with latest changes. All around undesirable experience to put yourself or other raid mates through
+							DBM:AddMsg(DBM_CORE_UPDATEREMINDER_DISABLE:format(revDifference))
+							DBM:Disable(true)
+						end
 					end
 				end
 			end
@@ -2333,13 +2420,25 @@ do
 					end
 					if found then--Running alpha version that's out of date
 						showedUpdateReminder = true
-						--Bug happened again, but this print NEVER happened?? In fact, everyone in raid got the bug to happen, and suspiciously after several people in raid turned bigwigs on....
 						DBM:AddMsg(DBM_CORE_UPDATEREMINDER_HEADER_ALPHA:format(revDifference))
 					end
 				end
 			end
 		end
 		DBM:GROUP_ROSTER_UPDATE()
+	end
+
+	syncHandlers["L"] = function(sender)
+		local _, _, home, world = GetNetStats()
+		sendSync("LAG", ("%d\t%d"):format(home, world))
+	end
+	
+	syncHandlers["LAG"] = function(sender, homelag, worldlag)
+		homelag, worldlag = tonumber(homelag or ""), tonumber(worldlag or "")
+		if homelag and worldlag and raid[sender] then
+			raid[sender].homelag = homelag
+			raid[sender].worldlag = worldlag
+		end
 	end
 
 	syncHandlers["U"] = function(sender, time, text)
@@ -2356,27 +2455,77 @@ do
 	-- beware, ugly and missplaced code ahead
 	-- todo: move this somewhere else
 	do
-		local accessList
+		local accessList = {}
+		local savedSender
 
-		StaticPopupDialogs["DBM_INSTANCE_ID_PERMISSION"] = {
-			preferredIndex = STATICPOPUP_NUMDIALOGS,
-			text = DBM_REQ_INSTANCE_ID_PERMISSION,
-			button1 = YES,
-			button2 = NO,
-			OnAccept = function(self)
-				accessList[self.data] = true
-				syncHandlers["IR"](self.data) -- just call the sync handler again, the sender is now on the accessList and the requested data will be sent
-			end,
-			OnCancel = function(self, data, reason)
-				SendAddonMessage("D4", "II\t" .. (reason or "unknown"), "WHISPER", self.data) -- some events might
-			end,
-			timeout = 59,
-			hideOnEscape = 1,
-			noCancelOnReuse = 1,
-			multiple = 1,
-			showAlert = 1,
-			whileDead = 1
-		}
+		local inspopup = CreateFrame("Frame", "DBMINSTANCEPOPUP", UIParent)
+		inspopup:SetBackdrop({bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background-Dark",
+			edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border",
+			tile = true, tileSize = 16, edgeSize = 16,
+			insets = {left = 1, right = 1, top = 1, bottom = 1}}
+		)
+		inspopup:SetSize(500, 120)
+		inspopup:SetPoint("TOP", UIParent, "TOP", 0, -200)
+		inspopup:SetFrameStrata("DIALOG")
+
+		local inspopuptext = inspopup:CreateFontString()
+		inspopuptext:SetFontObject(ChatFontNormal)
+		inspopuptext:SetWidth(470)
+		inspopuptext:SetWordWrap(true)
+		inspopuptext:SetPoint("TOP", inspopup, "TOP", 0, -15)
+
+		local buttonaccept = CreateFrame("Button", nil, inspopup)
+		buttonaccept:SetNormalTexture("Interface\\Buttons\\UI-DialogBox-Button-Up")
+		buttonaccept:SetPushedTexture("Interface\\Buttons\\UI-DialogBox-Button-Down")
+		buttonaccept:SetHighlightTexture("Interface\\Buttons\\UI-DialogBox-Button-Highlight", "ADD")
+		buttonaccept:SetSize(128, 35)
+		buttonaccept:SetPoint("BOTTOM", inspopup, "BOTTOM", -75, 0)
+
+		local buttonatext = buttonaccept:CreateFontString()
+		buttonatext:SetFontObject(ChatFontNormal)
+		buttonatext:SetPoint("CENTER", buttonaccept, "CENTER", 0, 5)
+		buttonatext:SetText(YES)
+
+		local buttondecline = CreateFrame("Button", nil, inspopup)
+		buttondecline:SetNormalTexture("Interface\\Buttons\\UI-DialogBox-Button-Up")
+		buttondecline:SetPushedTexture("Interface\\Buttons\\UI-DialogBox-Button-Down")
+		buttondecline:SetHighlightTexture("Interface\\Buttons\\UI-DialogBox-Button-Highlight", "ADD")
+		buttondecline:SetSize(128, 35)
+		buttondecline:SetPoint("BOTTOM", inspopup, "BOTTOM", 75, 0)
+
+		local buttondtext = buttondecline:CreateFontString()
+		buttondtext:SetFontObject(ChatFontNormal)
+		buttondtext:SetPoint("CENTER", buttondecline, "CENTER", 0, 5)
+		buttondtext:SetText(NO)
+
+		inspopup:Hide()
+
+		local function autoDecline(sender, force)
+			inspopup:Hide()
+			savedSender = nil
+			if force then
+				SendAddonMessage("D4", "II\t" .. "denied", "WHISPER", sender)
+			else
+				SendAddonMessage("D4", "II\t" .. "timeout", "WHISPER", sender)
+			end
+		end
+
+		local function showPopupInstanceIdPermission(sender)
+			DBM:Unschedule(autoDecline)
+			DBM:Schedule(59, autoDecline, sender)
+			inspopup:Hide()
+			if savedSender ~= sender then 
+				if savedSender then
+					autoDecline(savedSender, 1) -- Do not allow multiple popups, so auto decline to previous sender.
+				end
+				savedSender = sender
+			end
+			inspopuptext:SetText(DBM_REQ_INSTANCE_ID_PERMISSION:format(sender, sender))
+			buttonaccept:SetScript("OnClick", function(f) savedSender = nil DBM:Unschedule(autoDecline) accessList[sender] = true syncHandlers["IR"](sender) f:GetParent():Hide() end)
+			buttondecline:SetScript("OnClick", function(f) autoDecline(sender, 1) end)
+			PlaySound("igMainMenuOpen")
+			inspopup:Show()
+		end
 
 		syncHandlers["IR"] = function(sender)
 			if DBM:GetRaidRank(sender) == 0 or sender == playerName then
@@ -2385,7 +2534,7 @@ do
 			accessList = accessList or {}
 			if not accessList[sender] then
 				-- ask for permission
-				StaticPopup_Show("DBM_INSTANCE_ID_PERMISSION", sender, sender, sender)
+				showPopupInstanceIdPermission(sender)
 				return
 			end
 			-- okay, send data
@@ -2405,9 +2554,11 @@ do
 		end
 
 		syncHandlers["IRE"] = function(sender)
-			local popup = StaticPopup_FindVisible("DBM_INSTANCE_ID_PERMISSION", sender)
-			if popup and popup.data == sender then -- found the popup with the correct data (StaticPopup_FindVisible already checks the data (but only if multiple is set), check it again to be safe is the function changes or something...)
-				popup:Hide()
+			local popup = DBMINSTANCEPOPUP:IsShown()
+			if popup and savedSender == sender then -- found the popup with the correct data
+				savedSender = nil
+				DBM:Unschedule(autoDecline)
+				DBMINSTANCEPOPUP:Hide()
 			end
 		end
 
@@ -2814,7 +2965,7 @@ do
 	function DBM:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 		if combatInfo[LastInstanceMapID] then
 			for i, v in ipairs(combatInfo[LastInstanceMapID]) do
-				if v.type == "combat" and isBossEngaged(v.multiMobPullDetection or v.mob) and IsEncounterInProgress() then
+				if v.type == "combat" and isBossEngaged(v.multiMobPullDetection or v.mob) then
 					self:StartCombat(v.mod, 0)
 				end
 			end
@@ -2932,6 +3083,7 @@ function DBM:StartCombat(mod, delay, synced, syncedStartHp, noKillRecord)
 		if not mod.Options.Enabled then return end
 		-- HACK: makes sure that we don't detect a false pull if the event fires again when the boss dies...
 		if mod.lastKillTime and GetTime() - mod.lastKillTime < (mod.reCombatTime or 20) then return end
+		if mod.lastWipeTime and GetTime() - mod.lastWipeTime < (mod.reCombatTime2 or 20) then return end
 		if not mod.combatInfo then return end
 		if mod.combatInfo.noCombatInVehicle and UnitInVehicle("player") then -- HACK
 			return
@@ -3129,6 +3281,7 @@ function DBM:EndCombat(mod, wipe)
 			return--Don't run any further, stats are nil on a bad load so rest of this code will also error out.
 		end
 		if wipe then
+			mod.lastWipeTime = GetTime()
 			--Fix for "attempt to perform arithmetic on field 'pull' (a nil value)" (which was actually caused by stats being nil, so we never did getTime on pull, fixing one SHOULD fix the other)
 			local thisTime = GetTime() - mod.combatInfo.pull
 			local wipeHP = ("%d%%"):format((mod.mainBossId and DBM:GetBossHealthByCID(mod.mainBossId) or mod.highesthealth and DBM:GetHighestBossHealth() or DBM:GetLowestBossHealth()) * 100)
@@ -3376,7 +3529,7 @@ end
 
 function DBM:StartLogging(timer, checkFunc)
 	self:Unschedule(DBM.StopLogging)
-	if DBM.Options.LogOnlyRaidBosses and savedDifficulty ~= "normal10" and savedDifficulty ~= "normal25" and savedDifficulty ~= "heroic10" and savedDifficulty ~= "heroic25" then return end
+	if DBM.Options.LogOnlyRaidBosses and savedDifficulty ~= "normal10" and savedDifficulty ~= "normal25" and savedDifficulty ~= "heroic10" and savedDifficulty ~= "heroic25" and savedDifficulty ~= "flex" then return end
 	if DBM.Options.AutologBosses and not LoggingCombat() then--Start logging here to catch pre pots.
 		self:AddMsg("|cffffff00"..COMBATLOGENABLED.."|r")
 		LoggingCombat(1)
@@ -3411,9 +3564,9 @@ function DBM:StopLogging()
 end
 
 function DBM:GetCurrentInstanceDifficulty()
-	local _, instanceType, difficulty, difficultyName, maxPlayers, _, _, _, instanceGroupSize = GetInstanceInfo()
+	local _, _, difficulty, difficultyName, _, _, _, _, instanceGroupSize = GetInstanceInfo()
 	if difficulty == 0 then
-		return "worldboss", DBM_CORE_WORLD_BOSS.." - "
+		return "worldboss", RAID_INFO_WORLD_BOSS.." - "
 	elseif difficulty == 1 then
 		return "normal5", difficultyName.." - "
 	elseif difficulty == 2 then
@@ -3788,6 +3941,11 @@ do
 		return DBM.Options.FilterSayAndYell and #inCombat > 0, ...
 	end
 
+	--This is the source of the taints. As well as function DBM:AddMsg(text, prefix) function
+	--It's also required and impossible to avoid since we need this stuff
+	--This taint LOOKS like a StaticPopupDialog taint but it is not. That taint was actaully fixed in 5.3
+	--Install http://www.wowace.com/addons/notaint/ which embeds libchatanims to fix problem.
+	--Additional information at http://www.wowace.com/addons/libchatanims/
 	ChatFrame_AddMessageEventFilter("CHAT_MSG_WHISPER_INFORM", filterOutgoing)
 	ChatFrame_AddMessageEventFilter("CHAT_MSG_BN_WHISPER_INFORM", filterOutgoing)
 	ChatFrame_AddMessageEventFilter("CHAT_MSG_WHISPER", filterIncoming)
@@ -4314,22 +4472,38 @@ function bossModPrototype:BossTargetScanner(cid, returnFunc, scanInterval, scanT
 	end
 end
 
-function bossModPrototype:checkTankDistance(cid, distance)
-	local cid = cid or self.creatureId
-	local distance = distance or 50
-	local _, uId = self:GetBossTarget(cid)
-	if uId then--Now we know who is tanking that boss
+function bossModPrototype:checkTankDistance(guid, distance)
+	local guid = guid or self.creatureId--CID fallback since GetBossTarget should sort it out (supports GUID or CID)
+	local distance = distance or 40
+	local _, uId, mobuId = self:GetBossTarget(guid)
+	if mobuId and (not uId or (uId and (uId == "boss1" or uId == "boss2" or uId == "boss3" or uId == "boss4" or uId == "boss5"))) then--Mob has no target, or is targeting a UnitID we cannot range check
+		local unitID = (IsInRaid() and "raid") or (IsInGroup() and "party") or "player"
+		for i = 1, DBM:GetNumGroupMembers() do
+			if UnitDetailedThreatSituation(unitID..i, mobuId) == 3 then uId = unitID..i end--Found highest threat target, make their uId
+			break
+		end
+	end
+	if uId then--Now we know who mob is targeting (or highest threat is)
+		if UnitIsUnit("player", uId) then return true end--If "player" is target, avoid doing any complicated stuff
 		local x, y = GetPlayerMapPosition(uId)
 		if x == 0 and y == 0 then
 			SetMapToCurrentZone()
 			x, y = GetPlayerMapPosition(uId)
 		end
+		if x == 0 and y == 0 then--Failed to pull coords. This is likely a pet or a guardian or an NPC.
+			local inRange2, checkedRange = UnitInRange(uId)--Use an API that works on pets and some NPCS (npcs that get a party/raid/pet ID)
+			if checkedRange and not inRange2 then--checkedRange only returns true if api worked, so if we get false, true then we are not near npc
+				return false
+			else--Its probably a totem or just something we can't assess. Fall back to no filtering
+				return true
+			end
+		end
 		local inRange = DBM.RangeCheck:GetDistance("player", x, y)--We check how far we are from the tank who has that boss
-		if (inRange and inRange > distance) or not (x == 0 and y == 0) then--You are not near the person tanking boss
+		if inRange and (inRange > distance) then--You are not near the person tanking boss
 			return false
 		end
 	end
-	return true
+	return true--When we simply can't figure anything out, always return true and allow warnings using this filter to fire
 end
 
 function bossModPrototype:Stop(cid)
@@ -6101,8 +6275,9 @@ function bossModPrototype:SetWipeTime(t)
 end
 
 -- fix for LFR ToES Tsulong combat detection bug after killed.
-function bossModPrototype:SetReCombatTime(t)-- bad wording: ReCombat?
+function bossModPrototype:SetReCombatTime(t, t2)--T1, after kill. T2 after wipe
 	self.reCombatTime = t
+	self.reCombatTime2 = t2
 end
 
 function bossModPrototype:IsWipe()
@@ -6128,7 +6303,9 @@ function bossModPrototype:SendSync(event, ...)
 	local str = ("%s\t%s\t%s\t%s"):format(self.id, self.revision or 0, event, arg)
 	local spamId = self.id .. event .. arg -- *not* the same as the sync string, as it doesn't use the revision information
 	local time = GetTime()
-	if not modSyncSpam[spamId] or (time - modSyncSpam[spamId]) > 2.5 then
+	--Mod syncs are more strict and enforce latency threshold always.
+	--Do not put latency check in main sendSync local function (line 313) though as we still want to get version information, etc from these users.
+	if select(4, GetNetStats()) < DBM.Options.LatencyThreshold and (not modSyncSpam[spamId] or (time - modSyncSpam[spamId]) > 8) then
 		self:ReceiveSync(event, nil, self.revision or 0, tostringall(...))
 		sendSync("M", str)
 	end
@@ -6137,7 +6314,7 @@ end
 function bossModPrototype:ReceiveSync(event, sender, revision, ...)
 	local spamId = self.id .. event .. strjoin("\t", ...)
 	local time = GetTime()
-	if (not modSyncSpam[spamId] or (time - modSyncSpam[spamId]) > 2.5) and self.OnSync and (not (self.blockSyncs and sender)) and (not sender or (not self.minSyncRevision or revision >= self.minSyncRevision)) then
+	if (not modSyncSpam[spamId] or (time - modSyncSpam[spamId]) > 8) and self.OnSync and (not (self.blockSyncs and sender)) and (not sender or (not self.minSyncRevision or revision >= self.minSyncRevision)) then
 		modSyncSpam[spamId] = time
 		-- we have to use the sender as last argument for compatibility reasons (stupid old API...)
 		-- avoid table allocations for frequently used number of arguments

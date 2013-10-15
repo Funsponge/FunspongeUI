@@ -89,6 +89,9 @@ local MovAny = {
 		UIParent = "UIParent",
 		WorldFrame = "WorldFrame",
 		CinematicFrame = "CinematicFrame",
+		ArenaPrepFrames = "ArenaPrepFrames",
+		ArenaEnemyFrames = "ArenaEnemyFrames",
+		
 --	PlayerTalentFrame = "PlayerTalentFrame",
 		PetBattleFrame = "PetBattleFrame",
 --		WatchFrame = "WatchFrame",
@@ -143,8 +146,8 @@ local MovAny = {
 		"BagFrame5",
 	},
 	lForceProtected = {
-	--	ArenaPrepFrames = false,
-	--	ArenaEnemyFrames = false,
+		["ArenaPrepFrames"] = "ArenaPrepFrames",
+		["ArenaEnemyFrames"] = "ArenaEnemyFrames",
 	},
 	lForcedLock = {
 		Boss1TargetFrame = "Boss1TargetFrame",
@@ -153,9 +156,34 @@ local MovAny = {
 		Boss4TargetFrame = "Boss4TargetFrame",
 		Boss5TargetFrame = "Boss5TargetFrame",
 		ActionButton1 = "ActionButton1",
+		
+		ArenaEnemyFrame1 = "ArenaEnemyFrame1",
+		ArenaEnemyFrame2 = "ArenaEnemyFrame2",
+		ArenaEnemyFrame3 = "ArenaEnemyFrame3",
+		ArenaEnemyFrame4 = "ArenaEnemyFrame4",
+		ArenaEnemyFrame5 = "ArenaEnemyFrame5",
+		
+		ArenaPrepFrame1 = "ArenaPrepFrame1",
+		ArenaPrepFrame2 = "ArenaPrepFrame2",
+		ArenaPrepFrame3 = "ArenaPrepFrame3",
+		ArenaPrepFrame4 = "ArenaPrepFrame4",
+		ArenaPrepFrame5 = "ArenaPrepFrame5",
+		
+		ArenaPrepFrames = "ArenaPrepFrames",
+		ArenaEnemyFrames = "ArenaEnemyFrames",
+		
+		ArenaEnemyFrame1PetFrame = "ArenaEnemyFrame1PetFrame",
+		ArenaEnemyFrame2PetFrame = "ArenaEnemyFrame2PetFrame",
+		ArenaEnemyFrame3PetFrame = "ArenaEnemyFrame3PetFrame",
+		ArenaEnemyFrame4PetFrame = "ArenaEnemyFrame4PetFrame",
+		ArenaEnemyFrame5PetFrame = "ArenaEnemyFrame5PetFrame",
+		
+		PetFrame = "PetFrame",
+		BuffFrame = "BuffFrame",
+		MinimapCluster = "MinimapCluster"
 	},
 	lEnableMouse = {
-		WatchFrame,
+	--	WatchFrame,
 		DurabilityFrame,
 		CastingBarFrame,
 		WorldStateScoreFrame,
@@ -299,27 +327,28 @@ local MovAny = {
 		MultiBarBottomRight = "UIParent",
 		MultiBarBottomLeft = "UIParent",
 		PlayerDebuffsMover = "UIParent",
-		EclipseBarFrame = "UIParent",
-		PaladinPowerBar = "UIParent",
+	--	EclipseBarFrame = "UIParent",
+	--	PaladinPowerBar = "UIParent",
 		TotemFrame = "UIParent",
-		ShardBarFrame = "UIParent",
-		PriestBarFrame = "UIParent",
-		MonkHarmonyBar = "UIParent",
-		ArenaEnemyFrame1 = "UIParent",
-		ArenaEnemyFrame2 = "UIParent",
-		ArenaEnemyFrame3 = "UIParent",
-		ArenaEnemyFrame4 = "UIParent",
-		ArenaEnemyFrame5 = "UIParent",
-		ArenaEnemyFrame1PetFrame = "ArenaEnemyFrame1",
-		ArenaEnemyFrame2PetFrame = "ArenaEnemyFrame2",
-		ArenaEnemyFrame3PetFrame = "ArenaEnemyFrame3",
-		ArenaEnemyFrame4PetFrame = "ArenaEnemyFrame4",
-		ArenaEnemyFrame5PetFrame = "ArenaEnemyFrame5",
+	--	ShardBarFrame = "UIParent",
+	--	PriestBarFrame = "UIParent",
+	--	MonkHarmonyBar = "UIParent",
+	--	ArenaEnemyFrame1 = "UIParent",
+	--	ArenaEnemyFrame2 = "UIParent",
+	--	ArenaEnemyFrame3 = "UIParent",
+	--	ArenaEnemyFrame4 = "UIParent",
+	--	ArenaEnemyFrame5 = "UIParent",
+	--	ArenaEnemyFrame1PetFrame = "ArenaEnemyFrame1",
+	--	ArenaEnemyFrame2PetFrame = "ArenaEnemyFrame2",
+	--	ArenaEnemyFrame3PetFrame = "ArenaEnemyFrame3",
+	--	ArenaEnemyFrame4PetFrame = "ArenaEnemyFrame4",
+	--	ArenaEnemyFrame5PetFrame = "ArenaEnemyFrame5",
 		Boss1TargetFrame = "UIParent",
 		Boss2TargetFrame = "UIParent",
 		Boss3TargetFrame = "UIParent",
 		Boss4TargetFrame = "UIParent",
 		Boss5TargetFrame = "UIParent",
+		RuneFrame = "UIParent",
 	},
 	NoReparent = {
 		TargetFrameSpellBar = "TargetFrameSpellBar",
@@ -327,11 +356,12 @@ local MovAny = {
 		OverrideMenuBarHealthBar = "OverrideMenuBarHealthBar",
 		OverrideMenuBarLeaveButton = "OverrideMenuBarLeaveButton",
 		OverrideMenuBarPowerBar = "OverrideMenuBarPowerBar",
-		PaladinPowerBar = "PaladinPowerBar",
-		ShardBarFrame = "ShardBarFrame",
-		EclipseBarFrame = "EclipseBarFrame",
-		PriestBarFrame = "PriestBarFrame",
-		MonkHarmonyBar = "MonkHarmonyBar",
+		
+		ArenaPrepFrames = "ArenaPrepFrames",
+		ArenaEnemyFrames = "ArenaEnemyFrames",
+		
+		MinimapCluster = "MinimapCluster",
+	--	WatchFrame = "WatchFrame",
 	},
 	NoUnanchoring = {
 		BuffFrame = "BuffFrame",
@@ -351,7 +381,8 @@ local MovAny = {
 		TargetFrameToTDebuffsMover = "TargetFrameToTDebuffsMover",
 		TemporaryEnchantFrame = "TemporaryEnchantFrame",
 		AuctionDressUpFrame = "AuctionDressUpFrame",
-		MonkHarmonyBar = "MonkHarmonyBar",
+		
+		MinimapCluster = "MinimapCluster",
 		},
 	lAllowedMAFrames = {
 		MAOptions = "MAOptions",
@@ -469,12 +500,12 @@ local MovAny = {
 		API:SyncElement("StanceButtonsVerticalMover")
 	end,
 	
-	hPetActionBar_Update = function()
+	--hPetActionBar_Update = function()
 	--	if ( MovAny:IsModified(PetActionButtonsMover) or MovAny:IsModified(PetActionButtonsVerticalMover) ) then
-			API:SyncElement("PetActionButtonsMover")
-			API:SyncElement("PetActionButtonsVerticalMover")
+	--		API:SyncElement("PetActionButtonsMover")
+	--		API:SyncElement("PetActionButtonsVerticalMover")
 	--	end
-	end,
+--	end,
 	
 	hFocusFrame_Update = function()
 	--print("Test")
@@ -487,12 +518,12 @@ local MovAny = {
 		end
 	end,
 	
-	hPetActionBarFrame_OnUpdate = function()
+	--hPetActionBarFrame_OnUpdate = function()
 	--	if ( MovAny:IsModified(PetActionButtonsMover) or MovAny:IsModified(PetActionButtonsVerticalMover) ) then
-			API:SyncElement("PetActionButtonsMover")
-			API:SyncElement("PetActionButtonsVerticalMover")
+--			API:SyncElement("PetActionButtonsMover")
+	--		API:SyncElement("PetActionButtonsVerticalMover")
 	--	end
-	end,
+--	end,
 	hAddFrameLock = function()
 	--	print("hAddFrameLock", SHOW_MULTI_ACTIONBAR_1, SHOW_MULTI_ACTIONBAR_2)
 		MultiBarBottomLeft:Hide()
@@ -755,6 +786,8 @@ function MovAny:Boot()
 	if UpdateUIPanelPositions then
 		hooksecurefunc("UpdateUIPanelPositions", self.SyncUIPanels)
 	end
+	
+--	UIParentManageFramePositions
 	if GameTooltip_SetDefaultAnchor then
 		hooksecurefunc("GameTooltip_SetDefaultAnchor", self.hGameTooltip_SetDefaultAnchor)
 	end
@@ -764,9 +797,9 @@ function MovAny:Boot()
 	if StanceBar_UpdateState then
 		hooksecurefunc("StanceBar_UpdateState", self.hStanceBar_UpdateState)
 	end
-	if PetActionBar_Update then
-		hooksecurefunc("PetActionBar_Update", self.hPetActionBar_Update)
-	end
+--	if false then
+--		hooksecurefunc("PetActionBar_Update", self.hPetActionBar_Update)
+--	end
 	if GameTooltip and GameTooltip.SetBagItem then
 		hooksecurefunc(GameTooltip, "SetBagItem", self.hGameTooltip_SetBagItem)
 	end
@@ -1111,7 +1144,11 @@ function MovAny:SyncAllFrames(dontReset)
 	table.wipe(self.pendingFrames)
 	if type(self.userData) == "table" then
 		for i, v in pairs(self.userData) do
-			self.pendingFrames[i] = API:GetElement(i)
+		--	print(i, API:GetElement(i))
+			
+			if i ~= "ArenaPrepFrames" or i ~= "ArenaEnemyFrames" then
+				self.pendingFrames[i] = API:GetElement(i)
+			end
 		end
 	end
 	self:SyncFrames(dontReset)
@@ -1255,6 +1292,9 @@ function MovAny.hShow(f, ...)
 	end
 end
 
+local hider = CreateFrame("Frame")
+hider:Hide()
+
 function MovAny:LockVisibility(f, dontHide)
 	if f.MAHidden then
 		return
@@ -1269,6 +1309,8 @@ function MovAny:LockVisibility(f, dontHide)
 	f.MAWasShown = f:IsShown()
 	if not dontHide and f.MAWasShown then
 		f:Hide()
+		f.my_real_parent = f:GetParent()
+		f:SetParent(hider)
 	end
 end
 
@@ -1280,11 +1322,29 @@ function MovAny:UnlockVisibility(f)
 	
 	if f.MAWasShown then
 		f.MAWasShown = nil
+		if f.my_real_parent then
+			
+			f:SetParent(f.my_real_parent)
+		end
+		
 		f:Show()
+		
 	end
 end
 
 function MovAny.hSetPoint(f, ...)
+	--[[
+	if MovAny.lForceProtected[f:GetName()] then 
+		print(f:GetName())
+	
+		return 
+	end
+	]]
+	--[[
+	if string.find(f:GetName(), "Arena") then
+		print(":1332,", string.find(f:GetName(), "Arena"), f:GetName())
+	end
+	]]
 	if f.MAPoint then
 		local fn = f:GetName()
 		
@@ -3994,9 +4054,16 @@ function MovAny:GrabContainerFrame(container, movableBag)
 end
 
 function MovAny:UnanchorRelatives(e, f, opt)
+	
+	if f:GetName() == "UIParent" then
+		print("UIParent TAINTED")
+		return
+	end
+	
 	if f.GetName and f:GetName() ~= nil and e.noUnanchorRelatives then
 		return
 	end
+	
 	if not f.GetParent then
 		return
 	end
@@ -5432,9 +5499,101 @@ function MovAny_OnEvent(self, event, arg1)
 			end			
 		elseif arg1 == "Blizzard_TalentUI" and MovAny.hBlizzard_TalentUI then
 			MovAny:hBlizzard_TalentUI()
+		elseif arg1 == "Blizzard_ArenaUI" then
+			if ArenaPrepFrames and not ArenaPrepFrames.hooked_ma then
+				ArenaPrepFrames.hooked_ma = true
+				ArenaPrepFrames.clear_all_points = ArenaPrepFrames.ClearAllPoints
+
+				ArenaPrepFrames.ClearAllPoints = function(self) 
+					--	print("Taind ArenaPrepFrames CleatAllPoints", debugstack())
+						if InCombatLockdown() then return end
+						self:clear_all_points()
+					end
+			end
+			
+			if ArenaEnemyFrames and not ArenaEnemyFrames.hooked_ma then
+				ArenaEnemyFrames.hooked_ma = true
+				ArenaEnemyFrames.clear_all_points = ArenaEnemyFrames.ClearAllPoints
+
+				ArenaEnemyFrames.ClearAllPoints = function(self)
+					--	print("Taind ArenaEnemyFrames CleatAllPoints", debugstack())
+						if InCombatLockdown() then return end
+						self:clear_all_points()
+					end
+			end
+			
+			for i=1,5 do
+				local frame = _G["ArenaEnemyFrame"..i]
+				
+				if frame and not frame.hooked_ma then
+					frame.hooked_ma = true
+					frame.clear_all_points = frame.ClearAllPoints
+					frame.on_show = frame.Show
+					frame.on_hide = frame.Hide
+					frame.ClearAllPoints = function(self)
+						if InCombatLockdown() then return end
+						self:clear_all_points()
+					end
+					frame.Show = function(self)
+						if InCombatLockdown() then return end
+						self:on_show()
+					end
+					frame.Hide = function(self)
+						if InCombatLockdown() then return end
+						self:on_hide()
+					end
+				end
+				
+				local frame = _G["ArenaEnemyFrame"..i.."PetFrame"]
+				
+				if frame and not frame.hooked_ma then
+					frame.hooked_ma = true
+					frame.clear_all_points = frame.ClearAllPoints
+					frame.on_show = frame.Show
+					frame.on_hide = frame.Hide
+					frame.ClearAllPoints = function(self)
+						if InCombatLockdown() then return end
+						self:clear_all_points()
+					end
+					frame.Show = function(self)
+						if InCombatLockdown() then return end
+						self:on_show()
+					end
+					frame.Hide = function(self)
+						if InCombatLockdown() then return end
+						self:on_hide()
+					end
+				end
+				
+				local frame = _G["ArenaPrepFrame"..i]
+				
+				if frame and not frame.hooked_ma then
+					frame.hooked_ma = true
+					frame.clear_all_points = frame.ClearAllPoints
+					frame.on_show = frame.Show
+					frame.on_hide = frame.Hide
+					frame.ClearAllPoints = function(self)
+						if InCombatLockdown() then return end
+						self:clear_all_points()
+					end
+					frame.Show = function(self)
+						if InCombatLockdown() then return end
+						self:on_show()
+					end
+					frame.Hide = function(self)
+						if InCombatLockdown() then return end
+						self:on_hide()
+					end
+				end
+				
+			end
+			
 		end
 		MovAny:SyncFrames()
 	elseif event == "GROUP_ROSTER_UPDATE" then
+		
+		if InCombatLockdown() then return end
+		
 		local f = _G["CompactRaidFrameManager"]
 		if f then
 			f.MAParent = "RaidUnitFramesManagerMover"

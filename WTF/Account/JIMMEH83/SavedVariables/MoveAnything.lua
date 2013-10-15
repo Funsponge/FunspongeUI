@@ -1,10 +1,10 @@
 
 MADB = {
-	["frameListRows"] = 18,
+	["collapsed"] = true,
 	["characters"] = {
 	},
+	["frameListRows"] = 18,
 	["tooltips"] = 1,
-	["collapsed"] = true,
 	["profiles"] = {
 		["default"] = {
 			["frames"] = {
@@ -271,14 +271,14 @@ MADB = {
 						752.5599975585938, -- [5]
 					},
 				},
-				["ChatConfigFrame"] = {
-					["name"] = "ChatConfigFrame",
+				["WorldStateCaptureBar1"] = {
+					["name"] = "WorldStateCaptureBar1",
 					["pos"] = {
-						"BOTTOMLEFT", -- [1]
-						"UIParent", -- [2]
-						"BOTTOMLEFT", -- [3]
-						555.21435546875, -- [4]
-						251.0714874267578, -- [5]
+						"TOPRIGHT", -- [1]
+						"MinimapCluster", -- [2]
+						"BOTTOMRIGHT", -- [3]
+						-791.2142333984375, -- [4]
+						107.1715698242188, -- [5]
 					},
 				},
 				["MiniMapMailFrame"] = {
@@ -326,15 +326,14 @@ MADB = {
 						-330.1715698242188, -- [5]
 					},
 				},
-				["GameTimeFrame"] = {
-					["scale"] = 0.7999999523162842,
-					["name"] = "GameTimeFrame",
+				["AchievementAlertFrame1"] = {
+					["name"] = "AchievementAlertFrame1",
 					["pos"] = {
-						"CENTER", -- [1]
-						"Minimap", -- [2]
-						"CENTER", -- [3]
-						-88.51752350336018, -- [4]
-						88.3927008764893, -- [5]
+						"BOTTOM", -- [1]
+						"UIParent", -- [2]
+						"BOTTOM", -- [3]
+						-1.82855224609375, -- [4]
+						878.6284790039063, -- [5]
 					},
 				},
 				["TimeManagerFrame"] = {
@@ -347,16 +346,15 @@ MADB = {
 						-23.6002197265625, -- [5]
 					},
 				},
-				["QueueStatusFrame"] = {
-					["name"] = "QueueStatusFrame",
+				["GameTimeFrame"] = {
 					["scale"] = 0.7999999523162842,
-					["disableLayerArtwork"] = 1,
+					["name"] = "GameTimeFrame",
 					["pos"] = {
-						"TOPRIGHT", -- [1]
-						"QueueStatusMinimapButton", -- [2]
-						"TOPLEFT", -- [3]
-						310.6306576996637, -- [4]
-						158.3673524658642, -- [5]
+						"CENTER", -- [1]
+						"Minimap", -- [2]
+						"CENTER", -- [3]
+						-88.51752350336018, -- [4]
+						88.3927008764893, -- [5]
 					},
 				},
 				["ScenarioAlertFrame1"] = {
@@ -399,14 +397,16 @@ MADB = {
 						-110.5431518554688, -- [5]
 					},
 				},
-				["AchievementAlertFrame1"] = {
-					["name"] = "AchievementAlertFrame1",
+				["QueueStatusFrame"] = {
+					["disableLayerArtwork"] = 1,
+					["scale"] = 0.7999999523162842,
+					["name"] = "QueueStatusFrame",
 					["pos"] = {
-						"BOTTOM", -- [1]
-						"UIParent", -- [2]
-						"BOTTOM", -- [3]
-						-1.82855224609375, -- [4]
-						878.6284790039063, -- [5]
+						"TOPRIGHT", -- [1]
+						"QueueStatusMinimapButton", -- [2]
+						"TOPLEFT", -- [3]
+						310.6306576996637, -- [4]
+						158.3673524658642, -- [5]
 					},
 				},
 				["MACompactRaidFrameManagerToggleButton"] = {
@@ -430,14 +430,14 @@ MADB = {
 						-138.9716186523438, -- [5]
 					},
 				},
-				["WorldStateCaptureBar1"] = {
-					["name"] = "WorldStateCaptureBar1",
+				["ChatConfigFrame"] = {
+					["name"] = "ChatConfigFrame",
 					["pos"] = {
-						"TOPRIGHT", -- [1]
-						"MinimapCluster", -- [2]
-						"BOTTOMRIGHT", -- [3]
-						-791.2142333984375, -- [4]
-						107.1715698242188, -- [5]
+						"BOTTOMLEFT", -- [1]
+						"UIParent", -- [2]
+						"BOTTOMLEFT", -- [3]
+						555.21435546875, -- [4]
+						251.0714874267578, -- [5]
 					},
 				},
 				["AlertFrame"] = {

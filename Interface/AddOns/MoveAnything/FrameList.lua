@@ -12,6 +12,7 @@ local cats = {
 	{name = "Battlegrounds & PvP"},
 	{name = "Class Specific"},
 	{name = "Dungeons & Raids"},
+	{name = "Boss Specific Frames"},
 	{name = "Game Menu"},
 	{name = "Guild"},
 	{name = "Info Panels"},
@@ -57,7 +58,24 @@ m = {
 		API:AddElement({name = "CriteriaAlertFrame1", displayName = "Criteria Alert 1", create = "CriteriaAlertFrameTemplate"}, c)
 		API:AddElement({name = "CriteriaAlertFrame2", displayName = "Criteria Alert 2", create = "CriteriaAlertFrameTemplate"}, c)
 		local gcaf = API:AddElement({name = "GuildChallengeAlertFrame", displayName = "Guild Challenge Achievement Alert"}, c)
-		API:AddElement({name = "WatchFrameMover", displayName = "Quest Log Tracker", scaleWH = 1, linkedScaling = {"WatchFrame"}}, c) --, noScale = 1
+		
+		
+		
+		API:AddElement({name = "WatchFrame", displayName = "Objectives window size", run = function()
+			print("Test1")
+		end}, c)
+		
+		API:AddElement({name = "WatchFrameMover", displayName = "Objectives window", scaleWH = 1, run = function()
+			if not MovAny:IsModified(WatchFrameMover, pos) then
+				_G["InterfaceOptionsObjectivesPanelWatchFrameWidth"]:SetEnabled(false)
+			end
+		end}, c) --, noScale = 1
+		
+		
+		
+		
+		
+		
 		local qldf = API:AddElement({name = "QuestLogDetailFrame", displayName = "Quest Details", runOnce = function()
 			if not QuestLogDetailFrame:IsShown() then
 				ShowUIPanel(QuestLogDetailFrame)
@@ -79,26 +97,33 @@ m = {
 		c = API:GetCategory("Arena")
 	--	API:AddElement({name = "ArenaEnemyFrames", displayName = "ArenaEnemyFrames", noScale = 1}, c)
 	--	API:AddElement({name = "ArenaPrepFrames", displayName = "ArenaPrepFrames", noScale = 1}, c)
-		API:AddElement({name = "ArenaEnemyFrame1", displayName = "Arena Enemy 1", runOnce = Arena_LoadUI}, c)
-		API:AddElement({name = "ArenaEnemyFrame2", displayName = "Arena Enemy 2", runOnce = Arena_LoadUI}, c)
-		API:AddElement({name = "ArenaEnemyFrame3", displayName = "Arena Enemy 3", runOnce = Arena_LoadUI}, c)
-		API:AddElement({name = "ArenaEnemyFrame4", displayName = "Arena Enemy 4", runOnce = Arena_LoadUI}, c)
-		API:AddElement({name = "ArenaEnemyFrame5", displayName = "Arena Enemy 5", runOnce = Arena_LoadUI}, c)
+		API:AddElement({name = "ArenaEnemyFrame1", displayName = "Arena Enemy 1", create = "ArenaEnemyFrameTemplate", runOnce = Arena_LoadUI}, c) --, runOnce = Arena_LoadUI
+		API:AddElement({name = "ArenaEnemyFrame2", displayName = "Arena Enemy 2", create = "ArenaEnemyFrameTemplate", runOnce = Arena_LoadUI}, c)
+		API:AddElement({name = "ArenaEnemyFrame3", displayName = "Arena Enemy 3", create = "ArenaEnemyFrameTemplate", runOnce = Arena_LoadUI}, c)
+		API:AddElement({name = "ArenaEnemyFrame4", displayName = "Arena Enemy 4", create = "ArenaEnemyFrameTemplate", runOnce = Arena_LoadUI}, c)
+		API:AddElement({name = "ArenaEnemyFrame5", displayName = "Arena Enemy 5", create = "ArenaEnemyFrameTemplate", runOnce = Arena_LoadUI}, c)
 	local ttt1 = API:AddElement({name = "TimerTrackerTimer1", displayName = "Timer tracker"}, c)
-		API:AddElement({name = "ArenaEnemyFrame1PetFrame", displayName = "Arena Enemy Pet 1", runOnce = Arena_LoadUI}, c)
-		API:AddElement({name = "ArenaEnemyFrame2PetFrame", displayName = "Arena Enemy Pet 2", runOnce = Arena_LoadUI}, c)
-		API:AddElement({name = "ArenaEnemyFrame3PetFrame", displayName = "Arena Enemy Pet 3", runOnce = Arena_LoadUI}, c)
-		API:AddElement({name = "ArenaEnemyFrame4PetFrame", displayName = "Arena Enemy Pet 4", runOnce = Arena_LoadUI}, c)
-		API:AddElement({name = "ArenaEnemyFrame5PetFrame", displayName = "Arena Enemy Pet 5", runOnce = Arena_LoadUI}, c)	
-		API:AddElement({name = "ArenaEnemyFrame1CastingBar", displayName = "Arena Enemy Casting Bar 1", runOnce = Arena_LoadUI}, c)
-		API:AddElement({name = "ArenaEnemyFrame2CastingBar", displayName = "Arena Enemy Casting Bar 2", runOnce = Arena_LoadUI}, c)
-		API:AddElement({name = "ArenaEnemyFrame3CastingBar", displayName = "Arena Enemy Casting Bar 3", runOnce = Arena_LoadUI}, c)
-		API:AddElement({name = "ArenaEnemyFrame4CastingBar", displayName = "Arena Enemy Casting Bar 4", runOnce = Arena_LoadUI}, c)
-		API:AddElement({name = "ArenaEnemyFrame5CastingBar", displayName = "Arena Enemy Casting Bar 5", runOnce = Arena_LoadUI}, c)
+		API:AddElement({name = "ArenaEnemyFrame1PetFrame", displayName = "Arena Enemy Pet 1", create = "ArenaEnemyPetFrameTemplate", runOnce = Arena_LoadUI}, c)
+		API:AddElement({name = "ArenaEnemyFrame2PetFrame", displayName = "Arena Enemy Pet 2", create = "ArenaEnemyPetFrameTemplate", runOnce = Arena_LoadUI}, c)
+		API:AddElement({name = "ArenaEnemyFrame3PetFrame", displayName = "Arena Enemy Pet 3", create = "ArenaEnemyPetFrameTemplate", runOnce = Arena_LoadUI}, c)
+		API:AddElement({name = "ArenaEnemyFrame4PetFrame", displayName = "Arena Enemy Pet 4", create = "ArenaEnemyPetFrameTemplate", runOnce = Arena_LoadUI}, c)
+		API:AddElement({name = "ArenaEnemyFrame5PetFrame", displayName = "Arena Enemy Pet 5", create = "ArenaEnemyPetFrameTemplate", runOnce = Arena_LoadUI}, c)	
+		API:AddElement({name = "ArenaEnemyFrame1CastingBar", displayName = "Arena Enemy Casting Bar 1", create = "ArenaCastingBarFrameTemplate", runOnce = Arena_LoadUI}, c)
+		API:AddElement({name = "ArenaEnemyFrame2CastingBar", displayName = "Arena Enemy Casting Bar 2", create = "ArenaCastingBarFrameTemplate", runOnce = Arena_LoadUI}, c)
+		API:AddElement({name = "ArenaEnemyFrame3CastingBar", displayName = "Arena Enemy Casting Bar 3", create = "ArenaCastingBarFrameTemplate", runOnce = Arena_LoadUI}, c)
+		API:AddElement({name = "ArenaEnemyFrame4CastingBar", displayName = "Arena Enemy Casting Bar 4", create = "ArenaCastingBarFrameTemplate", runOnce = Arena_LoadUI}, c)
+		API:AddElement({name = "ArenaEnemyFrame5CastingBar", displayName = "Arena Enemy Casting Bar 5", create = "ArenaCastingBarFrameTemplate", runOnce = Arena_LoadUI}, c)
 		API:AddElement({name = "PVPTeamDetails", displayName = "Arena Team Details"}, c)
 		API:AddElement({name = "ArenaFrame", displayName = "Arena Queue List"}, c)
 		API:AddElement({name = "ArenaRegistrarFrame", displayName = "Arena Registrar"}, c)
 		API:AddElement({name = "PVPBannerFrame", displayName = "Arena Banner"}, c)
+		
+		API:AddElement({name = "ArenaPrepFrame1", displayName = "Arena Prep 1", create = "ArenaPrepFrameTemplate", runOnce = Arena_LoadUI}, c) --, runOnce = Arena_LoadUI
+		API:AddElement({name = "ArenaPrepFrame2", displayName = "Arena Prep 2", create = "ArenaPrepFrameTemplate", runOnce = Arena_LoadUI}, c)
+		API:AddElement({name = "ArenaPrepFrame3", displayName = "Arena Prep 3", create = "ArenaPrepFrameTemplate", runOnce = Arena_LoadUI}, c)
+		API:AddElement({name = "ArenaPrepFrame4", displayName = "Arena Prep 4", create = "ArenaPrepFrameTemplate", runOnce = Arena_LoadUI}, c)
+		API:AddElement({name = "ArenaPrepFrame5", displayName = "Arena Prep 5", create = "ArenaPrepFrameTemplate", runOnce = Arena_LoadUI}, c)
+		
 		
 		c = API:GetCategory("Battlegrounds & PvP")
 		local pvpf = API:AddElement({name = "PVPUIFrame", displayName = "PVP Window"}, c)
@@ -271,7 +296,9 @@ m = {
 		API:AddElement({name = "LFGDungeonReadyPopup", displayName = "Dungeon Ready Popup"}, c)
 		API:AddElement({name = "LFGDungeonReadyStatus", displayName = "Dungeon Ready Status"}, c)
 		API:AddElement({name = "LFDRoleCheckPopup", displayName = "Dungeon Role Check Popup"}, c)
-		local rbab = API:AddElement({name = "PlayerPowerBarAltMover", displayName = "Raid Boss Alternative Bar"}, c)
+		
+		local rbab = API:AddElement({name = "PlayerPowerBarAltMover", displayName = "Alternative Power Bar"}, c)
+		
 		API:AddElement({name = "RaidBossEmoteFrame", displayName = "Raid Boss Emote Display"}, c)
 		API:AddElement({name = "Boss1TargetFrame", displayName = "Raid Boss Health Bar 1", create = "BossTargetFrameTemplate"}, c)
 		API:AddElement({name = "Boss1TargetFramePowerBarArt", displayName = "Raid Boss Power Bar 1"}, c)
@@ -294,11 +321,22 @@ m = {
 		API:AddElement({name = "CompactRaidGroup8", displayName = "Raid Group 8"}, c)
 		API:AddElement({name = "RaidUnitFramesManagerMover", displayName = "Raid Manager"}, c) --"RaidUnitFramesManagerMover"
 		API:AddElement({name = "MACompactRaidFrameManagerToggleButton", displayName = "Raid Manager Toggle Button", onlyOnceCreated = 1}, c)
+	--	CompactRaidFrameManager
+	--	API:AddElement({name = "CompactRaidFrameManager", displayName = "CompactRaidFrameManager"}, c)
 		API:AddElement({name = "RolePollPopup", displayName = "Raid Role Popup"}, c)
 		API:AddElement({name = "RaidUnitFramesMover", displayName = "Raid Unit Frames"}, c)
 		API:AddElement({name = "RaidWarningFrame", displayName = "Raid Warnings"}, c)
 		API:AddElement({name = "ReadyCheckFrame", displayName = "Ready Check"}, c)
 		
+		c = API:GetCategory("Boss Specific Frames")
+		
+		rbab:AddCategory(c)
+		API:AddElement({name = "PlayerPowerBarAltMover", displayName = "Sha of Pride: Pride Bar"}, c)
+		API:AddElement({name = "PlayerPowerBarAltMover", displayName = "Norushen: Corruption Bar"}, c)
+		API:AddElement({name = "PlayerPowerBarAltMover", displayName = "The Stone Guard: Energy Bar"}, c)
+		
+		API:AddElement({name = "PlayerPowerBarAltMover", displayName = "Cho'gal: Energy Bar"}, c)
+
 		c = API:GetCategory("Game Menu")
 		API:AddElement({name = "GameMenuFrame", displayName = "Game Menu",
 			hideList = {
@@ -518,9 +556,20 @@ m = {
 
 		c = API:GetCategory("Unit: Player")
 		API:AddElement({name = "PlayerFrame", displayName = "Player"}, c)
-		API:AddElement({name = "PlayerBuffsMover", displayName = "Player Buffs"}, c)
+		API:AddElement({name = "PlayerBuffsMover", displayName = "Player Buffs Defaul"}, c)
+		
+		API:AddElement({name = "PlayerBuffsMover2", displayName = "Player Buffs From Right to Left"}, c)
+		
+		
 		API:AddElement({name = "ConsolidatedBuffsTooltip", displayName = "Player Buffs - Consolidated Buffs Tooltip"}, c)
-		API:AddElement({name = "PlayerDebuffsMover", displayName = "Player Debuffs"}, c)
+		
+		API:AddElement({name = "PlayerDebuffsMover", displayName = "Player Debuffs Default"}, c)
+		API:AddElement({name = "PlayerDebuffsMover2", displayName = "Player Debuffs From Right to Left"}, c)
+		
+		API:AddElement({name = "DigsiteCompleteToastFrame", displayName = "Digsite Complete Toast Frame"}, c)
+		API:AddElement({name = "ArcheologyDigsiteProgressBar", displayName = "Archeology Digsite ProgressBar"}, c)
+		
+		API:AddElement({name = "PlayerHitIndicator", displayName = "Heal/Damage Numbers"}, c)
 		API:AddElement({name = "CastingBarFrame", displayName = "Casting Bar", noAlpha = 1}, c)
 		API:AddElement({name = "PlayerFrameGroupIndicator", displayName = "Player Group Indicator"}, c)
 		API:AddElement({name = "LossOfControlFrame", displayeName = "Loss Of Control"}, c)
@@ -536,7 +585,9 @@ m = {
 		API:AddElement({name = "TargetFrameSpellBar", displayName = "Target Casting Bar", noAlpha = 1}, c)
 		API:AddElement({name = "TargetFrameToT", displayName = "Target of Target"}, c)
 		API:AddElement({name = "TargetFrameToTDebuffsMover", displayName = "Target of Target Debuffs"}, c)
-
+		
+		API:AddElement({name = "TargetFrameNumericalThreat", displayName = "Target Threat Indicator"}, c)
+		
 		c = API:GetCategory("Vehicle")
 		API:AddElement({name = "OverrideActionBar", displayName = "Vehicle Bar",
 			hideList = {

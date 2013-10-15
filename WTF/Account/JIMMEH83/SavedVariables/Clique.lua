@@ -5,10 +5,10 @@ CliqueDB3 = {
 		["Funsponge - Korgath"] = {
 			["sec_profileKey"] = "Holy",
 			["fastooc"] = false,
-			["specswap"] = false,
+			["alerthidden"] = true,
 			["downclick"] = false,
 			["pri_profileKey"] = "Retribution",
-			["alerthidden"] = true,
+			["specswap"] = false,
 		},
 	},
 	["profileKeys"] = {
@@ -27,15 +27,6 @@ CliqueDB3 = {
 					["type"] = "spell",
 				}, -- [1]
 				{
-					["spell"] = "Flash of Light",
-					["key"] = "2",
-					["sets"] = {
-						["default"] = true,
-					},
-					["icon"] = "Interface\\Icons\\Spell_Holy_FlashHeal",
-					["type"] = "spell",
-				}, -- [2]
-				{
 					["spell"] = "Hand of Sacrifice",
 					["key"] = "SHIFT-2",
 					["sets"] = {
@@ -43,16 +34,16 @@ CliqueDB3 = {
 					},
 					["icon"] = "Interface\\Icons\\Spell_Holy_SealOfSacrifice",
 					["type"] = "spell",
-				}, -- [3]
+				}, -- [2]
 				{
-					["spell"] = "Hand of Freedom",
-					["key"] = "SHIFT-4",
+					["spell"] = "Flash of Light",
+					["key"] = "2",
 					["sets"] = {
 						["default"] = true,
 					},
-					["icon"] = "Interface\\Icons\\Spell_Holy_SealOfValor",
+					["icon"] = "Interface\\Icons\\Spell_Holy_FlashHeal",
 					["type"] = "spell",
-				}, -- [4]
+				}, -- [3]
 				{
 					["spell"] = "Hand of Salvation",
 					["key"] = "SHIFT-1",
@@ -60,6 +51,15 @@ CliqueDB3 = {
 						["default"] = true,
 					},
 					["icon"] = "Interface\\Icons\\Spell_Holy_SealOfSalvation",
+					["type"] = "spell",
+				}, -- [4]
+				{
+					["spell"] = "Hand of Freedom",
+					["key"] = "SHIFT-4",
+					["sets"] = {
+						["default"] = true,
+					},
+					["icon"] = "Interface\\Icons\\Spell_Holy_SealOfValor",
 					["type"] = "spell",
 				}, -- [5]
 				{
@@ -75,10 +75,10 @@ CliqueDB3 = {
 		["Holy"] = {
 			["bindings"] = {
 				{
-					["type"] = "target",
 					["sets"] = {
 						["default"] = true,
 					},
+					["type"] = "target",
 					["key"] = "BUTTON1",
 					["unit"] = "mouseover",
 				}, -- [1]

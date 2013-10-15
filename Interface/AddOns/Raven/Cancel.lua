@@ -109,7 +109,10 @@ local function Overlay_OnEnter(b)
 			local auraList = MOD:CheckAura("player", b.aura_id, true)
 			if #auraList > 0 then local aura = auraList[1]; GameTooltip:SetUnitAura("player", aura[12], "HELPFUL") end
 		end
-		if b.aura_spell and IsAltKeyDown() and IsControlKeyDown() then GameTooltip:AddLine("<Spell #" .. tonumber(b.aura_spell) .. ">", 0, 1, 0.2, false) end
+		if IsAltKeyDown() and IsControlKeyDown() then
+			if b.aura_spell then GameTooltip:AddLine("<Spell #" .. tonumber(b.aura_spell) .. ">", 0, 1, 0.2, false) end
+			if b.aura_list then GameTooltip:AddLine("<List #" .. tonumber(b.aura_list) .. ">", 0, 1, 0.2, false) end
+		end
 		if b.aura_caster and (b.aura_caster ~= "") then GameTooltip:AddLine(L["<Applied by "] .. b.aura_caster .. ">", 0, 0.8, 1, false) end
 		GameTooltip:Show()
 	end
@@ -348,7 +351,8 @@ end
 -- Activate an overlay for a bar by filling in secure attributes and placing it on top of a bar's icon
 local function ActivateOverlay(bar, frame)
 	if not InCombatLockdown() then
-		local tt, id, unit = bar.attributes.tooltipType, bar.attributes.tooltipID, bar.attributes.tooltipUnit
+		local bat = bar.attributes
+		local tt, id, unit = bat.tooltipType, bat.tooltipID, bat.tooltipUnit
 		if ((tt == "buff") or (tt == "weapon")) and unit and UnitIsUnit(unit, "player") then
 			local b = bar.overlay
 			if not b then b = AllocateOverlay(); bar.overlay = b end -- allocate one if necessary
@@ -360,8 +364,9 @@ local function ActivateOverlay(bar, frame)
 			end
 			b.aura_id = id
 			b.aura_tt = tt
-			b.aura_caster = bar.attributes.caster
-			b.aura_spell = bar.attributes.tooltipSpell
+			b.aura_caster = bat.caster
+			b.aura_spell = bat.tooltipSpell
+			b.aura_list = bat.listID
 			b.tooltipAnchor = bar.tooltipAnchor
 			b:ClearAllPoints()
 			b:SetSize(frame:GetWidth(), frame:GetHeight())

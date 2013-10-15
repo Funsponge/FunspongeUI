@@ -279,26 +279,49 @@ MovAny.lVirtualMovers = {
 		OnMAHook = function(self)
 			self:SetFrameStrata("LOW")
 			local b = WatchFrame
-			local bbb = WatchFrame:GetHeight()
+			local bbb = b:GetHeight()
 			MovAny:UnlockPoint(b)
-			b:ClearAllPoints(WatchFrameMover)
-			b:SetPoint("TOPRIGHT", WatchFrameMover, "TOPRIGHT")
+			b:ClearAllPoints()	
+		--	print("Done")
+			b:SetPoint("TOPLEFT", self, "TOPLEFT")
+		--	b:SetPoint("LEFT", WatchFrameMover, "LEFT")
+		--	b:SetPoint("TOP", WatchFrameMover, "TOP")
+		--	b:SetPoint("BOTTOM", WatchFrameMover, "BOTTOM")
+			
 			MovAny:LockPoint(b)
 		--	b.ignoreFramePositionManager = true
 		--	b:SetMovable(true)
 			b:SetHeight(self:GetHeight())
 		--	b:SetUserPlaced(true)
 			self.sbf = b
+			
+			_G["InterfaceOptionsObjectivesPanelWatchFrameWidth"]:SetEnabled(false)
 		end,
 		OnMAPostReset = function(self)
 			MovAny:UnlockPoint(WatchFrame)
 			local b = WatchFrame
 			b:SetPoint("TOPRIGHT", "MinimapCluster", "BOTTOMRIGHT", 0, 0)
-			b:SetHeight(700)
+			b:SetHeight(700)			
+			_G["InterfaceOptionsObjectivesPanelWatchFrameWidth"]:SetEnabled(true)		
 		end,
 		OnMAScale = function(self)
 			local b = WatchFrame
-			b:SetHeight(self:GetHeight())
+			local scaleS = self:GetScale()
+			local scaleH = self:GetHeight()
+			local scaleW = self:GetWidth()
+			
+			if scaleH*scaleS < 150 then
+				scaleH = 150
+			end
+			
+			if scaleW*scaleS < 150 then
+				scaleW = 150
+			end
+			
+			b:SetHeight(scaleH)
+			SetCVar("watchFrameWidth", 0)	
+			WATCHFRAME_MAXLINEWIDTH = scaleW
+			WatchFrame_Update()
 		end,
 		OnMAHide = function(self, hidden)
 			if hidden then
@@ -1437,6 +1460,10 @@ MovAny.lVirtualMovers = {
 				child:SetPoint("TOPLEFT", self, "TOPLEFT", 1, -1)
 				MovAny:LockPoint(child)
 			end
+		--[[	
+			if child.GetName then
+				print(self:GetScale(), index, child:GetName())
+			end]]
 		end,
 		OnMAReleaseChild = function(self, index, child)
 			if self.firstChild == child then
@@ -1554,6 +1581,7 @@ MovAny.lVirtualMovers = {
 		point = {"TOPRIGHT", "UIParent", "TOPRIGHT", -205, -13},
 		children = {"TemporaryEnchantFrame", "ConsolidatedBuffs"},
 		prefix = "BuffButton",
+		excludes = "PlayerBuffsMover2",
 		count = 32,
 		dontHide = true,
 		dontLock = true,
@@ -1716,10 +1744,202 @@ MovAny.lVirtualMovers = {
 			end
 		end,
 	},
+	PlayerBuffsMover2 = {
+		w = 31,
+		h = 31,
+		point = {"TOPRIGHT", "UIParent", "TOPRIGHT", -205, -13},
+		children = {"TemporaryEnchantFrame", "ConsolidatedBuffs"},
+		prefix = "BuffButton",
+		excludes = "PlayerBuffsMover",
+		count = 32,
+		dontHide = true,
+		dontLock = true,
+		dontScale = true,
+		OnLoad = function(vm)
+			if BuffFrame_Update then
+				local opt, e, cb
+				
+				local hBuffFrame_Update = function()
+					opt = vm.opt
+					if opt and not opt.disabled and vm.MAE and vm.MAE:IsModified() then
+						vm:MAScanForChildren(true, true)
+						
+						if opt.scale then
+							cb = GetCVar("consolidateBuffs")
+							if not opt.hidden and vm.attachedChildren then
+								if cb == "1" then
+									for i, v in pairs(vm.attachedChildren) do
+										if v:GetParent():GetName() ~= "ConsolidatedBuffsContainer" then
+											v:SetScale(opt.scale)
+										else
+											v:SetScale(1)
+										end
+									end
+								else
+									for i, v in pairs(vm.attachedChildren) do
+										v:SetScale(opt.scale)
+									end
+								end
+							end
+						end
+						MovAny:UnlockPoint(vm.tef)
+						vm.tef:ClearAllPoints()
+						if IsInGroup() and GetCVarBool("consolidateBuffs") then
+							vm.tef:SetPoint("TOPLEFT", ConsolidatedBuffs, "TOPRIGHT", -6, 0)
+						else
+							vm.tef:SetPoint("TOPLEFT", ConsolidatedBuffs, "TOPLEFT", 0, 0)
+						end
+						
+						MovAny:LockPoint(vm.tef)
+					end
+				end
+				local hBuffFrame_ErrorHandler = function()
+					--print("Error: "..debugstack(2, 20, 20))
+				end
+				hooksecurefunc("BuffFrame_Update", function()
+					xpcall(hBuffFrame_Update, hBuffFrame_ErrorHandler)
+				end)
+			end
+		end,
+		
+		OnMAFoundChild = function(self, index, child)
+			if self.opt and self.opt.scale then
+				--MovAny:UnlockScale(child)
+				if child:GetParent():GetName() ~= "ConsolidatedBuffsContainer" then
+					child:SetScale(self.opt.scale)
+				else
+					child:SetScale(1)
+				end
+				--MovAny:LockScale(child)
+			end
+			
+			if GetCVar("consolidateBuffs") then
+				SetCVar("consolidateBuffs", 0)
+			end
+			
+				if index == 1 then
+					child:ClearAllPoints()
+					if child:GetParent():GetName() ~= "ConsolidatedBuffsContainer" then
+						child:SetPoint("TOPLEFT", self, "TOPLEFT")					
+					else
+						child:SetPoint("TOPLEFT", "ConsolidatedBuffsContainer", "TOPRIGHT")
+					end
+				else
+					if string.match(child:GetName(), "BuffButton") then
+						if index == 9 or index == 17 then
+						
+							child:ClearAllPoints()
+							child:SetPoint("TOPLEFT", "BuffButton"..(index-8), "BOTTOMLEFT", 0, -15)
+						else
+							
+							child:ClearAllPoints()
+							child:SetPoint("TOPLEFT", "BuffButton"..(index-1), "TOPRIGHT", 5, 0)
+						end
+					end
+				end
+		end,
+		
+		--[[
+		OnMAReleaseChild = function(self, index, child)
+			--print(index.."  OnMAReleaseChild  "..self:GetName().."  "..child:GetName())
+		end,
+		]]
+		OnMAScale = function(self, scale)
+			if type(scale) ~= "number" then
+				return
+			end
+			if self.attachedChildren then
+				if GetCVar("consolidateBuffs") then
+					for i, child in pairs(self.attachedChildren) do
+						if child:GetParent():GetName() ~= "ConsolidatedBuffsContainer" then
+							child:SetScale(scale)
+						else
+							child:SetScale(1)
+						end
+					end
+				else
+					for i, child in pairs(self.attachedChildren) do
+						child:SetScale(scale)
+					end
+				end
+			end
+		end,
+		OnMAHook = function(self)
+			local b = _G["BuffFrame"]
+			b:ClearAllPoints()
+			b:SetPoint("TOPLEFT", self, "TOPLEFT", 0, 0)
+			MovAny:LockPoint(b)
+			
+			b = _G["TemporaryEnchantFrame"]
+			MovAny:LockPoint(b)
+			self.tef = b
+			
+			b = _G["ConsolidatedBuffs"]
+			b:ClearAllPoints()
+			b:SetPoint("TOPLEFT", self, "TOPLEFT", 0, 0)
+			MovAny:LockPoint(b)
+			if BuffFrame.numConsolidated == 0 then
+				b:Hide()
+			end
+			
+			if self.attachedChildren and self.opt and self.opt.scale then
+				if GetCVar("consolidateBuffs") == "1" then
+					for i, v in pairs(self.attachedChildren) do
+						if v:GetParent():GetName() ~= "ConsolidatedBuffsContainer" then
+							v:SetScale(self.opt.scale)
+						else
+							v:SetScale(1)
+						end
+					end
+				else
+					for i, v in pairs(self.attachedChildren) do
+						v:SetScale(self.opt.scale)
+					end
+				end
+			end
+		end,
+		OnMAPreReset = function(self, readOnly)
+			if readOnly then
+				return true
+			end
+			MovAny:UnlockPoint(self.tef)
+			
+			local b = _G["BuffFrame"]
+			MovAny:UnlockPoint(b)
+			b:ClearAllPoints()
+			b:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", -205, -13)
+			b = _G["ConsolidatedBuffs"]
+			MovAny:UnlockPoint(b)
+			b:ClearAllPoints()
+			b:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", -180, -13)
+			
+			for i, v in pairs(self.attachedChildren) do
+				MovAny:UnlockScale(v)
+				v:SetScale(1)
+			end
+			
+			self.tef = nil
+		end,
+		OnMAPostReset = function(self, readOnly)
+			BuffFrame_Update()
+		end,
+		OnMAHide = function(self, hidden)
+			if hidden then
+				MovAny:LockVisibility(_G["ConsolidatedBuffs"])
+				MovAny:LockVisibility(_G["BuffFrame"])
+				MovAny:LockVisibility(_G["TemporaryEnchantFrame"])
+			else
+				MovAny:UnlockVisibility(_G["ConsolidatedBuffs"])
+				MovAny:UnlockVisibility(_G["BuffFrame"])
+				MovAny:UnlockVisibility(_G["TemporaryEnchantFrame"])
+			end
+		end,
+	},
 	PlayerDebuffsMover = {
 		w = 31,
 		h = 31,
 		prefix = "DebuffButton",
+		excludes = "PlayerDebuffsMover2",
 		count = 16,
 		point = {"TOPRIGHT", "BuffFrame", "BOTTOMRIGHT", 0, -50},
 		OnLoad = function(self)
@@ -1736,6 +1956,53 @@ MovAny.lVirtualMovers = {
 				child:ClearAllPoints()
 				child:SetPoint("TOPRIGHT", self, "TOPRIGHT", -1, -1)
 			end
+			
+		--		print(index.."  OnMAFoundChild  "..self:GetName().."  "..child:GetName())
+		end,
+		OnMAReleaseChild = function(self, index, child)
+			if index == 1 then
+				child:ClearAllPoints()
+				child:SetPoint("TOPRIGHT", ConsolidatedBuffs, "BOTTOMRIGHT", 0, -TempEnchant1:GetHeight()*3)
+			end
+		end,
+		OnMAHook = function(self)
+			self:SetScale(_G["BuffFrame"]:GetEffectiveScale() / UIParent:GetScale())
+		end,
+	},
+	PlayerDebuffsMover2 = {
+		w = 31,
+		h = 31,
+		prefix = "DebuffButton",
+		excludes = "PlayerDebuffsMover",
+		count = 16,
+		point = {"TOPRIGHT", "BuffFrame", "BOTTOMRIGHT", 0, -50},
+		OnLoad = function(self)
+			if BuffFrame_Update then
+				hooksecurefunc("BuffFrame_Update", function()
+					if self.MAHooked then
+						self:MAScanForChildren()
+					end
+				end)
+			end
+		end,
+		OnMAFoundChild = function(self, index, child)
+			if index == 1 then
+				child:ClearAllPoints()
+				child:SetPoint("TOPRIGHT", self, "TOPRIGHT")
+			else
+				if string.match(child:GetName(), "DebuffButton") then
+					if index == 9 then
+					
+						child:ClearAllPoints()
+						child:SetPoint("TOPLEFT", "DebuffButton"..(index-8), "BOTTOMRIGHT", 0, -15)
+					else
+						
+						child:ClearAllPoints()
+						child:SetPoint("TOPLEFT", "DebuffButton"..(index-1), "TOPRIGHT", 5, 0)
+					end
+				end
+			end
+			
 		end,
 		OnMAReleaseChild = function(self, index, child)
 			if index == 1 then
@@ -1886,7 +2153,7 @@ MovAny.lVirtualMovers = {
 			b:SetScript("OnMouseUp", function(self)
 				self:GetNormalTexture():SetAllPoints()
 			end)
-			b:SetScript("OnClick", function() CompactRaidFrameManager_Expand(CompactRaidFrameManager) end)
+			b:SetScript("OnClick", function() CompactRaidFrameManager_Expand(CompactRaidFrameManager) end) --CompactRaidFrameManager_Expand
 			
 			local man = _G["CompactRaidFrameManager"]
 			p = {"TOPLEFT", "UIParent", "TOPLEFT", -5, -225}
@@ -1901,6 +2168,9 @@ MovAny.lVirtualMovers = {
 				if not self.MAHooked then
 					return
 				end
+				if not InCombatLockdown() then
+					return
+				end
 				MovAny:UnlockPoint(man)
 				man:ClearAllPoints()
 				man:SetPoint("CENTER", self, "CENTER", 0, 0)
@@ -1909,6 +2179,9 @@ MovAny.lVirtualMovers = {
 			end)
 			hooksecurefunc("CompactRaidFrameManager_Collapse", function(man)
 				if not self.MAHooked then
+					return
+				end
+				if not InCombatLockdown() then
 					return
 				end
 				MovAny:UnlockPoint(man)
@@ -1943,6 +2216,8 @@ MovAny.lVirtualMovers = {
 		end,
 		OnMAPreReset = function(self)
 			local e = MovAny.API:GetElement(self:GetName())
+			if InCombatLockdown() then return end
+			
 			MovAny.Position:Reset(e, self.man, true)
 			self.button:Hide()
 			self.man = nil

@@ -1,7 +1,7 @@
 local mod	= DBM:NewMod(853, "DBM-SiegeOfOrgrimmar", nil, 369)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision(("$Revision: 10264 $"):sub(12, -3))
+mod:SetRevision(("$Revision: 10376 $"):sub(12, -3))
 mod:SetCreatureID(71152, 71153, 71154, 71155, 71156, 71157, 71158, 71160, 71161)
 mod:SetZone()
 mod:SetUsedIcons(1)
@@ -61,7 +61,7 @@ local warnHewn						= mod:NewStackAnnounce(143275, 2, nil, false)
 local warnBloodletting				= mod:NewSpellAnnounce(143280, 4)
 --Rik'kal the Dissector
 local warnGeneticAlteration			= mod:NewStackAnnounce(143279, 2, nil, false)
-local warnInjection					= mod:NewStackAnnounce(143339)--Triggers 143340 at 10 stacks
+local warnInjection					= mod:NewStackAnnounce(143339)
 local warnMutate					= mod:NewTargetAnnounce(143337, 3)
 --Hisek the Swarmkeeper
 local warnAim						= mod:NewTargetAnnounce(142948, 4)--Maybe wrong debuff id, maybe 144759 instead
@@ -84,9 +84,9 @@ local specWarnCausticBlood			= mod:NewSpecialWarningSpell(142315, mod:IsTank())
 local specWarnToxicBlue				= mod:NewSpecialWarningYou(142532)
 local specWarnToxicRed				= mod:NewSpecialWarningYou(142533)
 local specWarnToxicYellow			= mod:NewSpecialWarningYou(142534)
-local specWarnToxicOrange			= mod:NewSpecialWarningYou(142547)--Heroic
-local specWarnToxicPurple			= mod:NewSpecialWarningYou(142548)--Heroic
-local specWarnToxicGreen			= mod:NewSpecialWarningYou(142549)--Heroic
+--local specWarnToxicOrange			= mod:NewSpecialWarningYou(142547)--Heroic
+--local specWarnToxicPurple			= mod:NewSpecialWarningYou(142548)--Heroic
+--local specWarnToxicGreen			= mod:NewSpecialWarningYou(142549)--Heroic
 --local specWarnToxicWhite			= mod:NewSpecialWarningYou(142550)--Not in EJ
 local specWarnCatalystBlue			= mod:NewSpecialWarningYou(142725, nil, nil, nil, 3)
 local specWarnCatalystRed			= mod:NewSpecialWarningYou(142726, nil, nil, nil, 3)
@@ -127,6 +127,7 @@ local specWarnBloodletting			= mod:NewSpecialWarningSwitch(143280, not mod:IsHea
 --Rik'kal the Dissector
 local specWarnMutate				= mod:NewSpecialWarningYou(143337)
 local specWarnParasiteFixate		= mod:NewSpecialWarningYou(143358)
+local specWarnInjection				= mod:NewSpecialWarningSpell(143339, mod:IsTank(), nil, nil, 3)
 --Hisek the Swarmkeeper
 local specWarnAim					= mod:NewSpecialWarningYou(142948)
 local yellAim						= mod:NewYell(142948)
@@ -155,6 +156,7 @@ local timerBloodlettingCD			= mod:NewCDTimer(35, 143280)--35-65 variable. most o
 --Rik'kal the Dissector
 local timerMutate					= mod:NewBuffFadesTimer(20, 143337)
 local timerMutateCD					= mod:NewCDTimer(45, 143337)
+local timerInjectionCD				= mod:NewNextTimer(9.5, 143339, nil, mod:IsTank())
 --Hisek the Swarmkeeper
 local timerAim						= mod:NewTargetTimer(5, 142948)--or is it 7, conflicting tooltips
 local timerAimCD					= mod:NewCDTimer(42, 142948)
@@ -163,6 +165,7 @@ local timerAimCD					= mod:NewCDTimer(42, 142948)
 local berserkTimer					= mod:NewBerserkTimer(720)
 
 local countdownEncaseInAmber		= mod:NewCountdown(30, 142564)--Probably switch to secondary countdown if one of his other abilities proves to have priority
+local countdownInjection			= mod:NewCountdown(9.5, 143339, mod:IsTank(), nil, nil, nil, true)
 
 mod:AddBoolOption("RangeFrame")
 mod:AddBoolOption("SetIconOnAim", true)--multi boss fight, will use star and avoid moving skull off a kill target
@@ -271,6 +274,8 @@ local function CheckBosses(GUID)
 				timerBloodlettingCD:Start(9)
 				if UnitDebuff("player", GetSpellInfo(143279)) then vulnerable = true end
 			elseif cid == 71158 then--Rik'kal the Dissector
+				timerInjectionCD:Start(14)
+				countdownInjection:Start(14)
 				timerMutateCD:Start(34)
 				if UnitDebuff("player", GetSpellInfo(143275)) then vulnerable = true end
 			elseif cid == 71153 then--Hisek the Swarmkeeper
@@ -357,7 +362,7 @@ function mod:SPELL_CAST_START(args)
 		if self.Options.warnToxicCatalyst then
 			warnToxicCatalystOrange:Show()
 		end
-		if UnitDebuff("player", GetSpellInfo(142547)) then
+		if UnitDebuff("player", GetSpellInfo(142533)) or UnitDebuff("player", GetSpellInfo(142534)) then--Red or Yellow
 			specWarnCatalystOrange:Show()
 			if self.Options.yellToxicCatalyst then
 				yellCatalystOrange:Yell()
@@ -368,7 +373,7 @@ function mod:SPELL_CAST_START(args)
 		if self.Options.warnToxicCatalyst then
 			warnToxicCatalystPurple:Show()
 		end
-		if UnitDebuff("player", GetSpellInfo(142548)) then
+		if UnitDebuff("player", GetSpellInfo(142533)) or UnitDebuff("player", GetSpellInfo(142532)) then--Red or Blue
 			specWarnCatalystPurple:Show()
 			if self.Options.yellToxicCatalyst then
 				yellCatalystPurple:Yell()
@@ -379,7 +384,7 @@ function mod:SPELL_CAST_START(args)
 		if self.Options.warnToxicCatalyst then
 			warnToxicCatalystGreen:Show()
 		end
-		if UnitDebuff("player", GetSpellInfo(142549)) then
+		if UnitDebuff("player", GetSpellInfo(142534)) or UnitDebuff("player", GetSpellInfo(142532)) then--Yellow or Blue
 			specWarnCatalystGreen:Show()
 			if self.Options.yellToxicCatalyst then
 				yellCatalystGreen:Yell()
@@ -419,6 +424,11 @@ function mod:SPELL_CAST_START(args)
 		warnRapidFire:Show()
 		specWarnRapidFire:Show()
 		--timerRapidFireCD:Start()
+	elseif args.spellId == 143339 then
+		specWarnInjection:Show()
+		timerInjectionCD:Start()
+		countdownInjection:Cancel()--Sometimes boss stutter casts so need to do this
+		countdownInjection:Start()
 	end
 end
 
@@ -454,12 +464,12 @@ function mod:SPELL_AURA_APPLIED(args)
 		specWarnToxicRed:Show()
 	elseif args.spellId == 142534 and args:IsPlayer() then
 		specWarnToxicYellow:Show()
-	elseif args.spellId == 142547 and args:IsPlayer() then
+--[[	elseif args.spellId == 142547 and args:IsPlayer() then
 		specWarnToxicOrange:Show()
 	elseif args.spellId == 142548 and args:IsPlayer() then
 		specWarnToxicPurple:Show()
 	elseif args.spellId == 142549 and args:IsPlayer() then
-		specWarnToxicGreen:Show()
+		specWarnToxicGreen:Show()--]]
 	elseif args.spellId == 142671 then
 		warnMesmerize:Show(args.destName)
 		if args.IsPlayer() then
@@ -606,6 +616,8 @@ function mod:UNIT_DIED(args)
 		timerBloodlettingCD:Cancel()
 	elseif cid == 71158 then--Rik'kal the Dissector
 		timerMutateCD:Cancel()
+		timerInjectionCD:Cancel()
+		countdownInjection:Cancel()
 	elseif cid == 71153 then--Hisek the Swarmkeeper
 		timerAimCD:Cancel()
 		--timerRapidFireCD:Cancel()

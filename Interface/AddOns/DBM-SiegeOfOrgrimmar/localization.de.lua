@@ -6,6 +6,10 @@ local L
 ---------------
 L= DBM:GetModLocalization(852)
 
+L:SetMiscLocalization({
+	Victory			= "Ah, Ihr habt es geschafft! Das Wasser ist wieder rein."
+})
+
 ---------------------------
 -- The Fallen Protectors --
 ---------------------------
@@ -21,7 +25,7 @@ L:SetOptionLocalization({
 })
 
 L:SetMiscLocalization({
-	wasteOfTime			= "Very well, I will create a field to keep your corruption quarantined."--translate (trigger)
+	wasteOfTime			= "Nun gut, ich werde ein Feld erschaffen, das Eure Verderbnis eindämmt."
 })
 
 ------------------
@@ -39,21 +43,21 @@ L:SetOptionLocalization({
 L= DBM:GetModLocalization(868)
 
 L:SetTimerLocalization({
-	timerAddsCD		= "Nächste Adds",
-	timerTowerCD	= "Nächster Turm & Adds"
+	timerTowerCD	= "Nächster Turm"
 })
 
 L:SetOptionLocalization({
-	timerAddsCD		= "Zeige Zeit bis nächste Gegnerwelle",
 	timerTowerCD	= "Zeige Zeit bis nächsten Turmangriff"
 })
 
 L:SetMiscLocalization({
-	newForces1	= "Da kommen sie!",--needs to be verified (PTR screenshot-captured translation)
-	newForces2	= "Drachenmalklan, ausrücken!",--needs to be verified (PTR screenshot-captured translation)
-	newForces3	= "Für Höllschrei!",--needs to be verified (PTR screenshot-captured translation)
-	newForces4	= "Nächster Trupp, vorwärts!"--needs to be verified (PTR screenshot-captured translation)
---	tower		= "Das Tor zum"--needs to be verified (PTR screenshot-captured translation)
+	Pull		= "Drachenmalklan, nehmt den Hafen wieder ein und treibt sie ins Meer! Im Namen Höllschreis und der wahren Horde!",
+	newForces1	= "Da kommen sie!",--needs to be verified (PTR screenshot-captured translation) (alliance)
+	newForces1H	= "Holt sie schnell vom Himmel, damit ich sie erwürgen kann.",
+	newForces2	= "Drachenmalklan, ausrücken!",
+	newForces3	= "Für Höllschrei!",
+	newForces4	= "Nächster Trupp, vorwärts!",
+	tower		= "Das Tor zum"--"Das Tor zum Nordturm ist durchbrochen!"/"Das Tor zum Südturm ist durchbrochen!"
 })
 
 --------------------
@@ -80,16 +84,18 @@ L:SetWarningLocalization({
 })
 
 L:SetOptionLocalization({
-	warnDefensiveStanceSoon		= "Zeige Vorwarnungscountdown für $spell:143593 (5s zuvor)"
+	warnDefensiveStanceSoon		= "Zeige Vorwarnungscountdown für $spell:143593 (5s zuvor)",
+	SetIconOnAdds				= "Setze Zeichen auf $journal:7920",
+	InfoFrame					= "Zeige Infofenster für $journal:7909"
 })
 
 L:SetMiscLocalization({
-	newForces1					= "Krieger, im Laufschritt!",--needs to be verified (PTR screenshot-captured translation)
-	newForces2					= "Verteidigt das Tor!",--needs to be verified (PTR screenshot-captured translation)
-	newForces3					= "Truppen, sammelt Euch!",--needs to be verified (PTR video-captured translation)
-	newForces4					= "Kor'kron, zu mir!",--needs to be verified (PTR video-captured translation)
-	newForces5					= "Nächste Staffel, nach vorn!",--needs to be verified (PTR screenshot-captured translation)
-	allForces					= "Alle Kor'kron unter meinem Befehl, tötet sie! Jetzt!"--needs to be verified (PTR video-captured translation)
+	newForces1					= "Krieger, im Laufschritt!",
+	newForces2					= "Verteidigt das Tor!",
+	newForces3					= "Truppen, sammelt Euch!",
+	newForces4					= "Kor'kron, zu mir!",
+	newForces5					= "Nächste Staffel, nach vorn!",
+	allForces					= "Alle Kor'kron unter meinem Befehl, tötet sie! Jetzt!"
 })
 
 -----------------
@@ -103,8 +109,8 @@ L= DBM:GetModLocalization(846)
 L= DBM:GetModLocalization(870)
 
 L:SetMiscLocalization({
-	Module1 = "Module 1's all prepared for system reset.",--translate (trigger)
-	Victory	= "Module 2's all prepared for system reset"--translate (trigger)
+	Module1 = "Modul 1 bereit für den Systemneustart.",
+	Victory	= "Modul 2 bereit für den Systemneustart."
 })
 
 ---------------------------
@@ -121,9 +127,13 @@ L:SetOptionLocalization({
 ----------------------------
 L= DBM:GetModLocalization(865)
 
+L:SetOptionLocalization({
+	InfoFrame			= "Zeige Infofenster für $journal:8202"
+})
+
 L:SetMiscLocalization({
-	newWeapons	= "Unfertige Waffen werden auf das Fabrikationsband befördert.",--needs to be verified (PTR screenshot-captured translation)
-	newShredder	= "An Automated Shredder draws near!"--translate (trigger)
+	newWeapons	= "Unfertige Waffen werden auf das Fabrikationsband befördert.",--needs to be verified (video-captured translation)
+	newShredder	= "Ein automatisierter Schredder nähert sich!"--needs to be verified (video-captured translation)
 })
 
 ----------------------------
@@ -165,6 +175,10 @@ L:SetMiscLocalization({
 -- Garrosh Hellscream --
 ------------------------
 L= DBM:GetModLocalization(869)
+
+L:SetOptionLocalization({
+	SetIconOnShaman			= "Setze Zeichen auf $journal:8294"
+})
 
 -------------
 --  Trash  --

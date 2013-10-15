@@ -1,0 +1,179 @@
+
+Bartender4DB = {
+	["namespaces"] = {
+		["ActionBars"] = {
+			["profiles"] = {
+				["Grumblestout - Argent Dawn"] = {
+					["actionbars"] = {
+						{
+							["version"] = 3,
+							["padding"] = 6,
+							["position"] = {
+								["x"] = -510,
+								["point"] = "BOTTOM",
+								["y"] = 41.75,
+							},
+						}, -- [1]
+						{
+							["enabled"] = false,
+							["version"] = 3,
+							["position"] = {
+								["x"] = -231.5000915527344,
+								["point"] = "CENTER",
+								["y"] = -189.5000610351563,
+							},
+						}, -- [2]
+						{
+							["rows"] = 12,
+							["version"] = 3,
+							["position"] = {
+								["x"] = -82,
+								["point"] = "BOTTOMRIGHT",
+								["y"] = 610,
+							},
+							["padding"] = 5,
+						}, -- [3]
+						{
+							["rows"] = 12,
+							["version"] = 3,
+							["position"] = {
+								["x"] = -42,
+								["point"] = "BOTTOMRIGHT",
+								["y"] = 610,
+							},
+							["padding"] = 5,
+						}, -- [4]
+						{
+							["version"] = 3,
+							["position"] = {
+								["x"] = 3,
+								["point"] = "BOTTOM",
+								["y"] = 83,
+							},
+							["padding"] = 6,
+						}, -- [5]
+						{
+							["version"] = 3,
+							["position"] = {
+								["x"] = -510,
+								["point"] = "BOTTOM",
+								["y"] = 83,
+							},
+							["padding"] = 6,
+						}, -- [6]
+						{
+						}, -- [7]
+						{
+						}, -- [8]
+						[10] = {
+						},
+					},
+				},
+			},
+		},
+		["LibDualSpec-1.0"] = {
+		},
+		["ExtraActionBar"] = {
+			["profiles"] = {
+				["Grumblestout - Argent Dawn"] = {
+					["version"] = 3,
+					["position"] = {
+						["x"] = -31.49996948242188,
+						["point"] = "BOTTOM",
+						["y"] = 223,
+					},
+				},
+			},
+		},
+		["MicroMenu"] = {
+			["profiles"] = {
+				["Grumblestout - Argent Dawn"] = {
+					["version"] = 3,
+					["position"] = {
+						["x"] = 37.5,
+						["point"] = "BOTTOM",
+						["scale"] = 1,
+						["y"] = 41.75,
+					},
+				},
+			},
+		},
+		["XPBar"] = {
+		},
+		["BlizzardArt"] = {
+			["profiles"] = {
+				["Grumblestout - Argent Dawn"] = {
+					["enabled"] = true,
+					["version"] = 3,
+					["position"] = {
+						["x"] = -512,
+						["point"] = "BOTTOM",
+						["y"] = 47,
+					},
+				},
+			},
+		},
+		["Vehicle"] = {
+			["profiles"] = {
+				["Grumblestout - Argent Dawn"] = {
+					["version"] = 3,
+					["position"] = {
+						["x"] = 99.50006103515625,
+						["point"] = "CENTER",
+						["y"] = 47.49993896484375,
+					},
+				},
+			},
+		},
+		["BagBar"] = {
+			["profiles"] = {
+				["Grumblestout - Argent Dawn"] = {
+					["version"] = 3,
+					["onebag"] = true,
+					["position"] = {
+						["x"] = 463.5,
+						["point"] = "BOTTOM",
+						["y"] = 41.75,
+					},
+				},
+			},
+		},
+		["StanceBar"] = {
+			["profiles"] = {
+				["Grumblestout - Argent Dawn"] = {
+					["version"] = 3,
+					["position"] = {
+						["x"] = -460,
+						["point"] = "BOTTOM",
+						["scale"] = 1,
+						["y"] = 116,
+					},
+				},
+			},
+		},
+		["PetBar"] = {
+			["profiles"] = {
+				["Grumblestout - Argent Dawn"] = {
+					["version"] = 3,
+					["position"] = {
+						["x"] = -120,
+						["point"] = "BOTTOM",
+						["y"] = 116,
+					},
+				},
+			},
+		},
+		["RepBar"] = {
+		},
+	},
+	["profileKeys"] = {
+		["Grumblestout - Argent Dawn"] = "Grumblestout - Argent Dawn",
+	},
+	["profiles"] = {
+		["Grumblestout - Argent Dawn"] = {
+			["blizzardVehicle"] = true,
+			["focuscastmodifier"] = false,
+			["outofrange"] = "hotkey",
+		},
+	},
+}

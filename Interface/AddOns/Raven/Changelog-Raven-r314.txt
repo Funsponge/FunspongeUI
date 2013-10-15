@@ -1,0 +1,90 @@
+------------------------------------------------------------------------
+r314 | tomber | 2013-10-02 18:33:50 +0000 (Wed, 02 Oct 2013) | 1 line
+Changed paths:
+   M /trunk/Bars.lua
+   M /trunk/Cancel.lua
+
+Add line in tooltip showing the listed spell ids (only when alt and control keys are held down when mousing over the bar/icon) from imported spell lists such as in the Raven_Filter_Leila addon. This is a quality of life improvement for maintainers of such lists, allowing them to find listed spell ids for spells that have multiple associated spell ids. This has essentially no impact on the primary code path.
+------------------------------------------------------------------------
+r313 | tomber | 2013-10-02 01:00:46 +0000 (Wed, 02 Oct 2013) | 1 line
+Changed paths:
+   M /trunk/Bars.lua
+
+Restored part of the bar refresh optimization that was removed in r308 to address an issue with multiple instances of the same debuff from multiple mobs (that issue remains fixed in this release). This change both reduces overhead and minimizes visibility of the clock animation flicker that sometimes happens when clock direction is set to true.
+------------------------------------------------------------------------
+r312 | tomber | 2013-09-28 00:20:29 +0000 (Sat, 28 Sep 2013) | 2 lines
+Changed paths:
+   M /trunk/Nest.lua
+   M /trunk/Presets/Hunter.lua
+
+Fix one more ghost bar issue related to switching targets.
+Add stacking buff and proc for Master Marksman to hunter presets.
+------------------------------------------------------------------------
+r311 | tomber | 2013-09-26 18:30:30 +0000 (Thu, 26 Sep 2013) | 2 lines
+Changed paths:
+   M /trunk/Bars.lua
+   M /trunk/Localizations/enUS.lua
+   M /trunk/Nest.lua
+   M /trunk/Raven_Options/Options.lua
+
+Fix ghost bar detection to make sure don't miss any candidates when spells expire. Make sure ghost bars always display 0 time left.
+Add ability to display just the tooltip number on a custom bar when that option is enabled (this is done by embedding the string TT# in a custom label).
+------------------------------------------------------------------------
+r310 | tomber | 2013-09-25 21:26:06 +0000 (Wed, 25 Sep 2013) | 3 lines
+Changed paths:
+   M /trunk/Bars.lua
+   M /trunk/Localizations/enUS.lua
+   M /trunk/Main.lua
+   M /trunk/Nest.lua
+   M /trunk/Raven_Options/Options.lua
+
+Fixed issue with ghost bars being displayed every time spell was refreshed. Should now only show when spell expires and never when the same spell is displayed on a active timer bar in the same bar group.
+Added option to leave gaps between groups of bars in Debuff Tracker and Buff Tracker type bar groups when headers are not being displayed. The headers are actually still being generated (which is necessary to provide the "right-click to hide capability") but they are invisible.
+CPU performance was improved somewhat by less frequently checking Blizzard frame settings and by a rewrite of how bar attributes are passed to the graphics functions.
+------------------------------------------------------------------------
+r309 | tomber | 2013-09-16 03:45:11 +0000 (Mon, 16 Sep 2013) | 4 lines
+Changed paths:
+   M /trunk/Bars.lua
+   M /trunk/Highlights.lua
+   M /trunk/Main.lua
+
+Detect elapsed bars in the display code and remove them if they were not caught by the bar processing code.
+Vehicle-related aura events now also force player aura updates (this is the probable cause for some vehicle debuffs not being detected as elapsed).
+Vehicle auras now are only included in player auras when the vehicle UI is visible (this was noticeable on Timeless Isle when hitching a ride on an albatross).
+Remove highlight and cooldown overlay code related to the Macaroon addon (Macaroon was replaced with Ion a while back and this code was never updated to work with Ion).
+------------------------------------------------------------------------
+r308 | tomber | 2013-09-12 00:43:31 +0000 (Thu, 12 Sep 2013) | 5 lines
+Changed paths:
+   M /trunk/Bars.lua
+   M /trunk/Nest.lua
+   M /trunk/Raven_Options/Options.lua
+
+Fix problem showing multiple bars for same buff/debuff from multiple non-targeted casters.
+
+Fix issue with pixel perfect display option when using anchor points that are not themselves pixel-aligned. Oddly, this could even happen when selecting anchor points relative to UIParent.
+
+Increase maximum offsets from anchor points from 500 to 1000.
+------------------------------------------------------------------------
+r307 | tomber | 2013-09-10 21:37:39 +0000 (Tue, 10 Sep 2013) | 1 line
+Changed paths:
+   M /trunk/Bars.lua
+   M /trunk/Cancel.lua
+
+Change GameTooltip calls to use SetUnitAura instead of SetUnitBuff and SetUnitDebuff, in order to workaround issue with other addons hooking those functions.
+------------------------------------------------------------------------
+r306 | tomber | 2013-08-31 21:39:01 +0000 (Sat, 31 Aug 2013) | 8 lines
+Changed paths:
+   M /trunk/Bars.lua
+   M /trunk/Localizations/enUS.lua
+   M /trunk/Nest.lua
+   M /trunk/Raven_Options/Options.lua
+
+New options for timelines added:
+1) Set percentage used to detect when icons overlap (default: 50).
+2) Set horizontal and vertical offsets for the splash effect, up to 1000 pixels in each direction (default offsets = 0).
+3) Set vertical offset from the anchor center for icons, most useful for horizontal timeline layouts with non-standard timeline height (default: 0).
+4) Set optional vertical offset for overlapping icons, again most useful for horizontal timeline layouts (default: 0).
+5) Increase maximum timeline bar width to 2000 and height to 200.
+
+This build also cleans up some of tooltips associated with use of #12345 spell id format.
+------------------------------------------------------------------------

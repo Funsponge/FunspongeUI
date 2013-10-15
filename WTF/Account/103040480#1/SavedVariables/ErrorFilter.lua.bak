@@ -1,0 +1,10 @@
+
+ErrorFilterDB = {
+	["profileKeys"] = {
+		["Grumblestout - Argent Dawn"] = "Default",
+	},
+	["profiles"] = {
+		["Default"] = {
+		},
+	},
+}

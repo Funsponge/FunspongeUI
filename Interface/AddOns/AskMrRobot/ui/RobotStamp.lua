@@ -26,7 +26,7 @@ function AskMrRobot.RobotStamp:new(name, parent)
 	o.smallText:SetPoint("TOPLEFT", o.bigText, "BOTTOMLEFT", 0, -7)
 	o.smallText:SetPoint("RIGHT", o, "RIGHT", -15, 0)
 	o.smallText:SetWidth(o.smallText:GetWidth())
-	o.smallText:SetJustifyH("LEFT")
+	o.smallText:SetJustifyH("CENTER")
 
 	o:SetBackdrop({edgeFile = "Interface\\AddOns\\AskMrRobot\\Media\\round-edge-big", edgeSize = 16})
 	o:SetBackdropBorderColor(7/255, 166/255, 11/255)

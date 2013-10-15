@@ -711,11 +711,11 @@ local function SetBarLabel(info, newLabel, isLinked)
 		return false
 	end
 
-	local a, b = string.find(newLabel, "^%a[%a%d%b()%[%] %-%+%!%*_':]*") -- make sure new label has correct format and doesn't contain bad characters
+	local a, b = string.find(newLabel, "^%a[%a%d%b()%[%] %-%+%!%*%#_':]*") -- make sure new label has correct format and doesn't contain bad characters
 	if a ~= 1 and b ~= string.len(newLabel) then
 		print('"' .. newLabel .. '" ' .. L["does not begin with a letter or contains restricted characters"])
 		return false
-	end 
+	end
 
 	DeleteBar()
 	if isLinked and ((bar.barType == "Buff") or (bar.barType == "Debuff") or (bar.barType == "Cooldown")) then MOD:SetLabel(bar.action, newLabel) end
@@ -3993,6 +3993,14 @@ MOD.OptionsTable = {
 									desc = L["When showing all buffs or debuffs cast by player without headers, show spell names in labels."],
 									get = function(info) return not GetBarGroupField("noLabels") end,
 									set = function(info, value) SetBarGroupField("noLabels", not value) end,
+								},
+								HeaderSpacing = {
+									type = "toggle", order = 77, name = L["Spacing"], width = "half",
+									hidden = function(info) return not GetBarGroupField("auto") end,
+									disabled = function(info) return not GetBarGroupField("noHeaders") end,
+									desc = L["When showing all buffs or debuffs cast by player without headers, keep spacing between groups."],
+									get = function(info) return GetBarGroupField("headerGaps") end,
+									set = function(info, value) SetBarGroupField("headerGaps", value) end,
 								},
 								space4 = { type = "description", name = "", order = 80 },
 								ReverseDirection = {
@@ -10280,7 +10288,7 @@ MOD.barOptions = {
 			},
 			LabelNumber = {
 				type = "toggle", order = 40, name = L["Add Tooltip Number"],
-				desc = L["If checked, the first number found in the tooltip is added to the label."],
+				desc = L["If checked, the first number found in the tooltip is added to the label. If label contains the string TT# then the number replaces the label."],
 				hidden = function(info) return GetBarField(info, "barType") == "Notification" end,
 				get = function(info) return GetBarField(info, "labelNumber") end,
 				set = function(info, value) SetBarField(info, "labelNumber", value); MOD:UpdateAllBarGroups() end,

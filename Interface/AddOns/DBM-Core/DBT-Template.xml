@@ -97,7 +97,6 @@
 						</Texture>
 					</Layer>
 				</Layers>
-				
 				<BarTexture name="$parentTexture" file="Interface\AddOns\DBM-Core\textures\default.tga"/>
 				<BarColor r="1.0" g="0.7" b="0.0"/>
 			</StatusBar>

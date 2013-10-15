@@ -1,0 +1,35 @@
+VER 3 0000000000000006 "1" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/startattack
+/cast Crusader Strike
+/dismount
+END
+VER 3 0000000000000007 "cleanse" "INV_MISC_QUESTIONMARK"
+#showtooltip Cleanse
+/use [target=mouseover,exists][] Cleanse
+END
+VER 3 000000000000000B "Holywhomp" "INV_MISC_QUESTIONMARK"
+/castsequence  Crusader Strike
+/use Hammer of Wrath
+END
+VER 3 0000000000000008 "Mount" "INV_MISC_QUESTIONMARK"
+#show
+/dismount [mounted]
+/cast [flyable] Golden Cloud Serpent; Winterspring Frostsaber
+END
+VER 3 000000000000000A "Noes!" "INV_MISC_QUESTIONMARK"
+#show
+/cast Every Man for Himself(Racial)
+/cast Emancipate
+END
+VER 3 0000000000000009 "Nuke!" "INV_MISC_QUESTIONMARK"
+#showtooltip Avenging Wrath
+/cast Guardian of Ancient Kings
+/cast Avenging Wrath
+/use Knightly Badge of the Shieldwall
+END
+VER 3 0000000000000005 "Talents" "INV_Misc_QuestionMark"
+#show [spec:1]Righteous Fury; Seal of Corruption
+/equipset [spec:2]Retribution; Protection
+/usetalents [spec:1] 2; 1 
+END

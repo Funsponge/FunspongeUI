@@ -690,6 +690,7 @@ L["When showing all buffs or debuffs cast by player, set opacity for ones not on
 L["Targets"] = true
 L["When showing all buffs or debuffs cast by player without headers, show target names in labels."] = true
 L["When showing all buffs or debuffs cast by player without headers, show spell names in labels."] = true
+L["When showing all buffs or debuffs cast by player without headers, keep spacing between groups."] = true
 
 -- Bar Groups > Custom Bars tab
 L["Custom Bars"] = true
@@ -1562,7 +1563,7 @@ L["Enter label text for the bar."] = true
 L["Label Link"] = true
 L["If checked, label is linked to the associated spell and changing it here will change it for all bars linked to the same spell."] = true
 L["Add Tooltip Number"] = true
-L["If checked, the first number found in the tooltip is added to the label."] = true
+L["If checked, the first number found in the tooltip is added to the label. If label contains the string TT# then the number replaces the label."] = true
 L["Show When Ready"] = true
 L["If checked, show ready bar when action is not on cooldown."] = true
 L["Show Not Active"] = true

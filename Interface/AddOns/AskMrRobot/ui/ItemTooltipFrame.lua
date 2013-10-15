@@ -38,7 +38,7 @@ end
 -- set the tooltip from the specified item link
 function AskMrRobot.ItemTooltipFrame:SetItemLink(link)
 	if self.tooltipShown then
-		GameTooltip.Hide()
+		GameTooltip:Hide()
 	end
 	self.itemLink = link
 end

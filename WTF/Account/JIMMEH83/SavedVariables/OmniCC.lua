@@ -1,25 +1,9 @@
 
 OmniCC4Config = {
-	["engine"] = "AniUpdater",
-	["groups"] = {
-	},
 	["groupSettings"] = {
 		["base"] = {
 			["enabled"] = true,
 			["fontFace"] = "Interface\\Addons\\SharedMedia_MyMedia\\font\\big_noodle_titling.ttf",
-			["fontSize"] = 21,
-			["effect"] = "shine",
-			["yOff"] = 0,
-			["minEffectDuration"] = 30,
-			["minSize"] = 0.5,
-			["spiralOpacity"] = 1,
-			["scaleText"] = true,
-			["xOff"] = 0,
-			["tenthsDuration"] = 0,
-			["fontOutline"] = "OUTLINE",
-			["anchor"] = "CENTER",
-			["mmSSDuration"] = 0,
-			["minDuration"] = 3,
 			["styles"] = {
 				["soon"] = {
 					["a"] = 1,
@@ -28,10 +12,10 @@ OmniCC4Config = {
 					["g"] = 1,
 					["b"] = 0.1019607843137255,
 				},
-				["minutes"] = {
+				["seconds"] = {
 					["a"] = 1,
 					["r"] = 1,
-					["scale"] = 0.8999999761581421,
+					["scale"] = 0.75,
 					["g"] = 1,
 					["b"] = 1,
 				},
@@ -49,15 +33,31 @@ OmniCC4Config = {
 					["g"] = 0.98,
 					["b"] = 0.4,
 				},
-				["seconds"] = {
+				["minutes"] = {
 					["a"] = 1,
 					["r"] = 1,
-					["scale"] = 0.75,
+					["scale"] = 0.8999999761581421,
 					["g"] = 1,
 					["b"] = 1,
 				},
 			},
+			["effect"] = "shine",
+			["scaleText"] = true,
+			["mmSSDuration"] = 0,
+			["anchor"] = "CENTER",
+			["spiralOpacity"] = 1,
+			["minDuration"] = 3,
+			["xOff"] = 0,
+			["tenthsDuration"] = 0,
+			["fontOutline"] = "OUTLINE",
+			["minSize"] = 0.5,
+			["minEffectDuration"] = 30,
+			["yOff"] = 0,
+			["fontSize"] = 21,
 		},
 	},
-	["version"] = "5.4.0",
+	["version"] = "5.4.1",
+	["groups"] = {
+	},
+	["engine"] = "AniUpdater",
 }

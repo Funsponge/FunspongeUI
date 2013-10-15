@@ -1,0 +1,14 @@
+
+kgPanelsDB = {
+	["namespaces"] = {
+		["LibDualSpec-1.0"] = {
+		},
+	},
+	["profileKeys"] = {
+		["Grumblestout - Argent Dawn"] = "Default",
+	},
+	["profiles"] = {
+		["Default"] = {
+		},
+	},
+}

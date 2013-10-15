@@ -1,6 +1,15 @@
 -- initialize the ShoppingListTab class
 AskMrRobot.ShoppingListTab = AskMrRobot.inheritsFrom(AskMrRobot.Frame)
 
+StaticPopupDialogs["SHOPPING_TAB_PLEASE_OPEN"] = {
+	text = "You need to open the mail window for this to work",
+	button1 = "Ok",
+	timeout = 0,
+	whileDead = true,
+	hideOnEscape = true,
+	preferredIndex = 3,  -- avoid some UI taint, see http://www.wowace.com/announcements/how-to-avoid-some-ui-taint/
+}
+
 function AskMrRobot.ShoppingListTab:new(parent)
 
 	local tab = AskMrRobot.Frame:new(nil, parent)
@@ -10,13 +19,8 @@ function AskMrRobot.ShoppingListTab:new(parent)
 	tab:Hide()
 	tab:RegisterEvent("AUCTION_HOUSE_CLOSED")
 	tab:RegisterEvent("AUCTION_HOUSE_SHOW")
-
-
-   	-- tab:RegisterEvent("CHAT_MSG_CHANNEL")
-   	-- tab:RegisterEvent("CHAT_MSG_GUILD")
-   	-- tab:RegisterEvent("CHAT_MSG_PARTY")
-   	-- tab:RegisterEvent("CHAT_MSG_PARTY_LEADER")
-   	-- tab:RegisterEvent("CHAT_MSG_RAID")
+	tab:RegisterEvent("MAIL_SHOW")
+	tab:RegisterEvent("MAIL_CLOSED")
 
 	tab.isAuctionHouseVisible = false
 
@@ -43,7 +47,6 @@ function AskMrRobot.ShoppingListTab:new(parent)
 	tab.sendButton:SetScript("OnClick", function()
 		tab:Send()
 	end)
-
 
 	tab.enchantMaterialsCheckbox = CreateFrame("CheckButton", "AmrEnchantMaterialsCheckbox", tab.shoppingPanel, "ChatConfigCheckButtonTemplate");
 	tab.enchantMaterialsCheckbox:SetChecked(AmrSendSettings.SendEnchantMaterials)
@@ -186,6 +189,7 @@ function AskMrRobot.ShoppingListTab:new(parent)
 	 UIDropDownMenu_AddButton(AddButton(self, "raid"))
 	 UIDropDownMenu_AddButton(AddButton(self, "guild"))
 	 UIDropDownMenu_AddButton(AddButton(self, "channel"))
+	 UIDropDownMenu_AddButton(AddButton(self, "mail"))
 	end)
 
 	function tab.dropDown:SetValue(newValue)
@@ -203,13 +207,12 @@ function AskMrRobot.ShoppingListTab:new(parent)
 	tab.sendTo:SetHeight(30)
 	tab.sendTo:SetText(AmrSendSettings.SendTo or "")
 	tab.sendTo:SetFontObject("GameFontHighlightLarge")
+	tab.sendTo:SetAutoFocus(false)
 	tab.sendTo:SetScript("OnChar", function()
 		AmrSendSettings.SendTo = tab.sendTo:GetText()
 	end)
 
-
 	tab.messageQueue = {}
-	tab.outstandingMessage = 0
 	return tab
 end
 
@@ -253,9 +256,9 @@ function AskMrRobot.ShoppingListTab:SetGemIcon(row, gemInfo)
 	gemIcon:SetGemColor(gemInfo.color)
 
 	-- if we didn't get one, its because WoW is slow
-	if not gemLink and gemInfo.id and itemId then
+	if not gemLink and gemInfo.id then
 		-- when WoW finally returns the link, set the icon / tooltip
-		AskMrRobot.RegisterItemInfoCallback(itemId, function(name, link)
+		AskMrRobot.RegisterItemInfoCallback(gemInfo.id, function(name, link)
 			gemIcon:SetItemLink(link)
 		end)
 	end
@@ -530,6 +533,21 @@ function AskMrRobot.ShoppingListTab:SetEnchantMaterialQuantity(row, qty, total)
 	enchantText:Show()
 end
 
+function AskMrRobot.ShoppingListTab:HasStuffToBuy()
+
+	local gemList, enchantList, enchantMaterials = self:CalculateItems()
+
+	local count = 0
+	for gemId, gemInfo in AskMrRobot.spairs(gemList) do
+		count = count + gemInfo.total - gemInfo.count
+	end
+	for slot, enchant in AskMrRobot.spairs(enchantList) do
+		count = count + enchant.total - enchant.count
+	end
+
+	return count > 0
+end
+
 function AskMrRobot.ShoppingListTab:CalculateItems()
 	-- build a map of missing gem-ids -> {id, color, enchantid, count, total}
 	local gemList = {}
@@ -734,6 +752,14 @@ function AskMrRobot.ShoppingListTab:OnEvent(frame, event, ...)
 	end
 end
 
+function AskMrRobot.ShoppingListTab:On_MAIL_SHOW()
+	self.mailOpen = true
+end
+
+function AskMrRobot.ShoppingListTab:On_MAIL_CLOSED()
+	self.mailOpen = nil
+end
+
 function AskMrRobot.ShoppingListTab:On_AUCTION_HOUSE_SHOW()
 	self.isAuctionHouseVisible = true
 end
@@ -742,15 +768,29 @@ function AskMrRobot.ShoppingListTab:On_AUCTION_HOUSE_CLOSED()
 	self.isAuctionHouseVisible = false
 end
 
-function AskMrRobot.ShoppingListTab:Send()
+function AskMrRobot.ShoppingListTab:sendMail()
+
+	-- need mail window to be open for this to work
+	if not self.mailOpen then
+		StaticPopup_Show("SHOPPING_TAB_PLEASE_OPEN")
+		return
+	end
+
+	local message = "Mr. Robot says I need the following to optimize my gear:\n"
+
 	local gemList, enchantList, enchantMaterials = self:CalculateItems()
 
-	local items = {}
 	if AmrSendSettings.SendGems then
 		for k,v in pairs(gemList) do
-			local needed = v.total - v.count
-			if needed > 0 then
-				items[k] = needed
+			--exclude jewelcrafter gems
+			if not AskMrRobot.JewelcrafterGems[k] then
+				local needed = v.total - v.count
+				if needed > 0 then
+					local itemName = GetItemInfo(k)
+					if itemName then
+						message = message .. "\n" .. needed .. "x " .. itemName
+					end
+				end
 			end
 		end
 	end
@@ -759,7 +799,10 @@ function AskMrRobot.ShoppingListTab:Send()
 		for k,v in pairs(enchantList) do
 			local needed = v.total - v.count
 			if needed > 0 then
-				items[k] = needed
+				local itemName = GetItemInfo(k)
+				if itemName then
+					message = message .. "\n" .. needed .. "x " .. itemName
+				end
 			end
 		end
 	end
@@ -768,11 +811,29 @@ function AskMrRobot.ShoppingListTab:Send()
 		for k,v in pairs(enchantMaterials) do
 			local needed = v.total - v.count
 			if needed > 0 then
-				items[k] = needed
+				local itemName = GetItemInfo(k)
+				if itemName then
+					message = message .. "\n" .. needed .. "x " .. itemName
+				end
 			end
 		end
 	end
 
+	MailFrameTab_OnClick(nil, 2)
+	if AmrSendSettings.SendGems then
+		if AmrSendSettings.SendEnchants then
+			SendMailSubjectEditBox:SetText('Request for gems and enchants')
+		else
+			SendMailSubjectEditBox:SetText('Request for gems')
+		end
+	else
+		SendMailSubjectEditBox:SetText('Request for enchants')
+	end
+	SendMailNameEditBox:SetText(AmrSendSettings.SendTo)
+	SendMailBodyEditBox:SetText(message)
+end
+
+function AskMrRobot.ShoppingListTab:Send()	
 	local chatType = nil
 	if AmrSendSettings.SendToType == "party" then
 		chatType = "PARTY"
@@ -782,18 +843,55 @@ function AskMrRobot.ShoppingListTab:Send()
 		chatType = "RAID"
 	elseif AmrSendSettings.SendToType == "channel" then
 		chatType = "CHANNEL"
+	elseif AmrSendSettings.SendToType == "mail" then
+		self:sendMail()
+		return
 	else
 		chatType = "WHISPER"
 	end
 
 	local message = "Mr. Robot says I need"
 	local count = 0
-	for k, v in pairs(items) do
-		local _, link = GetItemInfo(k)
+
+
+	local gemList, enchantList, enchantMaterials = self:CalculateItems()
+
+	local items = {}
+	if AmrSendSettings.SendGems then
+		for k,v in pairs(gemList) do
+			if not AskMrRobot.JewelcrafterGems[k] then
+				local needed = v.total - v.count
+				if needed > 0 then
+					tinsert(items, {id = k, needed = needed})
+				end
+			end
+		end
+	end
+
+	if AmrSendSettings.SendEnchants then
+		for k,v in pairs(enchantList) do
+			local needed = v.total - v.count
+			if needed > 0 then
+				tinsert(items, {id = k, needed = needed})
+			end
+		end
+	end
+
+	if AmrSendSettings.SendEnchantMaterials then
+		for k,v in pairs(enchantMaterials) do
+			local needed = v.total - v.count
+			if needed > 0 then
+				tinsert(items, {id = k, needed = needed})
+			end
+		end
+	end
+
+	for i, entry in ipairs(items) do
+		local _, link = GetItemInfo(entry.id)
 		if link then
-			message = message .. " " .. v .. "x " .. link
+			message = message .. " " .. entry.needed .. "x " .. link
 			count = count + 1
-			if count == 3 then
+			if count == 2 then
 				tinsert(self.messageQueue, {message = message, chatType = chatType, chatChannel = AmrSendSettings.SendTo})
 				count = 0
 				message = "Mr. Robot says I need"
@@ -805,46 +903,13 @@ function AskMrRobot.ShoppingListTab:Send()
 		tinsert(self.messageQueue, {message = message, chatType = chatType, chatChannel = AmrSendSettings.SendTo})
 	end
 
-	if self.outstandingMessage == 0 then
-		self:SendNextMessage()
-	end
+	self:SendNextMessage()
 end
 
 function AskMrRobot.ShoppingListTab:SendNextMessage()
 	while #self.messageQueue > 0 do
 		local entry = self.messageQueue[1]
 		table.remove(self.messageQueue, 1)
-		-- if entry.chatType ~= 'WHISPER' then
-		-- 	self.outstandingMessage = 1
-		-- end
 		SendChatMessage(entry.message, entry.chatType, nil, entry.chatChannel)
-		-- if entry.chatType ~= 'WHISPER' then
-		-- 	break
-		-- end
 	end
 end
-
--- function ShoppingListTab:On_CHAT_MSG_CHANNEL()
--- 	self.outstandingMessage = 0
--- 	self.SendNextMessage()
--- end
-
--- function ShoppingListTab:On_CHAT_MSG_GUILD()
--- 	self.outstandingMessage = 0
--- 	self.SendNextMessage()
--- end
-
--- function ShoppingListTab:On_CHAT_MSG_PARTY()
--- 	self.outstandingMessage = 0
--- 	self.SendNextMessage()
--- end
-
--- function ShoppingListTab:On_CHAT_MSG_PARTY_LEADER()
--- 	self.outstandingMessage = 0
--- 	self.SendNextMessage()
--- end
-
--- function ShoppingListTab:On_CHAT_MSG_RAID()
--- 	self.outstandingMessage = 0
--- 	self.SendNextMessage()
--- end

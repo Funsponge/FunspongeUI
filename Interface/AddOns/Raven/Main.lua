@@ -451,7 +451,12 @@ function MOD:PLAYER_ENTERING_WORLD()
 end
 
 -- Event called when an aura changes on a unit, returns the unit name
-function MOD:UNIT_AURA(e, unit) if unit and (unitUpdate[unit] ~= nil) then unitUpdate[unit] = true; doUpdate = true end end
+function MOD:UNIT_AURA(e, unit)
+	if unit and (unitUpdate[unit] ~= nil) then
+		if unit == "vehicle" then unitUpdate.player = true end -- any time vehicle updates, also update player
+		unitUpdate[unit] = true; doUpdate = true
+	end
+end
 
 -- Event called when a unit's power changes
 function MOD:UNIT_POWER(e, unit) if unit == "player" then unitUpdate[unit] = true; doUpdate = true end end
@@ -624,7 +629,6 @@ end
 
 -- Update routine called before each frame is displayed, throttled to minimize CPU usage
 function MOD:Update(elapsed)
-	CheckBlizzFrames() -- make sure blizzard frames are visible or not
 	if MOD.db.profile.enabled then
 		elapsedTime = elapsedTime + elapsed; refreshTime = refreshTime + elapsed
 		if updateGlyphs then InitializeGlyphs(); updateGlyphs = false end
@@ -635,6 +639,7 @@ function MOD:Update(elapsed)
 			MOD:UpdateInternalCooldowns() -- check for expiring internal cooldowns
 			MOD:UpdateCooldownTimes() -- check for expiring normal cooldowns
 			if doUpdate or throttleCount == 0 or MOD:CheckTimeEvents() then -- only do major updates when events warrant it (or about once a second)
+				CheckBlizzFrames() -- make sure blizzard frames are visible or not
 				MOD:UpdateSpellEffects() -- update spell effect timers
 				MOD:UpdateAuras() -- update table containing current auras (actual processing is deferred until needed)
 				MOD:UpdateTrackers() -- update aura trackers for multiple targets
@@ -657,9 +662,14 @@ function MOD:Update(elapsed)
 			refreshTime = 0
 		end
 	else
-		MOD:HideHighlights()
-		MOD:HideBars()
-		MOD:HideInCombatBar()
+		elapsedTime = elapsedTime + elapsed
+		if elapsedTime >= 1 then -- check occasionally to make sure everything is in the right state
+			elapsedTime = 0
+			CheckBlizzFrames() -- make sure blizzard frames are visible or not
+			MOD:HideHighlights()
+			MOD:HideBars()
+			MOD:HideInCombatBar()
+		end
 	end
 end
 
@@ -909,7 +919,7 @@ local function GetBuffs(unit)
 		end
 		i = i + 1
 	until not name
-	if unit ~= "player" then return end -- done for all but player, players also need to add vehicle buffs
+	if unit ~= "player" or not UnitHasVehicleUI("player") then return end -- done for all but player, players also need to add vehicle buffs
 	i = 1
 	repeat
 		name, rank, icon, count, btype, duration, expire, caster, isStealable, _, spellID, apply, boss = UnitAura("vehicle", i, "HELPFUL")
@@ -935,7 +945,7 @@ local function GetDebuffs(unit)
 		end
 		i = i + 1
 	until not name
-	if unit ~= "player" then return end -- done for all but player, players also need to add vehicle debuffs
+	if unit ~= "player" or not UnitHasVehicleUI("player") then return end -- done for all but player, players also need to add vehicle debuffs
 	i = 1
 	repeat
 		name, rank, icon, count, btype, duration, expire, caster, isStealable, _, spellID, apply, boss = UnitAura("vehicle", i, "HARMFUL")

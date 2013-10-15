@@ -297,7 +297,7 @@ local function BorderClassColor()	--colors tip border
 			tt:Show()
 		end
 	end
-	if db.sbarclass then
+	if db.sbarclass and class then
 		SetSBarColor(ttSBar, color[class].r, color[class].g, color[class].b)
 	end
 end

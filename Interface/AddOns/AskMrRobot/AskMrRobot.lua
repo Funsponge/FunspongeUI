@@ -83,7 +83,7 @@ function AskMrRobot.eventListener:OnEvent(event, arg1)
 		if not AmrBankItems then AmrBankItems = {} end
 		if not AmrCurrencies then AmrCurrencies = {} end
 		if not AmrSpecializations then AmrSpecializations = {} end
-		if not AmrHideMapIcon then AmrHideMapIcon = false end
+		if not AmrOptions then AmrOptions = {} end
 		if not AmrGlyphs then AmrGlyphs = {} end
 		if not AmrTalents then AmrTalents = {} end
 		if not AmrBankItemsAndCounts then AmrBankItemsAndCounts = {} end
@@ -104,12 +104,17 @@ function AskMrRobot.eventListener:OnEvent(event, arg1)
 			text = "Ask Mr. Robot",
 			icon = "Interface\\AddOns\\AskMrRobot\\Media\\icon",
 			OnClick = function()
-				AskMrRobot_ReforgeFrame:Toggle()
+
+				if IsModifiedClick("CHATLINK") then
+					AskMrRobot.SaveAll()
+				else
+					AskMrRobot_ReforgeFrame:Toggle()
+				end
 			end,
 			OnTooltipShow = function(tt)
 				tt:AddLine("Ask Mr. Robot", 1, 1, 1);
 				tt:AddLine(" ");
-				tt:AddLine("Click to launch the Ask Mr. Robot Dialog")
+				tt:AddLine("Left Click to open the Ask Mr. Robot window.\n\nShift + Left Click to save your bag and bank data.")
 			end	
 		});
 
@@ -164,7 +169,22 @@ AskMrRobot.eventListener:SetScript("OnEvent", AskMrRobot.eventListener.OnEvent);
 
 SLASH_AMR1 = "/amr";
 function SlashCmdList.AMR(msg)
-	AskMrRobot.SaveAll();
+
+	if msg == 'toggle' then
+		AskMrRobot_ReforgeFrame:Toggle()
+	elseif msg == 'show' then
+		AskMrRobot_ReforgeFrame:Show()
+	elseif msg == 'hide' then
+		AskMrRobot_ReforgeFrame:Hide()
+	elseif msg == 'export' then
+		AskMrRobot.SaveAll();
+	else
+		print('Available AskMrRobot slash commands:\n' ..
+			'  /amr show   -- show the main window\n' ..
+			'  /amr hide   -- hide the main window\n' ..
+			'  /amr toggle -- toggle the main window\n' ..
+			'  /amr export -- export bag and bank data')
+	end
 end
 
 function AskMrRobot.SaveAll()
@@ -188,7 +208,7 @@ local function InitIcon()
 end
 
 function AskMrRobot.AmrUpdateMinimap()
-	if (AmrHideMapIcon) then
+	if (AmrOptions.hideMapIcon) then
 		if (icon) then
 			icon:Hide("AskMrRobot");
 		end

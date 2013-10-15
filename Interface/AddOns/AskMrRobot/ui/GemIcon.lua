@@ -30,8 +30,8 @@ function AskMrRobot.GemIcon:new(name, parent)
 	return o
 end
 
-function AskMrRobot.GemIcon:SetGemColor(color)
-	local info = GEM_TYPE_INFO[color]
+function AskMrRobot.GemIcon:UpdateGemStuff()
+	local info = GEM_TYPE_INFO[self.color]
 
 	if self.itemLink then
 		-- hide the 2nd half of the empty gem icon
@@ -68,4 +68,15 @@ function AskMrRobot.GemIcon:SetGemColor(color)
 
 		self:SetBackdropBorderColor(0,0,0,0)
 	end
+
+end
+
+function AskMrRobot.GemIcon:SetItemLink(link)
+	AskMrRobot.ItemIcon.SetItemLink(self, link)
+	self:UpdateGemStuff()
+end
+
+function AskMrRobot.GemIcon:SetGemColor(color)
+	self.color = color
+	self:UpdateGemStuff()
 end

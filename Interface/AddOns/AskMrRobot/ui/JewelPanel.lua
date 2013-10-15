@@ -116,13 +116,13 @@ function AskMrRobot.JewelPanel:SetOptimizedGems(optimizedGems, showGems)
 
 			local currentGemId = AskMrRobot.getItemIdFromLink(currentGemLink)
 
-			local optimizedGemLink = nil;
+			local optimizedGemLink = nil
 			if i <= #optimizedGems then
 				-- make a link for the optimized gem
 				optimizedGemLink = select(2, GetItemInfo(optimizedGems[i].id))
 
 				if not optimizedGemLink and optimizedGems[i].id and itemId then
-					AskMrRobot.RegisterItemInfoCallback(itemId, function(name, link)
+					AskMrRobot.RegisterItemInfoCallback(optimizedGems[i].id, function(name, link)
 						optimizedIcon:SetItemLink(link)
 					end)
 				end

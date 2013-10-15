@@ -31,7 +31,7 @@ function AskMrRobot.AmrUI:displayImportItems()
 	else
 		self.gemTab:showBadGems()
 		self.enchantTab:showBadEnchants()
-		self.reforgeTab:showBadReforges()
+		self.reforgeTab:Render()
 		self.shoppingTab:Update()
 	end
 end
@@ -55,9 +55,12 @@ function AskMrRobot.AmrUI:showImportWarning(text, ...)
 end
 
 function AskMrRobot.AmrUI:validateInput(input)
+
 	self.importedItems = nil
 	self.mostlySuccess = false
+
 	local parsed = AskMrRobot.parseAmr(input)
+
 	if not parsed.realm then
 		self:showImportError("Oops, you didn't have proper import text", "Please go back to AskMrRobot.com and grab optimizations for this character")
 	elseif not AskMrRobot.validateCharacterName(parsed.name) then
@@ -356,10 +359,19 @@ end
 function AskMrRobot.AmrUI:On_AUCTION_HOUSE_SHOW()
 	self.isAuctionHouseVisible = true
 	if self.mostlySuccess then
-		if not self.visible then
-			self:Show()
+		local showTab = self.visible
+		if not AmrOptions.manualShowShop and not self.visible then
+
+			-- show if there is anything to buy
+			if self.shoppingTab:HasStuffToBuy() then
+				self:Show()
+				showTab = true
+			end
 		end
-		self:ShowTab("shopping")
+
+		if showTab then
+			self:ShowTab("shopping")
+		end
 	end	
 end
 
@@ -375,10 +387,24 @@ end
 function AskMrRobot.AmrUI:On_FORGE_MASTER_OPENED()
 	self.isReforgeVisible = true
 	if self.mostlySuccess then
-		if not self.visible then
-			self:Show()
+		local showTab = self.visible
+		if not AmrOptions.manualShowReforge and not self.visible then
+
+			-- see if there are any reforges to do
+			local reforgeCount = 0
+			for slotNum, badReforge in pairs(AskMrRobot.itemDiffs.reforges) do
+				reforgeCount = reforgeCount + 1
+			end
+
+			if reforgeCount > 0 then
+				self:Show()
+				showTab = true
+			end
 		end
-		self:ShowTab("reforges")
+
+		if showTab then
+			self:ShowTab("reforges")
+		end
 	end
 end
 

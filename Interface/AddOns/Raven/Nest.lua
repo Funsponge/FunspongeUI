@@ -1131,7 +1131,7 @@ local function Bar_UpdateSettings(bg, bar, config)
 	local isHeader = bar.attributes.header
 	if bar.timeLeft and bar.duration and bar.maxTime and bar.offsetTime then -- only update if key parameters are set
 		local remaining = bar.duration - (GetTime() - bar.startTime + bar.offsetTime) -- remaining time in seconds
-		if remaining < 0 then remaining = 0 end -- make sure no rounding funnies
+		if (remaining < 0) or bar.attributes.ghostTime then remaining = 0 end -- make sure no rounding funnies and make sure ghost bars show 0 time
 		if remaining > bar.duration then remaining = bar.duration end -- and no inaccurate durations!
 		bar.timeLeft = remaining -- update saved value
 		if remaining < bar.maxTime then fill = remaining / bar.maxTime end -- calculate fraction of time remaining
@@ -1207,6 +1207,7 @@ local function Bar_UpdateSettings(bg, bar, config)
 	if sparky then bar.spark:Show() else bar.spark:Hide() end
 	local alpha = bar.alpha or 1 -- adjust by bar alpha
 	if bar.flash then alpha = Nest_FlashAlpha(alpha, 1) end -- adjust alpha if flashing
+	if bar.attributes.header and bg.attributes.headerGaps then alpha = 0 end
 	bar.frame:SetAlpha(alpha) -- final alpha adjustment
 	if not isHeader and (bg.attributes.noMouse or (bg.attributes.iconMouse and not bg.showIcon)) then -- non-interactive or "only icon" but icon disabled
 		bar.icon:EnableMouse(false); bar.frame:EnableMouse(false); if callbacks.deactivate then callbacks.deactivate(bar.overlay) end
@@ -1215,7 +1216,7 @@ local function Bar_UpdateSettings(bg, bar, config)
 	else -- entire bar is interactive
 		bar.icon:EnableMouse(false); bar.frame:EnableMouse(true); if callbacks.activate then callbacks.activate(bar, bar.frame) end
 	end
-	if bar.attributes.header then
+	if bar.attributes.header and not bg.attributes.headerGaps then
 		bf:SetAlpha(0); bb:SetAlpha(0)
 		local id, tag = bar.attributes.tooltipUnit, ""
 		if id == UnitGUID("mouseover") then tag = "|cFF73d216@|r" end
@@ -1230,7 +1231,7 @@ local function Bar_RefreshAnimations(bg, bar, config)
 	local fill, sparky, offsetX, now = 1, false, 0, GetTime()
 	if bar.timeLeft and bar.duration and bar.maxTime and bar.offsetTime then -- only update if key parameters are set
 		local remaining = bar.duration - (now - bar.startTime + bar.offsetTime) -- remaining time in seconds
-		if remaining < 0 then remaining = 0 end -- make sure no rounding funnies
+		if (remaining < 0) or bar.attributes.ghostTime then remaining = 0 end -- make sure no rounding funnies and make sure ghost bars show 0 time
 		if remaining > bar.duration then remaining = bar.duration end -- and no inaccurate durations!
 		bar.timeLeft = remaining -- update saved value
 		if remaining < bar.maxTime then fill = remaining / bar.maxTime end -- calculate fraction of time remaining
@@ -1280,6 +1281,7 @@ local function Bar_RefreshAnimations(bg, bar, config)
 	if sparky then bar.spark:Show() else bar.spark:Hide() end
 	local alpha = bar.alpha or 1 -- adjust by bar alpha
 	if bar.flash then alpha = Nest_FlashAlpha(alpha, 1) end -- adjust alpha if flashing
+	if bar.attributes.header and bg.attributes.headerGaps then alpha = 0 end
 	bar.frame:SetAlpha(alpha) -- final alpha adjustment
 	if bar.attributes.soundStart and (not bar.soundDone or (bar.attributes.replay and (now > (bar.soundDone + bar.attributes.replayTime)))) then
 		PlaySoundFile(bar.attributes.soundStart, Raven.db.global.SoundChannel); bar.soundDone = now

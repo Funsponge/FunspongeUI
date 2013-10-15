@@ -1,7 +1,7 @@
 local mod	= DBM:NewMod(870, "DBM-SiegeOfOrgrimmar", nil, 369)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision(("$Revision: 10247 $"):sub(12, -3))
+mod:SetRevision(("$Revision: 10393 $"):sub(12, -3))
 mod:SetCreatureID(73720, 71512)
 mod:SetZone()
 
@@ -34,7 +34,7 @@ local warnTorment				= mod:NewSpellAnnounce(142934, 3, nil, mod:IsHealer())
 local warnMantidSwarm			= mod:NewSpellAnnounce(142539, 3, nil, mod:IsTank())
 local warnResidue				= mod:NewCastAnnounce(145786, 4, nil, nil, mod:IsMagicDispeller())
 local warnRageoftheEmpress		= mod:NewCastAnnounce(145812, 4, nil, nil, mod:IsMagicDispeller())
-local warnWindStorm				= mod:NewSpellAnnounce(145816, 3)--Stunable?
+local warnWindStorm				= mod:NewSpellAnnounce(145286, 3)--Stunable?
 --Lightweight Crate of Goods
 local warnHardenFlesh			= mod:NewSpellAnnounce(144922, 2, nil, false)
 local warnEarthenShard			= mod:NewSpellAnnounce(144923, 2, nil, false)
@@ -80,7 +80,7 @@ local timerMatterScrambleCD		= mod:NewCDTimer(18, 145288)--18-22 sec variation. 
 local timerCrimsonReconCD		= mod:NewNextTimer(15, 142947)
 local timerMantidSwarmCD		= mod:NewCDTimer(35, 142539)
 local timerResidueCD			= mod:NewCDTimer(18, 145786, nil, mod:IsMagicDispeller())
-local timerWindstormCD			= mod:NewCDTimer(34, 145816, nil, false)--Spammy but might be useful to some, if they aren't releasing a ton of these at once.
+local timerWindstormCD			= mod:NewCDTimer(34, 145286, nil, false)--Spammy but might be useful to some, if they aren't releasing a ton of these at once.
 local timerRageoftheEmpressCD	= mod:NewCDTimer(18, 145812, nil, mod:IsMagicDispeller())
 --Lightweight Crate of Goods
 ----Most of these timers are included simply because of how accurate they are. Predictable next timers. However, MANY of these adds up at once.
@@ -95,7 +95,7 @@ local timerPathOfBlossomsCD		= mod:NewCDTimer(15, 146253)
 local countdownSetToBlow		= mod:NewCountdownFades(29, 145996)
 local countdownArmageddon		= mod:NewCountdown(270, 145864, nil, nil, nil, nil, true)
 
-mod:AddBoolOption("InfoFrame")
+mod:AddBoolOption("RangeFrame")
 
 local activeBossGUIDS = {}
 local setToBlowTargets = {}
@@ -162,7 +162,7 @@ function mod:SPELL_CAST_START(args)
 		warnMantidSwarm:Show()
 		specWarnMantidSwarm:Show()
 		timerMantidSwarmCD:Start(args.sourceGUID)
-	elseif args.spellId == 145816 and self:checkTankDistance(args.sourceGUID) then
+	elseif args.spellId == 145286 and self:checkTankDistance(args.sourceGUID) then
 		warnWindStorm:Show()
 		timerWindstormCD:Start(args.sourceGUID)
 	elseif args.spellId == 144922 and self:checkTankDistance(args.sourceGUID) then
@@ -206,10 +206,10 @@ function mod:SPELL_CAST_SUCCESS(args)
 		timerCrimsonReconCD:Start(args.sourceGUID)
 	elseif args.spellId == 145712 and self:checkTankDistance(args.sourceGUID) then
 		timerBlazingChargeCD:Start(args.sourceGUID)
-		self:BossTargetScanner(args.sourceGUID, "BlazingChargeTarget", 0.025, 12)
+--		self:BossTargetScanner(args.sourceGUID, "BlazingChargeTarget", 0.025, 12)
 	elseif args.spellId == 146253 and self:checkTankDistance(args.sourceGUID) then
 		timerPathOfBlossomsCD:Start(args.sourceGUID)
-		self:BossTargetScanner(args.sourceGUID, "PathofBlossomsTarget", 0.025, 12)
+--		self:BossTargetScanner(args.sourceGUID, "PathofBlossomsTarget", 0.025, 12)
 	elseif args.spellId == 145230 and self:checkTankDistance(args.sourceGUID) then
 		local source = args.sourceName
 		warnForbiddenMagic:Show(args.destName)
