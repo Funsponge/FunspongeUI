@@ -1,10 +1,10 @@
 
 MADB = {
-	["frameListRows"] = 18,
+	["collapsed"] = true,
 	["characters"] = {
 	},
 	["tooltips"] = 1,
-	["collapsed"] = true,
+	["frameListRows"] = 18,
 	["profiles"] = {
 		["default"] = {
 			["frames"] = {
@@ -271,14 +271,14 @@ MADB = {
 						752.5599975585938, -- [5]
 					},
 				},
-				["WorldStateCaptureBar1"] = {
-					["name"] = "WorldStateCaptureBar1",
+				["ChatConfigFrame"] = {
+					["name"] = "ChatConfigFrame",
 					["pos"] = {
-						"TOPRIGHT", -- [1]
-						"MinimapCluster", -- [2]
-						"BOTTOMRIGHT", -- [3]
-						-791.2142333984375, -- [4]
-						107.1715698242188, -- [5]
+						"BOTTOMLEFT", -- [1]
+						"UIParent", -- [2]
+						"BOTTOMLEFT", -- [3]
+						555.21435546875, -- [4]
+						251.0714874267578, -- [5]
 					},
 				},
 				["MiniMapMailFrame"] = {
@@ -293,17 +293,20 @@ MADB = {
 						74.61544867922368, -- [5]
 					},
 				},
-				["RaidUnitFramesManagerMover"] = {
-					["clampToScreen"] = true,
-					["name"] = "RaidUnitFramesManagerMover",
-					["orgClampToScreen"] = 1,
-					["hidden"] = true,
+				["MainMenuExpBar"] = {
+					["orgWidth"] = 1024.000122070313,
+					["frameStrata"] = "LOW",
+					["orgFrameStrata"] = "MEDIUM",
+					["name"] = "MainMenuExpBar",
+					["width"] = 204,
+					["height"] = 10,
+					["orgHeight"] = 10.99998474121094,
 					["pos"] = {
-						"TOPLEFT", -- [1]
-						"UIParent", -- [2]
-						"TOPLEFT", -- [3]
-						0, -- [4]
-						-330.1715698242188, -- [5]
+						"TOP", -- [1]
+						"MainMenuBar", -- [2]
+						"TOP", -- [3]
+						-751.3599853515625, -- [4]
+						815.8300170898438, -- [5]
 					},
 				},
 				["MiniMapInstanceDifficulty"] = {
@@ -326,29 +329,27 @@ MADB = {
 						-142.9999389648438, -- [5]
 					},
 				},
-				["MainMenuExpBar"] = {
-					["orgHeight"] = 10.99998474121094,
-					["name"] = "MainMenuExpBar",
-					["height"] = 10,
-					["orgWidth"] = 1024.000122070313,
-					["width"] = 204,
+				["RaidUnitFramesManagerMover"] = {
+					["clampToScreen"] = true,
+					["name"] = "RaidUnitFramesManagerMover",
+					["orgClampToScreen"] = 1,
+					["hidden"] = true,
 					["pos"] = {
-						"TOP", -- [1]
-						"MainMenuBar", -- [2]
-						"TOP", -- [3]
-						-751.3599853515625, -- [4]
-						815.8300170898438, -- [5]
+						"TOPLEFT", -- [1]
+						"UIParent", -- [2]
+						"TOPLEFT", -- [3]
+						0, -- [4]
+						-330.1715698242188, -- [5]
 					},
 				},
-				["GameTimeFrame"] = {
-					["scale"] = 0.7999999523162842,
-					["name"] = "GameTimeFrame",
+				["AchievementAlertFrame1"] = {
+					["name"] = "AchievementAlertFrame1",
 					["pos"] = {
-						"CENTER", -- [1]
-						"Minimap", -- [2]
-						"CENTER", -- [3]
-						-88.51752350336018, -- [4]
-						88.3927008764893, -- [5]
+						"BOTTOM", -- [1]
+						"UIParent", -- [2]
+						"BOTTOM", -- [3]
+						-1.82855224609375, -- [4]
+						878.6284790039063, -- [5]
 					},
 				},
 				["TimeManagerFrame"] = {
@@ -362,35 +363,15 @@ MADB = {
 					},
 				},
 				["QueueStatusFrame"] = {
-					["disableLayerArtwork"] = 1,
-					["scale"] = 0.7999999523162842,
 					["name"] = "QueueStatusFrame",
+					["scale"] = 0.7999999523162842,
+					["disableLayerArtwork"] = 1,
 					["pos"] = {
 						"TOPRIGHT", -- [1]
 						"QueueStatusMinimapButton", -- [2]
 						"TOPLEFT", -- [3]
 						310.6306576996637, -- [4]
 						158.3673524658642, -- [5]
-					},
-				},
-				["HelpOpenTicketButton"] = {
-					["name"] = "HelpOpenTicketButton",
-					["pos"] = {
-						"CENTER", -- [1]
-						"HelpMicroButton", -- [2]
-						"TOPRIGHT", -- [3]
-						-321.857177734375, -- [4]
-						-108.2859497070313, -- [5]
-					},
-				},
-				["LFDRoleCheckPopup"] = {
-					["name"] = "LFDRoleCheckPopup",
-					["pos"] = {
-						"TOP", -- [1]
-						"UIParent", -- [2]
-						"TOP", -- [3]
-						-6.103515625e-005, -- [4]
-						-108.8001098632813, -- [5]
 					},
 				},
 				["ScenarioAlertFrame1"] = {
@@ -403,6 +384,26 @@ MADB = {
 						878.6287841796875, -- [5]
 					},
 				},
+				["LFDRoleCheckPopup"] = {
+					["name"] = "LFDRoleCheckPopup",
+					["pos"] = {
+						"TOP", -- [1]
+						"UIParent", -- [2]
+						"TOP", -- [3]
+						-6.103515625e-005, -- [4]
+						-108.8001098632813, -- [5]
+					},
+				},
+				["HelpOpenTicketButton"] = {
+					["name"] = "HelpOpenTicketButton",
+					["pos"] = {
+						"CENTER", -- [1]
+						"HelpMicroButton", -- [2]
+						"TOPRIGHT", -- [3]
+						-321.857177734375, -- [4]
+						-108.2859497070313, -- [5]
+					},
+				},
 				["LFGDungeonReadyDialog"] = {
 					["name"] = "LFGDungeonReadyDialog",
 					["pos"] = {
@@ -413,14 +414,15 @@ MADB = {
 						-110.5431518554688, -- [5]
 					},
 				},
-				["AchievementAlertFrame1"] = {
-					["name"] = "AchievementAlertFrame1",
+				["GameTimeFrame"] = {
+					["scale"] = 0.7999999523162842,
+					["name"] = "GameTimeFrame",
 					["pos"] = {
-						"BOTTOM", -- [1]
-						"UIParent", -- [2]
-						"BOTTOM", -- [3]
-						-1.82855224609375, -- [4]
-						878.6284790039063, -- [5]
+						"CENTER", -- [1]
+						"Minimap", -- [2]
+						"CENTER", -- [3]
+						-88.51752350336018, -- [4]
+						88.3927008764893, -- [5]
 					},
 				},
 				["MACompactRaidFrameManagerToggleButton"] = {
@@ -444,14 +446,14 @@ MADB = {
 						-138.9716186523438, -- [5]
 					},
 				},
-				["ChatConfigFrame"] = {
-					["name"] = "ChatConfigFrame",
+				["WorldStateCaptureBar1"] = {
+					["name"] = "WorldStateCaptureBar1",
 					["pos"] = {
-						"BOTTOMLEFT", -- [1]
-						"UIParent", -- [2]
-						"BOTTOMLEFT", -- [3]
-						555.21435546875, -- [4]
-						251.0714874267578, -- [5]
+						"TOPRIGHT", -- [1]
+						"MinimapCluster", -- [2]
+						"BOTTOMRIGHT", -- [3]
+						-791.2142333984375, -- [4]
+						107.1715698242188, -- [5]
 					},
 				},
 				["AlertFrame"] = {

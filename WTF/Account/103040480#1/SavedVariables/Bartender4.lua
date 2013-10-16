@@ -33,10 +33,10 @@ Bartender4DB = {
 								["x"] = -86.4996337890625,
 								["point"] = "RIGHT",
 							},
-							["fadeoutalpha"] = 0,
+							["padding"] = 5,
 							["rows"] = 12,
 							["version"] = 3,
-							["padding"] = 5,
+							["fadeoutalpha"] = 0,
 						}, -- [3]
 						{
 							["fadeout"] = true,
@@ -45,10 +45,10 @@ Bartender4DB = {
 								["x"] = -43.499755859375,
 								["point"] = "RIGHT",
 							},
-							["fadeoutalpha"] = 0,
+							["padding"] = 5,
 							["rows"] = 12,
 							["version"] = 3,
-							["padding"] = 5,
+							["fadeoutalpha"] = 0,
 						}, -- [4]
 						{
 							["enabled"] = false,
@@ -58,10 +58,10 @@ Bartender4DB = {
 								["x"] = -1.000002861022949,
 								["point"] = "LEFT",
 							},
-							["fadeoutalpha"] = 0,
+							["padding"] = 6,
 							["rows"] = 12,
 							["version"] = 3,
-							["padding"] = 6,
+							["fadeoutalpha"] = 0,
 						}, -- [5]
 						{
 							["version"] = 3,
@@ -72,14 +72,14 @@ Bartender4DB = {
 								["scale"] = 0.95,
 							},
 							["rows"] = 2,
-							["hidemacrotext"] = true,
 							["padding"] = 1,
+							["hidemacrotext"] = true,
 						}, -- [6]
 						{
 							["enabled"] = true,
 							["version"] = 3,
 							["showgrid"] = true,
-							["buttons"] = 3,
+							["hidemacrotext"] = true,
 							["padding"] = 1,
 							["position"] = {
 								["y"] = -480,
@@ -87,7 +87,7 @@ Bartender4DB = {
 								["point"] = "CENTER",
 								["scale"] = 1.5,
 							},
-							["hidemacrotext"] = true,
+							["buttons"] = 3,
 						}, -- [7]
 						{
 						}, -- [8]
@@ -123,8 +123,8 @@ Bartender4DB = {
 							["showgrid"] = true,
 							["rows"] = 12,
 							["fadeout"] = true,
-							["version"] = 3,
 							["fadeoutalpha"] = 0,
+							["version"] = 3,
 							["position"] = {
 								["y"] = 264.2940368652344,
 								["x"] = -86.4996337890625,
@@ -136,8 +136,8 @@ Bartender4DB = {
 							["showgrid"] = true,
 							["rows"] = 12,
 							["fadeout"] = true,
-							["version"] = 3,
 							["fadeoutalpha"] = 0,
+							["version"] = 3,
 							["position"] = {
 								["y"] = 264.2940368652344,
 								["x"] = -43.499755859375,
@@ -149,8 +149,8 @@ Bartender4DB = {
 							["rows"] = 12,
 							["fadeout"] = true,
 							["enabled"] = false,
-							["version"] = 3,
 							["fadeoutalpha"] = 0,
+							["version"] = 3,
 							["position"] = {
 								["y"] = 163.4764404296875,
 								["x"] = -1.000002861022949,
@@ -221,8 +221,8 @@ Bartender4DB = {
 							},
 						}, -- [2]
 						{
-							["padding"] = 5,
 							["rows"] = 12,
+							["padding"] = 5,
 							["version"] = 3,
 							["position"] = {
 								["y"] = 610,
@@ -231,8 +231,8 @@ Bartender4DB = {
 							},
 						}, -- [3]
 						{
-							["padding"] = 5,
 							["rows"] = 12,
+							["padding"] = 5,
 							["version"] = 3,
 							["position"] = {
 								["y"] = 610,
@@ -272,8 +272,8 @@ Bartender4DB = {
 			["char"] = {
 				["Grumblestout - Argent Dawn"] = {
 					["profile"] = "Holy",
-					["specGroup"] = 1,
 					["enabled"] = true,
+					["specGroup"] = 1,
 				},
 			},
 		},
@@ -308,7 +308,7 @@ Bartender4DB = {
 		["MicroMenu"] = {
 			["profiles"] = {
 				["Holy"] = {
-					["version"] = 3,
+					["fadeout"] = true,
 					["position"] = {
 						["y"] = -23.57840197139012,
 						["x"] = 254.7766639527181,
@@ -320,10 +320,10 @@ Bartender4DB = {
 					["visibility"] = {
 						["combat"] = false,
 					},
-					["fadeout"] = true,
+					["version"] = 3,
 				},
 				["Grumblestout - Argent Dawn"] = {
-					["version"] = 3,
+					["fadeoutalpha"] = 0,
 					["position"] = {
 						["y"] = -23.57840197139012,
 						["x"] = 254.7766639527181,
@@ -335,7 +335,7 @@ Bartender4DB = {
 					["visibility"] = {
 						["combat"] = false,
 					},
-					["fadeoutalpha"] = 0,
+					["version"] = 3,
 				},
 				["Sadbelly - Argent Dawn"] = {
 					["version"] = 3,
@@ -430,34 +430,6 @@ Bartender4DB = {
 				},
 			},
 		},
-		["Vehicle"] = {
-			["profiles"] = {
-				["Holy"] = {
-					["version"] = 3,
-					["position"] = {
-						["y"] = 47.49993896484375,
-						["x"] = 99.50006103515625,
-						["point"] = "CENTER",
-					},
-				},
-				["Grumblestout - Argent Dawn"] = {
-					["version"] = 3,
-					["position"] = {
-						["y"] = 47.49993896484375,
-						["x"] = 99.50006103515625,
-						["point"] = "CENTER",
-					},
-				},
-				["Sadbelly - Argent Dawn"] = {
-					["version"] = 3,
-					["position"] = {
-						["y"] = 47.49993896484375,
-						["x"] = 99.50009155273438,
-						["point"] = "CENTER",
-					},
-				},
-			},
-		},
 		["StanceBar"] = {
 			["profiles"] = {
 				["Holy"] = {
@@ -489,6 +461,34 @@ Bartender4DB = {
 						["x"] = -460,
 						["point"] = "BOTTOM",
 						["y"] = 116,
+					},
+				},
+			},
+		},
+		["Vehicle"] = {
+			["profiles"] = {
+				["Holy"] = {
+					["version"] = 3,
+					["position"] = {
+						["y"] = 47.49993896484375,
+						["x"] = 99.50006103515625,
+						["point"] = "CENTER",
+					},
+				},
+				["Grumblestout - Argent Dawn"] = {
+					["version"] = 3,
+					["position"] = {
+						["y"] = 47.49993896484375,
+						["x"] = 99.50006103515625,
+						["point"] = "CENTER",
+					},
+				},
+				["Sadbelly - Argent Dawn"] = {
+					["version"] = 3,
+					["position"] = {
+						["y"] = 47.49993896484375,
+						["x"] = 99.50009155273438,
+						["point"] = "CENTER",
 					},
 				},
 			},

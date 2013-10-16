@@ -5,10 +5,10 @@ CliqueDB3 = {
 		["Grumblestout - Argent Dawn"] = {
 			["sec_profileKey"] = "Holy",
 			["fastooc"] = false,
-			["specswap"] = false,
+			["alerthidden"] = true,
 			["downclick"] = false,
 			["pri_profileKey"] = "Retribution",
-			["alerthidden"] = true,
+			["specswap"] = false,
 		},
 	},
 	["profileKeys"] = {
@@ -19,10 +19,10 @@ CliqueDB3 = {
 		["Holy"] = {
 			["bindings"] = {
 				{
+					["type"] = "target",
 					["sets"] = {
 						["default"] = true,
 					},
-					["type"] = "target",
 					["key"] = "BUTTON1",
 					["unit"] = "mouseover",
 				}, -- [1]
@@ -47,12 +47,12 @@ CliqueDB3 = {
 					["type"] = "spell",
 				}, -- [1]
 				{
-					["spell"] = "Flash of Light",
-					["key"] = "2",
+					["spell"] = "Hand of Freedom",
+					["key"] = "SHIFT-4",
 					["sets"] = {
 						["default"] = true,
 					},
-					["icon"] = "Interface\\Icons\\Spell_Holy_FlashHeal",
+					["icon"] = "Interface\\Icons\\Spell_Holy_SealOfValor",
 					["type"] = "spell",
 				}, -- [2]
 				{
@@ -65,13 +65,12 @@ CliqueDB3 = {
 					["type"] = "spell",
 				}, -- [3]
 				{
-					["spell"] = "Hand of Freedom",
-					["key"] = "SHIFT-4",
+					["macrotext"] = "/use [target=mouseover,exists][] Detox",
+					["type"] = "macro",
+					["key"] = "BUTTON4",
 					["sets"] = {
 						["default"] = true,
 					},
-					["icon"] = "Interface\\Icons\\Spell_Holy_SealOfValor",
-					["type"] = "spell",
 				}, -- [4]
 				{
 					["spell"] = "Hand of Salvation",
@@ -83,22 +82,23 @@ CliqueDB3 = {
 					["type"] = "spell",
 				}, -- [5]
 				{
-					["macrotext"] = "/use [target=mouseover,exists][] Cleanse",
-					["type"] = "macro",
-					["key"] = "BUTTON4",
+					["spell"] = "Soothing Mist",
+					["key"] = "2",
 					["sets"] = {
 						["default"] = true,
 					},
+					["icon"] = "Interface\\Icons\\ability_monk_soothingmists",
+					["type"] = "spell",
 				}, -- [6]
 			},
 		},
 		["Sadbelly - Argent Dawn"] = {
 			["bindings"] = {
 				{
-					["type"] = "target",
 					["sets"] = {
 						["default"] = true,
 					},
+					["type"] = "target",
 					["key"] = "BUTTON1",
 					["unit"] = "mouseover",
 				}, -- [1]

@@ -5,8 +5,8 @@ VER 3 0000000000000006 "1" "INV_MISC_QUESTIONMARK"
 /dismount
 END
 VER 3 0000000000000007 "cleanse" "INV_MISC_QUESTIONMARK"
-#showtooltip Cleanse
-/use [target=mouseover,exists][] Cleanse
+#showtooltip Detox
+/use [target=mouseover,exists][] Detox
 END
 VER 3 000000000000000B "Holywhomp" "INV_MISC_QUESTIONMARK"
 /castsequence  Crusader Strike
